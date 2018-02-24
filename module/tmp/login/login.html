@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<link rel = "stylesheet" type = "text/css" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.css"/>
+<link rel = "stylesheet" type = "text/css" href = "login.css"/>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../user_status/user_status.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "login.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  let login = new Login("#login_area", "../index/index.html");
+  $(document).ready(function() {
+    login.init();
+    login.output();
+  });
+</script>
+<title>用户登录</title>
+</head>
+<body>
+  <div id = "login_area"></div>
+</body>
+</html>

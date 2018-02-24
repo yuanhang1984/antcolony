@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<!-- plugin style -->
+<link rel = "stylesheet" href = "../../plugin/font-awesome/3.2.1/css/font-awesome.min.css">
+<!-- custom style -->
+<link rel = "stylesheet" type = "text/css" href = "./LeftMenu.css"/>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./LeftMenu.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  let leftMenu = new LeftMenu();
+  $(document).ready(function() {
+      leftMenu._setOutputId("#outputArea");
+      leftMenu._init();
+      leftMenu._output();
+      leftMenu._eventBind();
+  });
+</script>
+<title>Left Menu</title>
+</head>
+<body>
+  <div id = "outputArea"></div>
+</body>
+</html>

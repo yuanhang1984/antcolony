@@ -1,0 +1,10 @@
+/**
+ * @author wangdi
+ */
+@charset "utf-8";
+.warehouse_pot_ingredient_icon{color:#fff !important;background:#337ab7 !important;}
+.warehouse_pot_cull_icon{color:#fff !important;background:#337ab7 !important;}
+.glyphicon-chevron-up:before {
+    content: "\e113";
+}
+

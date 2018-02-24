@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8">
+  <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+  <meta name = "viewport" content = "width=device-width, initial-scale=1">
+  <link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.css">
+  <link rel = "stylesheet" href = "../../css/custom_modal.css">
+  <link rel = "stylesheet" href = "../warehouse_pot_details/warehouse_pot_details.css">
+  <link rel = "stylesheet" href = "warehouse_details.css">
+  <script src = "../../plugin/jquery/1.12.4/jquery.min.js"></script>
+  <script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.js"></script>
+  <script src = "../../js/toolkit.js"></script>
+  <script src = "../../js/configure.js"></script>
+  <script src = "../warehouse_pot_details/warehouse_pot_details.js"></script>
+  <script src = "warehouse_details.js"></script>
+  <script>
+    var warehouseDetailes = new WarehouseDetailes();
+    var warehousePotDetails = new WarehousePotDetails();
+    $(document).ready(function() {
+      warehouseDetailes.clearRawData();
+      warehouseDetailes.fillVariableData();
+      warehouseDetailes.initEvent();
+      //储罐明细
+      warehousePotDetails.clearRawData();
+      warehousePotDetails.fillVariableData();
+      warehousePotDetails.initEvent();
+
+    });
+  </script> 
+  </head>
+<body>
+  <div class="panel panel-primary ">
+    <div class="panel-heading">库区明细</div>
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>储罐名称</th>
+            <th>入库值</th>
+            <th>检尺值</th>
+            <th>差值</th>
+          </tr>
+        </thead>
+        <tbody id = "warehouse_detailes_content_box">
+          <tr>
+            <td><button type = "button" class = "btn btn-info btn-xs"><span class = "glyphicon glyphicon-chevron-up"></span></button></td>
+            <td>3000</td>
+            <td>3000</td>
+            <td>3000</td>
+            <td>-200</td>
+          </tr>
+          <tr>
+            <td><button type = "button" class = "btn btn-info btn-xs"><span class = "glyphicon glyphicon-chevron-up"></span></button></td>
+            <td>3000</td>
+            <td>3000</td>
+            <td>3000</td>
+            <td>-200</td>
+          </tr>
+          <tr>
+            <td><button type = "button" class = "btn btn-info btn-xs"><span class = "glyphicon glyphicon-chevron-up"></span></button></td>
+            <td>3000</td>
+            <td>3000</td>
+            <td>3000</td>
+            <td>-200</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
