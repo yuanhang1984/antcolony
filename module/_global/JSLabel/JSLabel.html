@@ -12,13 +12,17 @@
 <script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "./JSLabel.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
+  // 创建对象
   let jsLabel = new JSLabel();
+  // 设置属性
+  jsLabel.setText("Name")
+  // 生成代码
+  jsLabel.generateCode();
+  // 获取代码
+  let code = jsLabel.getCode();
   $(document).ready(function() {
-    jsLabel.setLabelConfig("Name");
-    jsLabel._setOutputId("#outputArea");
-    jsLabel._init();
-    jsLabel._output();
-    jsLabel._eventBind();
+    // 输出代码
+    $("#outputArea").html(code);
   });
 </script>
 <title>JSLabel</title>

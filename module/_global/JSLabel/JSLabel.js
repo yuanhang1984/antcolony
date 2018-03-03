@@ -1,43 +1,47 @@
 "use strict";
 
 class JSLabel {
-  /**
-   * @Override
+  /*
+   * 构造函数（无参）
+   * 自动初始化对象的id。
    */
-  _setOutputId(outputId) {
-    this.outputId = outputId;
+  constructor() {
+    this.objectId = JString.getUuid(true);
+    this.objectText = "";
+    this.objectClass = "";
+    this.objectCode = "";
   }
 
-  /**
-   * @Override
-   */
-  _init() {
-    this.labelId = JString.getUuid(true);
+  getId() {
+    return this.objectId;
   }
 
-  /**
-   * @Override
+  setText(text) {
+    this.objectText = text;
+  }
+
+  getText() {
+    return this.objectText;
+  }
+
+  setClass(clazz) {
+    this.objectClass = clazz;
+  }
+
+  getClass() {
+    return this.objectClass;
+  }
+
+  getCode() {
+    return this.objectCode;
+  }
+
+  /* 
+   * 生成源码
    */
-  _output() {
-    let code = `
-      <span class = "${this.labelCustomClass}" id = "${this.labelId}">${this.labelText}</span>
+  generateCode() {
+    this.objectCode = `
+      <span class = "${this.getClass()}" id = "${this.getId()}">${this.getText()}</span>
     `;
-    $(this.outputId).html(code);
-  }
-
-  /**
-   * @Override
-   */
-  _eventBind() {
-  }
-
-  /**
-   * 配置标签
-   * @param labelText 标签的文本
-   * @param labelCustomClass 标签自定义Class
-   */
-  setLabelConfig(labelText, labelCustomClass = "") {
-    this.labelText = labelText;
-    this.labelCustomClass = labelCustomClass;
   }
 }

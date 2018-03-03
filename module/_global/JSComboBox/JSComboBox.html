@@ -12,28 +12,61 @@
 <script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "./JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
+  // 创建对象
   let jsComboBox = new JSComboBox();
+  // 设置属性
+  jsComboBox.setType("dropdown");
+  jsComboBox.addItem({
+    "type": "option",
+    "text": "请选择",
+    "value": "-1",
+    "enable": false
+  });
+  jsComboBox.addItem({
+    "type": "option",
+    "text": "张三",
+    "value": "zhangsan",
+    "enable": true
+  });
+  jsComboBox.addItem({
+    "type": "option",
+    "text": "李四",
+    "value": "lisi",
+    "enable": true
+  });
+  jsComboBox.addItem({
+    "type": "separator"
+  });
+  jsComboBox.addItem({
+    "type": "option",
+    "text": "王五",
+    "value": "wangwu",
+    "enable": true
+  });
+  jsComboBox.setSelectedIndex(0);
+  // 生成代码
+  jsComboBox.generateCode();
+  // 获取代码
+  let code = jsComboBox.getCode();
   $(document).ready(function() {
-    jsComboBox.setComboBoxConfig(1, -1, -1, 0, "", false);
-    jsComboBox.setComboBoxList(
-      [
-        {"type": "option", "text": "-- 请选择 --", "value": "-1", "enable": false},
-        {"type": "header", "text": "男性", "value": "-1", "enable": false},
-        {"type": "option", "text": "张磊", "value": "1", "enable": true},
-        {"type": "option", "text": "刘建国", "value": "2", "enable": true},
-        {"type": "separator", "text": "", "value": "", "enable": false},
-        {"type": "option", "text": "张宁", "value": "3", "enable": true},
-        {"type": "header", "text": "女性", "value": "-1", "enable": false},
-        {"type": "option", "text": "刘丽", "value": "4", "enable": true},
-        {"type": "option", "text": "王晓", "value": "5", "enable": true},
-        {"type": "separator", "text": "", "value": "", "enable": false},
-        {"type": "option", "text": "孙晓红", "value": "4", "enable": true}
-      ]
-    );
-    jsComboBox._setOutputId("#outputArea");
-    jsComboBox._init();
-    jsComboBox._output();
-    jsComboBox._eventBind();
+    // 输出代码
+    $("#outputArea").html(code);
+    // 更新控件
+    jsComboBox.update();
+    // console.log(jsComboBox.getItemAt(1));
+    console.log(jsComboBox.getItemCount());
+    // jsComboBox.removeItemAt(0);
+    // jsComboBox.insertItemAt({
+    //   "type": "option",
+    //   "text": "赵六",
+    //   "value": "zhaoliu",
+    //   "enable": true
+    // }, 1);
+    // 重新生成代码
+    jsComboBox.generateCode();
+    code = jsComboBox.getCode();
+    $("#outputArea").html(code);
+    jsComboBox.update();
   });
 </script>
 <title>JSComboBox</title>

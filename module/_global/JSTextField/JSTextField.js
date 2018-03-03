@@ -1,70 +1,83 @@
 "use strict";
 
 class JSTextField {
-  /**
-   * @Override
+  /*
+   * 构造函数（无参）
+   * 自动初始化对象的id。
    */
-  _setOutputId(outputId) {
-    this.outputId = outputId;
+  constructor() {
+    this.objectId = JString.getUuid(true);
+    this.objectType = "";
+    this.objectPlaceHolder = "";
+    this.objectValue = "";
+    this.objectReadOnly = false;
+    this.objectClass = "";
+    this.objectCode = "";
   }
 
-  /**
-   * @Override
-   */
-  _init() {
-    this.textFieldId = JString.getUuid(true);
+  getId() {
+    return this.objectId;
   }
 
-  /**
-   * @Override
+  setType(type) {
+    this.objectType = type;
+  }
+
+  getType() {
+    return this.objectType;
+  }
+
+  setPlaceHolder(placeHolder) {
+    this.objectPlaceHolder = placeHolder;
+  }
+
+  getPlaceHolder() {
+    return this.objectPlaceHolder;
+  }
+
+  setValue(value) {
+    this.objectValue = value;
+  }
+
+  getValue() {
+    return this.objectValue;
+  }
+
+  setClass(clazz) {
+    this.objectClass = clazz;
+  }
+
+  getClass() {
+    return this.objectClass;
+  }
+
+  setReadOnly(readOnly) {
+    this.objectReadOnly = readOnly;
+  }
+
+  getReadOnly() {
+    return this.objectReadOnly;
+  }
+
+  getCode() {
+    return this.objectCode;
+  }
+
+  /* 
+   * 生成源码
+   *
+   * setType 设置类型
+   *   text 文本框
+   *   password 密码框
+   * setPlaceHolder 设置placeholder
    */
-  _output() {
-    let isReadOnly = "";
-    if (this.textFieldReadOnly) {
-      isReadOnly = "readonly";
+  generateCode() {
+    let readOnly = "";
+    if (this.getReadOnly()) {
+      readOnly = "readonly";
     }
-    let textFieldStyle = "";
-    if (-1 != this.textFieldWidth) {
-      textFieldStyle += `width: ${this.textFieldWidth}px; `;
-    }
-    if (-1 != this.textFieldHeight) {
-      textFieldStyle += `height: ${this.textFieldHeight}px; `;
-    }
-    let code = `
-      <input ${isReadOnly} type = "${this.textFieldType}" style = "${textFieldStyle}" class = "${this.textFieldCustomClass}" placeholder = "${this.textFieldPlaceHolder}"  value = "${this.textFieldText}" />
+    this.objectCode = `
+      <input ${readOnly} type = "${this.getType()}" class = "${this.getClass()}" id = "${this.getId()}" placeholder = "${this.getPlaceHolder()}"  value = "${this.getValue()}" />
     `;
-    $(this.outputId).html(code);
-  }
-
-  /**
-   * @Override
-   */
-  _eventBind() {
-  }
-
-  /**
-   * 配置文本框
-   * @param textFieldType 文本框的类型
-   *        text 文本框
-   *        password 密码框
-   * @param textFieldWidth 文本框的宽度
-   *        -1 宽度默认
-   * @param textFieldHeight 文本框的高度
-   *        -1 高度默认
-   * @param textFieldPlaceHolder 文本框的内容提示
-   * @param textFieldText 文本框的文本
-   * @param textFieldCustomClass 文本框自定义Class
-   * @param textFieldReadOnly 文本框是否只读
-   *        true 只读
-   *        false 非只读
-   */
-  setTextFieldConfig(textFieldType, textFieldWidth, textFieldHeight, textFieldPlaceHolder, textFieldText, textFieldCustomClass, textFieldReadOnly = false) {
-    this.textFieldType = textFieldType;
-    this.textFieldWidth = textFieldWidth;
-    this.textFieldHeight = textFieldHeight;
-    this.textFieldPlaceHolder = textFieldPlaceHolder;
-    this.textFieldText = textFieldText;
-    this.textFieldCustomClass = textFieldCustomClass;
-    this.textFieldReadOnly = textFieldReadOnly;
   }
 }

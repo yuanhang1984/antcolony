@@ -12,13 +12,20 @@
 <script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "./JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
+  // 创建对象
   let jsTextField = new JSTextField();
+  // 设置属性
+  jsTextField.setPlaceHolder("请输入名称")
+  // jsTextField.setValue("hello world");
+  jsTextField.setClass("form-control");
+  jsTextField.setReadOnly(false);
+  // 生成代码
+  jsTextField.generateCode();
+  // 获取代码
+  let code = jsTextField.getCode();
   $(document).ready(function() {
-    jsTextField.setTextFieldConfig("password", 120, -1, "请输入名称", "13123", "form-control", false);
-    jsTextField._setOutputId("#outputArea");
-    jsTextField._init();
-    jsTextField._output();
-    jsTextField._eventBind();
+    // 输出代码
+    $("#outputArea").html(code);
   });
 </script>
 <title>JSTextField</title>

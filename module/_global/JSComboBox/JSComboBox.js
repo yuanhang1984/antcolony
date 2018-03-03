@@ -1,131 +1,129 @@
 "use strict";
 
 class JSComboBox {
-  /**
-   * @Override
+  /*
+   * 构造函数（无参）
+   * 自动初始化对象的id。
    */
-  _setOutputId(outputId) {
-    this.outputId = outputId;
+  constructor() {
+    this.objectId = JString.getUuid(true);
+    this.objectType = "dropdown";
+    this.objectSelectedIndex = 0;
+    this.objectItemList = new Array();
+    this.objectClass = "";
+    this.objectCode = "";
   }
 
-  /**
-   * @Override
-   */
-  _init() {
-    this.comboBoxId = JString.getUuid(true);
+  getId() {
+    return this.objectId;
   }
 
-  /**
-   * @Override
-   */
-  _output() {
-    // 判断菜单向下还是向上
-    let typeClass = "dropdown";
-    if (2 == this.comboBoxType) {
-      typeClass = "dropup";
-    }
-    // 遍历list组合代码
-    let liCode = "";
-    for (let i = 0; i < this.comboBoxList.length; i++) {
-      let obj = this.comboBoxList[i];
-      let disableClass = "";
-      if (!obj.enable) {
-        disableClass = "disabled";
-      }
-      if ("header" == obj.type) {
-        liCode += `<li class = "dropdown-header" id = "${this.comboBoxId}_li_index_${i}" data-value = "${obj.value}">${obj.text}</li>`;
-      } else if ("separator" == obj.type) {
-        liCode += `<li class = "divider" id = "${this.comboBoxId}_li_index_${i}"></li>`;
-      } else {
-        // 常规选项
-        liCode += `<li class = "${disableClass}" id = "${this.comboBoxId}_li_index_${i}" data-value = "${obj.value}"><a href = "#">${obj.text}</a></li>`;
-      }
-    }
-
-    // let isReadOnly = "";
-    // if (this.comboBoxReadOnly) {
-    //   isReadOnly = "readonly";
-    // }
-    // let comboBoxStyle = "";
-    // if (-1 != this.comboBoxWidth) {
-    //   comboBoxStyle += `width: ${this.comboBoxWidth}px; `;
-    // }
-    // if (-1 != this.comboBoxHeight) {
-    //   comboBoxStyle += `height: ${this.comboBoxHeight}px; `;
-    // }
-
-    let code = `
-      <div class = "${this.comboBoxCustomClass} ${typeClass}" id = "${this.comboBoxId}">
-        <button class = "btn btn-default dropdown-toggle" type = "button" data-toggle = "dropdown" data-value = "">
-          <span>${this.comboBoxList[this.comboBoxDefaultIndex].text}</span><span class = "caret"></span>
-        </button>
-        <ul class = "dropdown-menu">${liCode}</ul>
-      </div>
-    `;
-    $(this.outputId).html(code);
+  setType(type) {
+    this.objectType = type;
   }
 
-  /**
-   * @Override
-   */
-  _eventBind() {
-    // let currentObject = this;
-    // $(`#${this.comboBoxId}`).find("ul").find("li").click(function() {
-    //   $(`#${currentObject.comboBoxId}`).find("button").find("span:first-child").html($(this).find("a").html());
-    //   $(`#${currentObject.comboBoxId}`).find("button").attr("data-value", $(this).attr("data-value"));
-    // });
-    let currentObject = this;
-    $(`#${this.comboBoxId}`).find("ul").find("li").find("a").click(function() {
-      alert("111");
-      $(`#${currentObject.comboBoxId}`).find("button").find("span:first-child").html($(this).html());
-      $(`#${currentObject.comboBoxId}`).find("button").attr("data-value", $(this).parent().attr("data-value"));
-    });
+  getType() {
+    return this.objectType;
   }
 
-  /**
-   * 配置下拉菜单
-   * @param comboBoxType 下拉菜单的类型
-   *        1 菜单向下
-   *        2 菜单向上
-   * @param comboBoxWidth 下拉菜单的宽度
-   *        -1 宽度默认
-   * @param comboBoxHeight 下拉菜单的高度
-   *        -1 高度默认
-   * @param comboBoxDefaultIndex 下拉菜单的默认序列
-   * @param comboBoxCustomClass 下拉菜单自定义Class
-   * @param comboBoxReadOnly 下拉菜单是否只读
-   *        true 只读
-   *        false 非只读
-   */
-  setComboBoxConfig(comboBoxType, comboBoxWidth, comboBoxHeight, comboBoxDefaultIndex, comboBoxCustomClass, comboBoxReadOnly = false) {
-    this.comboBoxType = comboBoxType;
-    this.comboBoxWidth = comboBoxWidth;
-    this.comboBoxHeight = comboBoxHeight;
-    this.comboBoxDefaultIndex = comboBoxDefaultIndex;
-    this.comboBoxCustomClass = comboBoxCustomClass;
-    this.comboBoxReadOnly = comboBoxReadOnly;
+  setSelectedIndex(selectedIndex) {
+    this.objectSelectedIndex = selectedIndex;
   }
 
-  /**
-   * 配置下拉菜单数据列表
-   * @param list 列表
-   * [
-   *   {"type": "option", "text": "-- select --", "value": "0", "enable": false},
-   *   {"type": "header", "text": "Array", "value": "0", "enable": false},
-   *   {"type": "separator", "text": "", "value": "", "enable": false}
-   * ]
-   * list参数为json数据，每个json对象共有4组属性
-   * type list显示的类型
-   *      option 常规选项
-   *      header 菜单头
+  getSelectedIndex() {
+    return this.objectSelectedIndex;
+  }
+
+  setClass(clazz) {
+    this.objectClass = clazz;
+  }
+
+  getClass() {
+    return this.objectClass;
+  }
+
+  getCode() {
+    return this.objectCode;
+  }
+
+  /* 
+   * item 为json对象，格式如下：
+   * {
+   *   "type": "option",
+   *   "text": "-- select --",
+   *   "value": "0",
+   *   "enable": false
+   * }
+   * type 显示的类型
+   *      option 常规下拉选项
    *      separator 分割线（当type为separator时，后面参数忽略）
-   * text 所要显示的文本
-   * value 文本对应的值
+   * text 显示的文本
+   * value 对应的值
    * enable 是否可用
    *        true 可用
    *        false 禁用
    */
-  setComboBoxList(list) {
-    this.comboBoxList = list;
+  addItem(item) {
+    this.objectItemList.push(item);
+  }
+
+  insertItemAt(item, index) {
+    this.objectItemList.splice(index, 0, item);
+  }
+
+  removeItemAt(index) {
+    this.objectItemList.splice(index, 1);
+  }
+
+  getItemAt(index) {
+    if (index <= this.objectItemList.length) {
+      return this.objectItemList[index];
+    }
+  }
+
+  getItemCount() {
+    return this.objectItemList.length;
+  }
+
+  update() {
+    // 绑定事件
+    let _this = this;
+    $(`#${this.getId()}`).find("ul").find("li").find("a").click(function() {
+      $(`#${_this.getId()}`).find("button").find("span:nth-child(1)").html($(this).html());
+      $(`#${_this.getId()}`).find("button").attr("data-value", $(this).parent().attr("data-value"));
+    });
+  }
+
+  /* 
+   * setType 设置菜单向上还是向下
+   *         dropup 菜单向上
+   *         dropdown 菜单向下
+   */
+  generateCode() {
+    // 遍历list组合代码
+    let liCode = "";
+    for (let i = 0; i < this.objectItemList.length; i++) {
+      let obj = this.objectItemList[i];
+      if ("separator" == obj.type) {
+        // 分割线
+        liCode += `<li class = "divider"></li>`;
+      } else {
+        let disableClass = "";
+        if (!obj.enable) {
+          disableClass = "disabled";
+        }
+        // 常规下拉选项
+        liCode += `<li class = "${disableClass}" data-value = "${obj.value}"><a>${obj.text}</a></li>`;
+      }
+    }
+    // 生成代码
+    this.objectCode = `
+      <div class = "${this.getClass()} ${this.getType()}" id = "${this.getId()}">
+        <button class = "btn btn-default dropdown-toggle" type = "button" data-toggle = "dropdown" data-value = "">
+          <span>${this.getItemAt(this.getSelectedIndex()).text}</span><span class = "caret"></span>
+        </button>
+        <ul class = "dropdown-menu">${liCode}</ul>
+      </div>
+    `;
   }
 }

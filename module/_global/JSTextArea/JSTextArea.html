@@ -12,13 +12,20 @@
 <script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "./JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
+  // 创建对象
   let jsTextArea = new JSTextArea();
+  // 设置属性
+  jsTextArea.setPlaceHolder("请输入名称")
+  // jsTextArea.setText("hello world");
+  jsTextArea.setClass("form-control");
+  jsTextArea.setReadOnly(false);
+  // 生成代码
+  jsTextArea.generateCode();
+  // 获取代码
+  let code = jsTextArea.getCode();
   $(document).ready(function() {
-    jsTextArea.setTextAreaConfig(200, 120, "请输入名称", "", "form-control", true);
-    jsTextArea._setOutputId("#outputArea");
-    jsTextArea._init();
-    jsTextArea._output();
-    jsTextArea._eventBind();
+    // 输出代码
+    $("#outputArea").html(code);
   });
 </script>
 <title>JSTextArea</title>

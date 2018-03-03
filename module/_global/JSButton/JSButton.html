@@ -12,16 +12,22 @@
 <script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "./JSButton.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
+  // 创建对象
   let jsButton = new JSButton();
-  function kkk(text) {
-    alert(text);
-  }
+  // 设置属性
+  jsButton.setText("确认");
+  jsButton.setClass("btn btn-primary");
+  // 生成代码
+  jsButton.generateCode();
+  // 获取代码
+  let code = jsButton.getCode();
   $(document).ready(function() {
-    jsButton.setButtonConfig(100, 40, 2, "确认", kkk, "hello");
-    jsButton._setOutputId("#outputArea");
-    jsButton._init();
-    jsButton._output();
-    jsButton._eventBind();
+    // 输出代码
+    $("#outputArea").html(code);
+    // 绑定事件
+    $("#" + jsButton.getId()).click(function() {
+      alert("aaaaaaa");
+    });
   });
 </script>
 <title>JSButton</title>
