@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<!-- plugin style -->
+<link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- custom style -->
+<link rel = "stylesheet" type = "text/css" href = "./JSButton.css"/>
+<script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./JSButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  let jsButton = new JSButton();
+  function kkk(text) {
+    alert(text);
+  }
+  $(document).ready(function() {
+    jsButton.setButtonConfig(100, 40, 2, "确认", kkk, "hello");
+    jsButton._setOutputId("#outputArea");
+    jsButton._init();
+    jsButton._output();
+    jsButton._eventBind();
+  });
+</script>
+<title>JSButton</title>
+</head>
+<body>
+  <div id = "outputArea"></div>
+</body>
+</html>

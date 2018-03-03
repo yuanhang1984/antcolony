@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<!-- plugin style -->
+<link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- custom style -->
+<link rel = "stylesheet" type = "text/css" href = "./JSTextField.css"/>
+<script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  let jsTextField = new JSTextField();
+  $(document).ready(function() {
+    jsTextField.setTextFieldConfig("password", 120, -1, "请输入名称", "13123", "form-control", false);
+    jsTextField._setOutputId("#outputArea");
+    jsTextField._init();
+    jsTextField._output();
+    jsTextField._eventBind();
+  });
+</script>
+<title>JSTextField</title>
+</head>
+<body>
+  <div id = "outputArea"></div>
+</body>
+</html>
