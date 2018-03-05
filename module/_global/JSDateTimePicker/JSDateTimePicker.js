@@ -1,30 +1,22 @@
 "use strict";
 
-class JSTextField {
+class JSDateTimePicker {
   /*
    * 构造函数（无参）
    * 自动初始化对象的id。
    */
   constructor() {
     this.objectId = JString.getUuid(true);
-    this.objectType = "";
     this.objectPlaceHolder = "";
     this.objectValue = "";
     this.objectReadOnly = false;
+    this.objectFormat = "";
     this.objectClass = "";
     this.objectCode = "";
   }
 
   getId() {
     return this.objectId;
-  }
-
-  setType(type) {
-    this.objectType = type;
-  }
-
-  getType() {
-    return this.objectType;
   }
 
   setPlaceHolder(placeHolder) {
@@ -41,6 +33,14 @@ class JSTextField {
 
   getValue() {
     return this.objectValue;
+  }
+
+  setFormat(format) {
+    this.objectFormat = format;
+  }
+
+  getFormat() {
+    return this.objectFormat;
   }
 
   setClass(clazz) {
@@ -63,21 +63,17 @@ class JSTextField {
     return this.objectCode;
   }
 
-  /* 
-   * 生成源码
-   *
-   * setType 设置类型
-   *   text 文本框
-   *   password 密码框
-   * setPlaceHolder 设置placeholder
-   */
+  update() {
+    $("#" + this.getId()).datetimepicker();
+  }
+
   generateCode() {
     let readOnly = "";
     if (this.getReadOnly()) {
       readOnly = "readonly";
     }
     this.objectCode = `
-      <input ${readOnly} type = "${this.getType()}" class = "form-control ${this.getClass()}" id = "${this.getId()}" placeholder = "${this.getPlaceHolder()}"  value = "${this.getValue()}" />
+      <input ${readOnly} type = "text" class = "${this.getClass()}" id = "${this.getId()}" placeholder = "${this.getPlaceHolder()}"  value = "${this.getValue()}" data-date-format = "${this.getFormat()}" />
     `;
   }
 }

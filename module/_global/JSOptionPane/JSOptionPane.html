@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<!-- plugin style -->
+<link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- custom style -->
+<link rel = "stylesheet" type = "text/css" href = "./JSOptionPane.css"/>
+<script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./JSOptionPane.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  // 创建对象
+  let jsOptionPane = new JSOptionPane();
+  // 设置属性
+  jsOptionPane.setTitle("删除确认");
+  jsOptionPane.setMessage("确认要删除用户吗？");
+  jsOptionPane.setOptionType("YES_NO_OPTION");
+  // jsOptionPane.setOptionType("OK_OPTION");
+  jsOptionPane.setOptionText(["是的", "不是"]);
+  jsOptionPane.setClass("JSOptionPane_Primary");
+  // jsOptionPane.setClass("JSOptionPane_Danger");
+  // 生成代码
+  jsOptionPane.generateCode();
+  // 获取代码
+  let code = jsOptionPane.getCode();
+  $(document).ready(function() {
+    // 输出代码
+    $("#outputArea").html(code);
+    $("#showDlgBtn").attr("data-target", "#" + jsOptionPane.getId());
+    // 绑定事件
+    jsOptionPane.getOptionButton(1).click(function() {
+      alert("aaaaaaa");
+    });
+    jsOptionPane.getOptionButton(2).click(function() {
+      alert("bbbbbb");
+    });
+    // $("#" + jsOptionPane.getId()).find("div").find("div:nth-child(2)").find("button:nth-child(1)").click(function() {
+    //   alert("aaaaaaa");
+    // });
+    // $("#" + jsOptionPane.getId()).find("div").find("div:nth-child(2)").find("button:nth-child(2)").click(function() {
+    //   alert("bbbbbbb");
+    // });
+  });
+</script>
+<title>JSOptionPane</title>
+</head>
+<body>
+  <button type = "button" class = "btn btn-primary" id = "showDlgBtn" data-toggle = "modal">Show</button>
+  <div id = "outputArea"></div>
+</body>
+</html>

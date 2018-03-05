@@ -4,31 +4,32 @@
 <meta charset = "utf-8" />
 <!-- plugin style -->
 <link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../../plugin/bootstrap-datetime-picker/2.4.4/css/bootstrap-datetimepicker.min.css">
 <!-- custom style -->
-<link rel = "stylesheet" type = "text/css" href = "./JSTextArea.css"/>
+<link rel = "stylesheet" type = "text/css" href = "./JSDateTimePicker.css"/>
 <script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../plugin/bootstrap-datetime-picker/2.4.4/js/bootstrap-datetimepicker.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./JSDateTimePicker.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
   // 创建对象
-  let jsTextArea = new JSTextArea();
+  let jsDateTimePicker = new JSDateTimePicker();
   // 设置属性
-  jsTextArea.setPlaceHolder("请输入名称")
-  // jsTextArea.setText("hello world");
-  // jsTextArea.setClass("form-control");
-  jsTextArea.setReadOnly(false);
+  jsDateTimePicker.setPlaceHolder("请选择时间")
+  jsDateTimePicker.setFormat("yyyy-mm-dd");
   // 生成代码
-  jsTextArea.generateCode();
+  jsDateTimePicker.generateCode();
   // 获取代码
-  let code = jsTextArea.getCode();
+  let code = jsDateTimePicker.getCode();
   $(document).ready(function() {
     // 输出代码
     $("#outputArea").html(code);
+    jsDateTimePicker.update();
   });
 </script>
-<title>JSTextArea</title>
+<title>JSDateTimePicker</title>
 </head>
 <body>
   <div id = "outputArea"></div>

@@ -1,6 +1,6 @@
 "use strict";
 
-class JSButton {
+class JSTip {
   /*
    * 构造函数（无参）
    * 自动初始化对象的id。
@@ -24,6 +24,10 @@ class JSButton {
     return this.objectText;
   }
 
+  getText() {
+    return this.objectText;
+  }
+
   setClass(clazz) {
     this.objectClass = clazz;
   }
@@ -38,7 +42,7 @@ class JSButton {
 
   generateCode() {
     this.objectCode = `
-      <button type = "button" class = "btn ${this.getClass()}" id = "${this.getId()}">${this.getText()}</button>
+      <div class = "alert ${this.getClass()}">${this.getText()}<button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close"><span aria-hidden = "true">&times;</span></button></div>
     `;
   }
 }

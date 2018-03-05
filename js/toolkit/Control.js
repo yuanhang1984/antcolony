@@ -70,7 +70,7 @@ class Control {
     let displaySceneCount = Math.ceil(count / pageCount);
     let currentPageSceneNum = Math.ceil(currentPage / pageCount);
     if (currentPageSceneNum > 1) {
-      code += '<li data-offset = "' + (((currentPageSceneNum - 1) * pageCount * limit) - limit) + '"><a><span>«</span></a></li>';
+      code += '<li data-offset = "' + (((currentPageSceneNum - 1) * pageCount * limit) - limit) + '"><a><span>&laquo;</span></a></li>';
     }
     for (let i = ((currentPageSceneNum * pageCount) - pageCount + 1); i <= (currentPageSceneNum * pageCount); i++) {
       if (i > count) {
@@ -83,7 +83,7 @@ class Control {
       }
     }
     if ((displaySceneCount - currentPageSceneNum) >= 1) {
-      code += '<li data-offset = "' + ((currentPageSceneNum * pageCount * limit)) + '"><a><span>»</span></a></li>';
+      code += '<li data-offset = "' + ((currentPageSceneNum * pageCount * limit)) + '"><a><span>&raquo;</span></a></li>';
     }
     code += '</ul>';
     code += '</nav>';

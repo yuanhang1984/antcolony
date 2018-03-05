@@ -65,7 +65,7 @@ class JSTextArea {
       readOnly = "readonly";
     }
     this.objectCode = `
-      <textarea ${readOnly} class = "${this.getClass()}" id = "${this.getId()}" placeholder = "${this.getPlaceHolder()}">${this.getText()}</textarea>
+      <textarea ${readOnly} class = "form-control ${this.getClass()}" id = "${this.getId()}" placeholder = "${this.getPlaceHolder()}">${this.getText()}</textarea>
     `;
   }
 }

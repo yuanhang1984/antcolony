@@ -5,22 +5,30 @@
 <!-- plugin style -->
 <link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- custom style -->
-<link rel = "stylesheet" type = "text/css" href = "./AlertDialog.css"/>
+<link rel = "stylesheet" type = "text/css" href = "./JSPagination.css"/>
 <script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./AlertDialog.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./JSPagination.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
-  let alertDialog = new AlertDialog();
+  // 创建对象
+  let jsPagination = new JSPagination();
+  // 设置属性
+  jsPagination.setOffset(50);
+  jsPagination.setLimit(20);
+  jsPagination.setCount(140);
+  jsPagination.setSize(3);
+  // 生成代码
+  jsPagination.generateCode();
+  // 获取代码
+  let code = jsPagination.getCode();
   $(document).ready(function() {
-      alertDialog.setDialogConfig(200, 3, "这是一个警告框", true, 2000);
-      alertDialog._setOutputId("#outputArea");
-      alertDialog._init();
-      alertDialog._output();
-      alertDialog._eventBind();
+    // 输出代码
+    $("#outputArea").html(code);
   });
 </script>
-<title>Alert Dialog</title>
+<title>JSPagination</title>
 </head>
 <body>
   <div id = "outputArea"></div>

@@ -1,0 +1,101 @@
+.JSTree_theme-black {
+  width: 240px;
+  color: #FFFFFF;
+  cursor: default;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  background-color: #353F4F;
+}
+
+.JSTree_theme-black ul {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  list-style: none;
+}
+
+.JSTree_theme-black li {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.JSTree_theme-black i {
+  margin: 0px 12px 0px 0px;
+}
+
+/******************************************************************************/
+/* 父菜单 */
+/******************************************************************************/
+.JSTree_theme-black span {
+  color: #65CEA7;
+  display: block;
+  margin: 0px 0px 0px 0px;
+  padding: 12px 12px 12px 14px;
+}
+
+/******************************************************************************/
+/* 子菜单 */
+/******************************************************************************/
+.JSTree_theme-black a {
+  color: #FFFFFF;
+  display: block;
+  text-decoration: none;
+  margin: 0px 0px 0px 0px;
+  padding: 12px 12px 12px 28px;
+}
+
+/* 子菜单鼠标悬停样式 */
+.JSTree_theme-black a:hover {
+  color: #65CEA7;
+}
+
+.JSTree_theme-black li:hover {
+  color: #65CEA7;
+  background-color: #2A323F;
+}
+
+.JSTree_theme-black .active {
+  background-color: #2A323F;
+}
+
+/******************************************************************************/
+/* head */
+/******************************************************************************/
+.JSTree_theme-black > li:first-child {
+  font-size: 20px;
+  text-align: center;
+  padding: 0px 0px 0px 0px;
+  background-color: #424F63;
+}
+
+.JSTree_theme-black > li:first-child > span {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.JSTree_theme-black > li:first-child > span > span {
+  font-weight: bold;
+  padding: 0px 0px 0px 0px;
+  display: inline!important;
+}
+
+.JSTree_theme-black > li:first-child > span > span:nth-child(1) {
+  color: #FFFFFF;
+}
+
+/******************************************************************************/
+/* foot */
+/******************************************************************************/
+.JSTree_theme-black > li:last-child {
+  text-align: center;
+  background-color: #424F63;
+}
+
+.JSTree_theme-black > li:last-child > span {
+  color: #AEAEAE;
+  font-size: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
