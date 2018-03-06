@@ -46,11 +46,9 @@
   jsComboBox.setSelectedIndex(0);
   // 生成代码
   jsComboBox.generateCode();
-  // 获取代码
-  let code = jsComboBox.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsComboBox.getCode());
     // 更新控件
     jsComboBox.update();
     // console.log(jsComboBox.getItemAt(1));
@@ -64,8 +62,7 @@
     // }, 1);
     // 重新生成代码
     jsComboBox.generateCode();
-    code = jsComboBox.getCode();
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsComboBox.getCode());
     jsComboBox.update();
   });
 </script>

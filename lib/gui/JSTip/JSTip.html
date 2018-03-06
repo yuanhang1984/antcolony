@@ -19,11 +19,9 @@
   jsTip.setClass("alert-danger");
   // 生成代码
   jsTip.generateCode();
-  // 获取代码
-  let code = jsTip.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsTip.getCode());
   });
 </script>
 <title>JSTip</title>

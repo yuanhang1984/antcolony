@@ -25,12 +25,9 @@
   // 生成代码
   jsRadioButton_1.generateCode();
   jsRadioButton_2.generateCode();
-  // 获取代码
-  let code_1 = jsRadioButton_1.getCode();
-  let code_2 = jsRadioButton_2.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code_1 + code_2);
+    $("#outputArea").html(jsRadioButton_1.getCode() + jsRadioButton_2.getCode());
   });
 </script>
 <title>JSRadioButton</title>

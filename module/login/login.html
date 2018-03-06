@@ -8,31 +8,29 @@
 <link rel = "stylesheet" type = "text/css" href = "./login.css"/>
 <script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../lib/gui/JSButton/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/gui/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../lib/gui/JSWindow/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
   // 用户名输入对象
   let nameTextField = new JSTextField();
   nameTextField.setPlaceHolder("Name")
   nameTextField.setType("text");
   nameTextField.generateCode();
-  let nameTextFieldCode = nameTextField.getCode();
 
   // 密码输入对象
   let passwordTextField = new JSTextField();
   passwordTextField.setPlaceHolder("Password")
   passwordTextField.setType("password");
   passwordTextField.generateCode();
-  let passwordTextFieldCode = passwordTextField.getCode();
 
   // 登录按钮对象
   let loginButton = new JSButton();
   loginButton.setText("Login");
+  loginButton.setClass("btn-primary");
   loginButton.generateCode();
-  let loginButtonCode = loginButton.getCode();
 
   // 窗体对象
   let loginWindow = new JSWindow();
@@ -40,17 +38,16 @@
   loginWindow.setTitle("Login")
   loginWindow.setClass("loginWindow");
   let contentCode = `
-    <div>${nameTextFieldCode}</div>
-    <div>${passwordTextFieldCode}</div>
-    <div>${loginButtonCode}</div>
+    <div>${nameTextField.getCode()}</div>
+    <div>${passwordTextField.getCode()}</div>
+    <div>${loginButton.getCode()}</div>
   `;
   loginWindow.setContent(contentCode);
   loginWindow.generateCode();
-  let loginWindowCode = loginWindow.getCode();
 
   // 输出代码
   $(document).ready(function() {
-    $("#outputArea").html(loginWindowCode);
+    $("#outputArea").html(loginWindow.getCode());
     // 调整窗口位置
     let documentHeight = $(document).height();
     let loginWindowHeight = $(`#${loginWindow.getId()}`).height();

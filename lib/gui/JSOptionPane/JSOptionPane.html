@@ -24,11 +24,9 @@
   // jsOptionPane.setClass("JSOptionPane_Danger");
   // 生成代码
   jsOptionPane.generateCode();
-  // 获取代码
-  let code = jsOptionPane.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsOptionPane.getCode());
     $("#showDlgBtn").attr("data-target", "#" + jsOptionPane.getId());
     // 绑定事件
     jsOptionPane.getOptionButton(1).click(function() {

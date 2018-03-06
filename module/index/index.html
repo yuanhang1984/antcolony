@@ -9,8 +9,8 @@
 <script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../plugin/jquery-nicescroll/3.7.6/jquery.nicescroll.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../lib/gui/JSTree/JSTree.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
   // 创建菜单对象
@@ -25,7 +25,7 @@
         "list": [
           {
             "text": "Management",
-            "link": "http://www.baidu.com"
+            "link": "../database_management/database_management.html"
           },
           {
             "text": "SQL",
@@ -58,10 +58,9 @@
   menuTree.setLinkTarget("pageArea");
   menuTree.setClass("menuTree");
   menuTree.generateCode();
-  let code = menuTree.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#menuTreeArea").html(code);
+    $("#menuTreeArea").html(menuTree.getCode());
     menuTree.update();
     // 调整菜单显示的高度
     $("#menuTreeArea").css("height", $(window).height() + "px");

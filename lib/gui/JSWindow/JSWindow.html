@@ -17,22 +17,24 @@
   // 设置属性
   jsWindow.setTitle("显示详情");
   jsWindow.setContent("<p>Hello World</p>");
-  jsWindow.setWindowDecorationStyle("NONE");
+  // jsWindow.setWindowDecorationStyle("NONE");
   // jsWindow.setWindowDecorationStyle("FRAME");
-  // jsWindow.setWindowDecorationStyle("DIALOG");
+  jsWindow.setWindowDecorationStyle("DIALOG");
   // jsWindow.setClass("JSOptionPane_Primary");
   // 生成代码
   jsWindow.generateCode();
-  // 获取代码
-  let code = jsWindow.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsWindow.getCode());
+    // 用于DIALOG的测试
+    $("#showDlgBtn").attr("data-target", "#" + jsWindow.getId());
   });
 </script>
 <title>JSWindow</title>
 </head>
 <body>
+  <!-- 用于DIALOG的测试 -->
+  <button type = "button" class = "btn btn-primary" id = "showDlgBtn" data-toggle = "modal">Show</button>
   <div id = "outputArea"></div>
 </body>
 </html>

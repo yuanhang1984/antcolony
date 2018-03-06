@@ -121,11 +121,9 @@
   jsTree.setClass("JSTree_theme-black");
   // 生成代码
   jsTree.generateCode();
-  // 获取代码
-  let code = jsTree.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsTree.getCode());
     jsTree.update();
   });
 </script>

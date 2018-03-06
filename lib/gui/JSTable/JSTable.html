@@ -179,11 +179,9 @@
   );
   // 生成代码
   jsTable.generateCode();
-  // 获取代码
-  let code = jsTable.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsTable.getCode());
   });
 </script>
 <title>JSTable</title>

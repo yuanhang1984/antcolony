@@ -20,11 +20,9 @@
   jsTextField.setReadOnly(false);
   // 生成代码
   jsTextField.generateCode();
-  // 获取代码
-  let code = jsTextField.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsTextField.getCode());
   });
 </script>
 <title>JSTextField</title>

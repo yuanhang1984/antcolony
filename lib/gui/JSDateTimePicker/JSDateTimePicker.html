@@ -21,11 +21,9 @@
   jsDateTimePicker.setFormat("yyyy-mm-dd");
   // 生成代码
   jsDateTimePicker.generateCode();
-  // 获取代码
-  let code = jsDateTimePicker.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsDateTimePicker.getCode());
     jsDateTimePicker.update();
   });
 </script>

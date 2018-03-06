@@ -39,7 +39,7 @@ body {
 /* 父菜单 */
 /******************************************************************************/
 .menuTree span {
-  color: #65CEA7;
+  color: #FF8556;
   display: block;
   margin: 0px 0px 0px 0px;
   padding: 12px 12px 12px 14px;
@@ -56,13 +56,8 @@ body {
   padding: 12px 12px 12px 28px;
 }
 
-/* 子菜单鼠标悬停样式 */
-.menuTree a:hover {
-  color: #65CEA7;
-}
-
 .menuTree li:hover {
-  color: #65CEA7;
+  color: #FF8556;
   background-color: #2A323F;
 }
 

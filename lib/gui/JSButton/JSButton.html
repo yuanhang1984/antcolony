@@ -19,11 +19,9 @@
   jsButton.setClass("btn-primary theme-black_primary-button");
   // 生成代码
   jsButton.generateCode();
-  // 获取代码
-  let code = jsButton.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsButton.getCode());
     // 绑定事件
     $("#" + jsButton.getId()).click(function() {
       alert("aaaaaaa");

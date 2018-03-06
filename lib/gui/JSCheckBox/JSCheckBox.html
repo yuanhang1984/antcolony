@@ -25,12 +25,9 @@
   // 生成代码
   jsCheckBox_1.generateCode();
   jsCheckBox_2.generateCode();
-  // 获取代码
-  let code_1 = jsCheckBox_1.getCode();
-  let code_2 = jsCheckBox_2.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code_1 + code_2);
+    $("#outputArea").html(jsCheckBox_1.getCode() + jsCheckBox_2.getCode());
   });
 </script>
 <title>JSCheckBox</title>

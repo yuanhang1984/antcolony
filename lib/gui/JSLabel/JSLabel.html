@@ -18,11 +18,9 @@
   jsLabel.setText("Name")
   // 生成代码
   jsLabel.generateCode();
-  // 获取代码
-  let code = jsLabel.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsLabel.getCode());
   });
 </script>
 <title>JSLabel</title>

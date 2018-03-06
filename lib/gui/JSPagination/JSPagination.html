@@ -21,11 +21,9 @@
   jsPagination.setSize(3);
   // 生成代码
   jsPagination.generateCode();
-  // 获取代码
-  let code = jsPagination.getCode();
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(code);
+    $("#outputArea").html(jsPagination.getCode());
   });
 </script>
 <title>JSPagination</title>
