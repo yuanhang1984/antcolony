@@ -1,0 +1,125 @@
+/******************************************************************************/
+/* body */
+/******************************************************************************/
+body {
+  overflow: hidden;
+}
+
+/******************************************************************************/
+/* .menuTree */
+/******************************************************************************/
+.menuTree {
+  width: 240px;
+  color: #FFFFFF;
+  cursor: default;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  background-color: #353F4F;
+}
+
+.menuTree ul {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  list-style: none;
+}
+
+.menuTree li {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.menuTree i {
+  margin: 0px 12px 0px 0px;
+}
+
+/******************************************************************************/
+/* 父菜单 */
+/******************************************************************************/
+.menuTree span {
+  color: #65CEA7;
+  display: block;
+  margin: 0px 0px 0px 0px;
+  padding: 12px 12px 12px 14px;
+}
+
+/******************************************************************************/
+/* 子菜单 */
+/******************************************************************************/
+.menuTree a {
+  color: #FFFFFF;
+  display: block;
+  text-decoration: none;
+  margin: 0px 0px 0px 0px;
+  padding: 12px 12px 12px 28px;
+}
+
+/* 子菜单鼠标悬停样式 */
+.menuTree a:hover {
+  color: #65CEA7;
+}
+
+.menuTree li:hover {
+  color: #65CEA7;
+  background-color: #2A323F;
+}
+
+.menuTree .active {
+  background-color: #2A323F;
+}
+
+/******************************************************************************/
+/* head */
+/******************************************************************************/
+.menuTree > li:first-child {
+  font-size: 20px;
+  text-align: center;
+  padding: 0px 0px 0px 0px;
+  background-color: #424F63;
+}
+
+.menuTree > li:first-child > span {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.menuTree > li:first-child > span > span {
+  font-weight: bold;
+  padding: 0px 0px 0px 0px;
+  display: inline!important;
+}
+
+.menuTree > li:first-child > span > span:nth-child(1) {
+  color: #FFFFFF;
+}
+
+/******************************************************************************/
+/* foot */
+/******************************************************************************/
+.menuTree > li:last-child {
+  text-align: center;
+  background-color: #424F63;
+}
+
+.menuTree > li:last-child > span {
+  color: #AEAEAE;
+  font-size: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+/******************************************************************************/
+/* menuTreeArea */
+/******************************************************************************/
+#menuTreeArea {
+  float: left;
+}
+
+/******************************************************************************/
+/* pageArea */
+/******************************************************************************/
+#pageArea {
+  border-width: 0px;
+}

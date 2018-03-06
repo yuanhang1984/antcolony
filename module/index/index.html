@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<!-- plugin style -->
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- custom style -->
+<link rel = "stylesheet" type = "text/css" href = "./index.css"/>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery-nicescroll/3.7.6/jquery.nicescroll.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTree/JSTree.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  // 创建菜单对象
+  let menuTree = new JSTree();
+  menuTree.setNode(
+    [
+      {
+        "text": "<span>Palest</span><span>Ink</span>"
+      },
+      {
+        "text": "Database",
+        "list": [
+          {
+            "text": "Management",
+            "link": "http://www.baidu.com"
+          },
+          {
+            "text": "SQL",
+            "link": "http://www.xh127.com"
+          }
+        ]
+      },
+      {
+        "text": "Modules",
+        "list": [
+          {
+            "text": "Management",
+            "link": "#"
+          },
+          {
+            "text": "Source Code",
+            "link": "#"
+          },
+          {
+            "text": "Dispatch",
+            "link": "#"
+          }
+        ]
+      },
+      {
+        "text": "Copyright 2018 Palestink.com"
+      }
+    ]
+  );
+  menuTree.setLinkTarget("pageArea");
+  menuTree.setClass("menuTree");
+  menuTree.generateCode();
+  let code = menuTree.getCode();
+  $(document).ready(function() {
+    // 输出代码
+    $("#menuTreeArea").html(code);
+    menuTree.update();
+    // 调整菜单显示的高度
+    $("#menuTreeArea").css("height", $(window).height() + "px");
+    // 调整菜单最后一栏置底
+    if ($(window).height() > $(`#${menuTree.getId()}`).height()) {
+      $(".menuTree").find("li:last-child").find("span").css("margin-top", $(window).height() - $(`#${menuTree.getId()}`).height() + "px");
+    }
+    // 设置菜单滚动条属性
+    $("#menuTreeArea").niceScroll({
+      cursorcolor: "#65CEA7", //滚动条颜色
+      cursorwidth: "2px", //滚动条宽度
+      cursorborder: "0px", // 滚动条边框
+      cursorborderradius: "2px" //滚动条圆角
+    });
+    // 调整pageArea宽度
+    $("#pageArea").css("width", ($(window).width() - $(`#${menuTree.getId()}`).width()) + "px");
+    $("#pageArea").css("height", $(window).height() + "px");
+  });
+</script>
+<title>Ant Colony</title>
+</head>
+<body>
+  <div>
+    <div id = "menuTreeArea"></div>
+    <iframe id = "pageArea" src = "../dashboard/dashboard.html" name = "pageArea"></iframe>
+  </div>
+</body>
+</html>
