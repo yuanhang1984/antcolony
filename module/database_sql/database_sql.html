@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<!-- plugin style -->
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/font-awesome/3.2.1/css/font-awesome.min.css">
+<!-- custom style -->
+<link rel = "stylesheet" type = "text/css" href = "./database_sql.css"/>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSButton/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSWindow/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSComboBox/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTextArea/JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  //////////////////////////////////////////////////////////////////////////////
+  // SQL List
+  //////////////////////////////////////////////////////////////////////////////
+  // 创建模块下拉菜单
+  let sqlListWindowModuleComboBox = new JSComboBox();
+  sqlListWindowModuleComboBox.setType("dropdown");
+  sqlListWindowModuleComboBox.addItem({
+    "type": "option",
+    "text": "Select Module",
+    "value": "-1",
+    "enable": false
+  });
+  sqlListWindowModuleComboBox.addItem({
+    "type": "option",
+    "text": "file_storage",
+    "value": "file_storage",
+    "enable": true
+  });
+  sqlListWindowModuleComboBox.addItem({
+    "type": "option",
+    "text": "user_login",
+    "value": "user_login",
+    "enable": true
+  });
+  sqlListWindowModuleComboBox.addItem({
+    "type": "option",
+    "text": "user_status",
+    "value": "user_status",
+    "enable": true
+  });
+  sqlListWindowModuleComboBox.setSelectedIndex(0);
+  sqlListWindowModuleComboBox.generateCode();
+
+  // 创建文件内容输入框
+  let sqlListWindowFileContentTextArea = new JSTextArea();
+  sqlListWindowFileContentTextArea.setPlaceHolder("请输入名称")
+  sqlListWindowFileContentTextArea.setText("hello world");
+  sqlListWindowFileContentTextArea.setClass("form-control");
+  sqlListWindowFileContentTextArea.generateCode();
+
+  // 创建上传按钮
+  let sqlListWindowUploadButton = new JSButton();
+  sqlListWindowUploadButton.setText("Upload");
+  sqlListWindowUploadButton.setClass("btn-primary");
+  sqlListWindowUploadButton.generateCode();
+
+  // 创建下载按钮
+  let sqlListWindowDownloadButton = new JSButton();
+  sqlListWindowDownloadButton.setText("Download");
+  sqlListWindowDownloadButton.setClass("btn-primary");
+  sqlListWindowDownloadButton.generateCode();
+
+  // 连接列表窗体对象
+  let sqlListWindow = new JSWindow();
+  sqlListWindow.setWindowDecorationStyle("FRAME");
+  sqlListWindow.setTitle("SQL List")
+  sqlListWindow.setClass("sqlListWindow");
+  let contentCode = `
+    <div>${sqlListWindowModuleComboBox.getCode()}</div>
+    <div>${sqlListWindowFileContentTextArea.getCode()}</div>
+    <div>${sqlListWindowUploadButton.getCode() + sqlListWindowDownloadButton.getCode()}</div>
+  `;
+  sqlListWindow.setContent(contentCode);
+  sqlListWindow.generateCode();
+
+  // 输出代码
+  $(document).ready(function() {
+    $("#sqlListWindowArea").html(sqlListWindow.getCode());
+    sqlListWindowModuleComboBox.update();
+    // textarea显示区域最大化
+    $("#" + sqlListWindow.getId()).find(".panel-body").find("div").find("textarea").css("height",
+      $(document).height()
+      - parseInt($("body").css("padding-top")) * 2
+      - parseInt($("body").css("padding-bottom")) * 2
+      - parseInt($("#" + sqlListWindow.getId()).css("border-width")) * 2
+      - parseInt($("#" + sqlListWindow.getId()).find(".panel-heading").css("height"))
+      - parseInt($("#" + sqlListWindow.getId()).find(".panel-body").css("padding-top"))
+      - parseInt($("#" + sqlListWindow.getId()).find(".panel-body").css("padding-bottom"))
+      - parseInt($("#" + sqlListWindow.getId()).find(".panel-body").find("div:nth-child(1)").css("height"))
+      - parseInt($("#" + sqlListWindow.getId()).find(".panel-body").find("div:nth-child(3)").css("height"))
+      + "px"
+    );
+  });
+</script>
+<title>Database SQL</title>
+</head>
+<body>
+  <div id = "sqlListWindowArea"></div>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<!-- plugin style -->
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/font-awesome/3.2.1/css/font-awesome.min.css">
+<link rel = "stylesheet" href = "../../lib/gui/JSOptionPane/JSOptionPane.css">
+<!-- custom style -->
+<link rel = "stylesheet" type = "text/css" href = "./module_management.css"/>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTip/JSTip.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTable/JSTable.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSButton/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSWindow/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSCheckBox/JSCheckBox.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSComboBox/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSOptionPane/JSOptionPane.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  //////////////////////////////////////////////////////////////////////////////
+  // 模块列表窗口
+  //////////////////////////////////////////////////////////////////////////////
+  // 创建对象
+  let jsCheckBox_1 = new JSCheckBox();
+  let jsCheckBox_2 = new JSCheckBox();
+  jsCheckBox_2.setSelected(true);
+  let jsCheckBox_3 = new JSCheckBox();
+  let jsCheckBox_4 = new JSCheckBox();
+  let jsCheckBox_5 = new JSCheckBox();
+  let jsCheckBox_6 = new JSCheckBox();
+  jsCheckBox_6.setSelected(true);
+  jsCheckBox_1.generateCode();
+  jsCheckBox_2.generateCode();
+  jsCheckBox_3.generateCode();
+  jsCheckBox_4.generateCode();
+  jsCheckBox_5.generateCode();
+  jsCheckBox_6.generateCode();
+
+  // 创建模块列表
+  let modListTable = new JSTable();
+  modListTable.setClass("table-striped table-bordered");
+  modListTable.setThead(
+    [
+      {
+        "text": "Name",
+        "colspan": -1
+      },
+      {
+        "text": "Description",
+        "colspan": -1
+      },
+      {
+        "text": "Source Code Rebuild",
+        "colspan": -1
+      },
+      {
+        "text": "Module Enable",
+        "colspan": -1
+      },
+      {
+        "text": "Docs Enable",
+        "colspan": -1
+      },
+      {
+        "text": "Remove",
+        "colspan": -1
+      }
+    ]
+  );
+  modListTable.addTbody(
+    [
+      {
+        "text": "file_storage",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<span>File Manager For Upload File</span><i class = "icon-edit"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": jsCheckBox_1.getCode(),
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": jsCheckBox_2.getCode(),
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": jsCheckBox_3.getCode(),
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<i class = "icon-remove"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      }
+    ]
+  );
+  modListTable.addTbody(
+    [
+      {
+        "text": "filter",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<span>Set Filter For Web Service</span><i class = "icon-edit"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": jsCheckBox_4.getCode(),
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": jsCheckBox_5.getCode(),
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": jsCheckBox_6.getCode(),
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<i class = "icon-remove"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      }
+    ]
+  );
+  modListTable.generateCode();
+
+  // 创建模块按钮
+  let createModButton = new JSButton();
+  createModButton.setText("Create");
+  createModButton.setClass("btn-primary");
+  createModButton.generateCode();
+
+  // 模块列表窗体对象
+  let modListWindow = new JSWindow();
+  modListWindow.setWindowDecorationStyle("FRAME");
+  modListWindow.setTitle("Module List")
+  modListWindow.setClass("modListWindow");
+  let contentCode = `
+    <div>${modListTable.getCode()}</div>
+    <div>${createModButton.getCode()}</div>
+  `;
+  modListWindow.setContent(contentCode);
+  modListWindow.generateCode();
+
+  //////////////////////////////////////////////////////////////////////////////
+  // 删除模块确认对话框
+  //////////////////////////////////////////////////////////////////////////////
+  // 创建删除模块确认对话框对象
+  let removeModOptionPane = new JSOptionPane();
+  removeModOptionPane.setTitle("Remove Module Confirmation");
+  removeModOptionPane.setMessage("Do you want to remove this module?");
+  removeModOptionPane.setOptionType("YES_NO_OPTION");
+  removeModOptionPane.setOptionText(["Yes", "No"]);
+  removeModOptionPane.setClass("JSOptionPane_Danger removeModOptionPane");
+  removeModOptionPane.generateCode();
+
+  //////////////////////////////////////////////////////////////////////////////
+  // 创建模块窗口
+  //////////////////////////////////////////////////////////////////////////////
+  // Name输入框
+  let createModWindowNameTextField = new JSTextField();
+  createModWindowNameTextField.setPlaceHolder("Name")
+  createModWindowNameTextField.generateCode();
+
+  // Description输入框
+  let createModWindowDescriptionTextField = new JSTextField();
+  createModWindowDescriptionTextField.setPlaceHolder("Description")
+  createModWindowDescriptionTextField.generateCode();
+
+  // 创建是否启用下拉菜单
+  let createModWindowEnableComboBox = new JSComboBox();
+  createModWindowEnableComboBox.setType("dropdown");
+  createModWindowEnableComboBox.addItem({
+    "type": "option",
+    "text": "Module Status",
+    "value": 1,
+    "enable": false
+  });
+  createModWindowEnableComboBox.addItem({
+    "type": "option",
+    "text": "Enable",
+    "value": 1,
+    "enable": true 
+  });
+  createModWindowEnableComboBox.addItem({
+    "type": "option",
+    "text": "Disable",
+    "value": 0,
+    "enable": true
+  });
+  createModWindowEnableComboBox.setSelectedIndex(0);
+  createModWindowEnableComboBox.generateCode();
+
+  // 创建是否显示API下拉菜单
+  let createModWindowApiComboBox = new JSComboBox();
+  createModWindowApiComboBox.setType("dropdown");
+  createModWindowApiComboBox.addItem({
+    "type": "option",
+    "text": "Module Api",
+    "value": 1,
+    "enable": false
+  });
+  createModWindowApiComboBox.addItem({
+    "type": "option",
+    "text": "Show",
+    "value": 1,
+    "enable": true 
+  });
+  createModWindowApiComboBox.addItem({
+    "type": "option",
+    "text": "Hide",
+    "value": 0,
+    "enable": true
+  });
+  createModWindowApiComboBox.setSelectedIndex(0);
+  createModWindowApiComboBox.generateCode();
+
+  // 提交按钮
+  let createModWindowSubmitButton = new JSButton();
+  createModWindowSubmitButton.setText("Submit");
+  createModWindowSubmitButton.setClass("btn-primary");
+  createModWindowSubmitButton.generateCode();
+
+  // 取消按钮
+  let createModWindowCancelButton = new JSButton();
+  createModWindowCancelButton.setText("Cancel");
+  createModWindowCancelButton.setClass("btn-default");
+  createModWindowCancelButton.generateCode();
+
+  // 创建模块窗口
+  let createModWindow = new JSWindow();
+  createModWindow.setTitle("Create Module");
+  createModWindow.setWindowDecorationStyle("DIALOG");
+  createModWindow.setContent(`
+    <div>${createModWindowNameTextField.getCode()}</div>
+    <div>${createModWindowDescriptionTextField.getCode()}</div>
+    <div>${createModWindowEnableComboBox.getCode()}</div>
+    <div>${createModWindowApiComboBox.getCode()}</div>
+    <div>${createModWindowSubmitButton.getCode() + createModWindowCancelButton.getCode()}</div>
+  `);
+  createModWindow.setClass("createModWindow");
+  createModWindow.generateCode();
+
+  //////////////////////////////////////////////////////////////////////////////
+  // 修改模块描述窗口
+  //////////////////////////////////////////////////////////////////////////////
+  // Description输入框
+  let modifyModDescWindowDescTextField = new JSTextField();
+  modifyModDescWindowDescTextField.setPlaceHolder("Description")
+  modifyModDescWindowDescTextField.generateCode();
+
+  // 修改按钮
+  let modifyModDescWindowModifyButton = new JSButton();
+  modifyModDescWindowModifyButton.setText("Modify");
+  modifyModDescWindowModifyButton.setClass("btn-primary");
+  modifyModDescWindowModifyButton.generateCode();
+
+  // 取消按钮
+  let modifyModDescWindowCancelButton = new JSButton();
+  modifyModDescWindowCancelButton.setText("Cancel");
+  modifyModDescWindowCancelButton.setClass("btn-default");
+  modifyModDescWindowCancelButton.generateCode();
+
+  // 修改模块描述窗口
+  let modifyModDescWindow = new JSWindow();
+  modifyModDescWindow.setTitle("Modify Module Description");
+  modifyModDescWindow.setWindowDecorationStyle("DIALOG");
+  modifyModDescWindow.setContent(`
+    <div>${modifyModDescWindowDescTextField.getCode()}</div>
+    <div>${modifyModDescWindowModifyButton.getCode() + modifyModDescWindowCancelButton.getCode()}</div>
+  `);
+  modifyModDescWindow.setClass("modifyModDescWindow");
+  modifyModDescWindow.generateCode();
+
+  // 输出代码
+  $(document).ready(function() {
+    $("#modListTableArea").html(modListWindow.getCode());
+    $("#createModWindowArea").html(createModWindow.getCode());
+    $("#modifyModDescWindowArea").html(modifyModDescWindow.getCode());
+    $("#removeModOptionPaneArea").html(removeModOptionPane.getCode());
+    // 关联创建按钮打开模态窗口
+    $("#" + createModButton.getId()).attr("data-toggle", "modal");
+    $("#" + createModButton.getId()).attr("data-target", "#" + createModWindow.getId());
+    // 关联取消按钮关闭模态窗口
+    $("#" + modifyModDescWindowCancelButton.getId()).attr("data-dismiss", "modal");
+    $("#" + createModWindowCancelButton.getId()).attr("data-dismiss", "modal");
+    $("#" + modListTable.getId()).find("tbody").find("tr").find("td:nth-child(2)").find("i").click(function() {
+      $("#showModifyModDescWindowBtn").attr("data-target", "#" + modifyModDescWindow.getId());
+      // $("#showModifyModDescWindowBtn").attr("data-id", "");
+      $("#showModifyModDescWindowBtn").trigger("click");
+    });
+    $("#" + modListTable.getId()).find("tbody").find("tr").find("td:last-child").find("i").click(function() {
+      $("#showRemoveModOptionPaneBtn").attr("data-target", "#" + removeModOptionPane.getId());
+      // $("#showRemoveModOptionPaneBtn").attr("data-id", "");
+      $("#showRemoveModOptionPaneBtn").trigger("click");
+    });
+  });
+</script>
+<title>Module Management</title>
+</head>
+<body>
+  <div id = "modListTableArea"></div>
+  <div id = "createModWindowArea"></div>
+  <div id = "modifyModDescWindowArea"></div>
+  <div id = "removeModOptionPaneArea"></div>
+  <button style = "display: none;" type = "button" id = "showModifyModDescWindowBtn" data-toggle = "modal"></button>
+  <button style = "display: none;" type = "button" id = "showRemoveModOptionPaneBtn" data-toggle = "modal"></button>
+</body>
+</html>
