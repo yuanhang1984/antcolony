@@ -1,0 +1,49 @@
+body {
+  padding: 20px;
+  background-color: #EFF0F4;
+}
+
+/******************************************************************************/
+/* SQL List 窗口 */
+/******************************************************************************/
+.listWindow {
+  width: 100%;
+  margin: auto auto auto auto;
+}
+
+.listWindow .panel-heading {
+  text-align: left;
+}
+
+.listWindow .panel-body div {
+  text-align: left;
+}
+
+.listWindow .panel-body .dropdown button {
+  text-align: right;
+}
+
+.listWindow .panel-body .dropdown button, ul {
+  width: 100%;
+}
+
+.listWindow .panel-body .dropdown button > span:nth-child(1) {
+  float: left;
+}
+
+.listWindow .panel-body {
+  padding: 20px;
+}
+
+.listWindow .panel-body div {
+  margin-bottom: 20px;
+}
+
+.listWindow .panel-body div:nth-child(3) {
+  text-align: right;
+  margin-bottom: 0px;
+}
+
+.listWindow .panel-body div:nth-child(3) button:first-child {
+  margin-right: 10px;
+}

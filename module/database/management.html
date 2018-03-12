@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<!-- plugin style -->
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/font-awesome/3.2.1/css/font-awesome.min.css">
+<!-- custom style -->
+<link rel = "stylesheet" type = "text/css" href = "./management.css"/>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTable/JSTable.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSButton/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSWindow/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTip/JSTip.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSOptionPane/JSOptionPane.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  "use strict";
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Connection List 窗口
+  //////////////////////////////////////////////////////////////////////////////
+
+  // 表格
+  let listTable = new JSTable();
+  listTable.setClass("table-striped table-bordered");
+  listTable.setThead(
+    [
+      {
+        "text": "Name",
+        "colspan": -1
+      },
+      {
+        "text": "Driver",
+        "colspan": -1
+      },
+      {
+        "text": "User",
+        "colspan": -1
+      },
+      {
+        "text": "Url",
+        "colspan": -1
+      },
+      {
+        "text": "Operation",
+        "colspan": -1
+      }
+    ]
+  );
+  listTable.addTbody(
+    [
+      {
+        "text": "local_mysql_ink",
+        "value": "local_mysql_ink",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "com.mysql.jdbc.Driver",
+        "value": "com.mysql.jdbc.Driver",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "root",
+        "value": "root",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "jdbc:mysql://127.0.0.1:3306/ink?useUnicode=true&characterEncoding=utf-8&useSSL=true",
+        "value": "jdbc:mysql://127.0.0.1:3306/ink?useUnicode=true&characterEncoding=utf-8&useSSL=true",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<i class = "icon-link"></i><i class = "icon-edit"></i><i class = "icon-remove"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      }
+    ]
+  );
+  listTable.addTbody(
+    [
+      {
+        "text": "local_mysql_fjerp",
+        "value": "local_mysql_fjerp",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "com.mysql.jdbc.Driver",
+        "value": "com.mysql.jdbc.Driver",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "root",
+        "value": "root",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "jdbc:mysql://127.0.0.1:3306/ink?useUnicode=true&characterEncoding=utf-8&useSSL=true",
+        "value": "jdbc:mysql://127.0.0.1:3306/ink?useUnicode=true&characterEncoding=utf-8&useSSL=true",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<i class = "icon-link"></i><i class = "icon-edit"></i><i class = "icon-remove"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      }
+    ]
+  );
+  listTable.generateCode();
+
+  // Create按钮
+  let createBtn = new JSButton();
+  createBtn.setText("Create");
+  createBtn.setClass("btn-primary");
+  createBtn.generateCode();
+
+  // 连接列表窗体对象
+  let listWindow = new JSWindow();
+  listWindow.setWindowDecorationStyle("FRAME");
+  listWindow.setTitle("Connection List");
+  listWindow.setClass("listWindow");
+  let contentCode = `
+    <div>${listTable.getCode()}</div>
+    <div>${createBtn.getCode()}</div>
+  `;
+  listWindow.setContent(contentCode);
+  listWindow.generateCode();
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Create Connection 窗口
+  //////////////////////////////////////////////////////////////////////////////
+
+  // Name输入框
+  let nameTxtFld = new JSTextField();
+  nameTxtFld.setPlaceHolder("Name");
+  nameTxtFld.generateCode();
+
+  // Driver输入框
+  let driverTxtFld = new JSTextField();
+  driverTxtFld.setPlaceHolder("Driver");
+  driverTxtFld.generateCode();
+
+  // User输入框
+  let userTxtFld = new JSTextField();
+  userTxtFld.setPlaceHolder("User");
+  userTxtFld.generateCode();
+
+  // Password输入框
+  let pwdTxtFld = new JSTextField();
+  pwdTxtFld.setPlaceHolder("Password");
+  pwdTxtFld.setType("password");
+  pwdTxtFld.generateCode();
+
+  // Url输入框
+  let urlTxtFld = new JSTextField();
+  urlTxtFld.setPlaceHolder("Url");
+  urlTxtFld.generateCode();
+
+  // 测试按钮
+  let testBtn = new JSButton();
+  testBtn.setText("Test");
+  testBtn.setClass("btn-success");
+  testBtn.generateCode();
+
+  // 提交按钮
+  let submitBtn = new JSButton();
+  submitBtn.setText("Submit");
+  submitBtn.setClass("btn-primary");
+  submitBtn.generateCode();
+
+  // 取消按钮
+  let cancelBtn = new JSButton();
+  cancelBtn.setText("Cancel");
+  cancelBtn.setClass("btn-default");
+  cancelBtn.generateCode();
+
+  // 创建窗口
+  let createWindow = new JSWindow();
+  createWindow.setTitle("Create Connection");
+  createWindow.setWindowDecorationStyle("DIALOG");
+  createWindow.setContent(`
+    <div>${nameTxtFld.getCode()}</div>
+    <div>${driverTxtFld.getCode()}</div>
+    <div>${userTxtFld.getCode()}</div>
+    <div>${pwdTxtFld.getCode()}</div>
+    <div>${urlTxtFld.getCode()}</div>
+    <div>${testBtn.getCode() + submitBtn.getCode() + cancelBtn.getCode()}</div>
+  `);
+  createWindow.setClass("createWindow");
+  createWindow.generateCode();
+
+  // 输出代码
+  $(document).ready(function() {
+    $("#conListTableArea").html(listWindow.getCode());
+    $("#createConWindowArea").html(createWindow.getCode());
+    // 关联创建按钮打开模态窗口
+    $("#" + createBtn.getId()).attr("data-toggle", "modal");
+    $("#" + createBtn.getId()).attr("data-target", "#" + createWindow.getId());
+    // 关联取消按钮关闭模态窗口
+    $("#" + cancelBtn.getId()).attr("data-dismiss", "modal");
+  });
+</script>
+<title>Database Management</title>
+</head>
+<body>
+  <div id = "conListTableArea"></div>
+  <div id = "createConWindowArea"></div>
+</body>
+</html>

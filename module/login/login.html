@@ -14,15 +14,17 @@
 <script src = "../../lib/gui/JSWindow/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../lib/gui/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
+  "use strict";
+
   // 用户名输入对象
   let nameTextField = new JSTextField();
-  nameTextField.setPlaceHolder("Name")
+  nameTextField.setPlaceHolder("Name");
   nameTextField.setType("text");
   nameTextField.generateCode();
 
   // 密码输入对象
   let passwordTextField = new JSTextField();
-  passwordTextField.setPlaceHolder("Password")
+  passwordTextField.setPlaceHolder("Password");
   passwordTextField.setType("password");
   passwordTextField.generateCode();
 
@@ -35,7 +37,7 @@
   // 窗体对象
   let loginWindow = new JSWindow();
   loginWindow.setWindowDecorationStyle("FRAME");
-  loginWindow.setTitle("Login")
+  loginWindow.setTitle("Login");
   loginWindow.setClass("loginWindow");
   let contentCode = `
     <div>${nameTextField.getCode()}</div>

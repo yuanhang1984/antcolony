@@ -1,0 +1,250 @@
+body {
+  padding: 20px;
+  background-color: #EFF0F4;
+}
+
+/******************************************************************************/
+/* Dispatch Window 窗口（开始） */
+/******************************************************************************/
+.dispatchWindow {
+  width: 100%;
+  margin: auto auto auto auto;
+}
+
+.dispatchWindow .panel-heading {
+  text-align: left;
+}
+
+.dispatchWindow .panel-body div {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dispatchWindow .panel-body {
+  padding: 20px;
+}
+
+.dispatchWindow i:hover {
+  color: #FF8556;
+  cursor: pointer;
+}
+/******************************************************************************/
+/* Dispatch Window 窗口（结束） */
+/******************************************************************************/
+
+/******************************************************************************/
+/* 下拉菜单横铺（开始） */
+/******************************************************************************/
+.dispatchWindow .panel-body .dropdown button, ul {
+  width: 100%;
+}
+
+.dispatchWindow .panel-body .dropdown button {
+  text-align: right;
+}
+
+.dispatchWindow .panel-body .dropdown button > span:nth-child(1) {
+  float: left;
+}
+/******************************************************************************/
+/* 下拉菜单横铺（结束） */
+/******************************************************************************/
+
+/******************************************************************************/
+/* 表格（开始） */
+/******************************************************************************/
+.dispatchWindow table {
+  margin: 0px;
+}
+
+.dispatchWindow th {
+  color: #7A7676;
+  text-align: center;
+  background-color: #D9EDF6;
+}
+
+.dispatchWindow th:last-child {
+  min-width: 120px;
+}
+
+.dispatchWindow tbody tr td span {
+  margin-right: 10px;
+}
+
+.dispatchWindow tbody td {
+  color: #666666;
+  vertical-align: middle!important;
+}
+
+.dispatchWindow tbody td i:first-child {
+  margin-right: 10px;
+}
+/******************************************************************************/
+/* 表格（结束） */
+/******************************************************************************/
+
+/******************************************************************************/
+/* Create按钮（开始） */
+/******************************************************************************/
+.dispatchWindow .panel-body div:last-child {
+  margin-bottom: 0px;
+}
+/******************************************************************************/
+/* Create按钮（结束） */
+/******************************************************************************/
+
+/******************************************************************************/
+/* Create Servlet Window 窗口（开始） */
+/******************************************************************************/
+.createServletWindow {
+  margin: 20px;
+}
+
+.createServletWindow .panel-heading {
+  text-align: left;
+}
+
+.createServletWindow .panel-body div {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.createServletWindow .panel-body div:last-child {
+  font-size: 0px;
+  margin-bottom: 0px;
+}
+
+.createServletWindow .panel-body div:last-child button:nth-child(1) {
+  margin-right: 20px;
+}
+
+/* 模态窗口叉号关闭按钮 */
+.createServletWindow > div > div > button {
+  opacity: 1;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+/******************************************************************************/
+/* Create Servlet Window 窗口（结束） */
+/******************************************************************************/
+
+/******************************************************************************/
+/* 下拉菜单横铺（开始） */
+/******************************************************************************/
+.createServletWindow .panel-body .dropdown button, ul {
+  width: 100%;
+}
+
+.createServletWindow .panel-body .dropdown button {
+  text-align: right;
+}
+
+.createServletWindow .panel-body .dropdown button > span:nth-child(1) {
+  float: left;
+}
+/******************************************************************************/
+/* 下拉菜单横铺（结束） */
+/******************************************************************************/
+
+/******************************************************************************/
+/* 表格（开始） */
+/******************************************************************************/
+.createServletWindow table {
+  margin: 0px;
+}
+
+.createServletWindow table caption {
+  padding-top: 0px;
+  text-align: right;
+  padding-bottom: 20px;
+}
+
+.createServletWindow th {
+  color: #7A7676;
+  text-align: center;
+  background-color: #D9EDF6;
+}
+
+.createServletWindow th:last-child {
+  min-width: 120px;
+}
+
+.createServletWindow th i {
+  margin-left: 10px;
+}
+
+.createServletWindow tbody tr td span {
+  margin-right: 10px;
+}
+
+.createServletWindow tbody td {
+  color: #666666;
+  vertical-align: middle!important;
+}
+
+.createServletWindow tbody td ul, li{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.createServletWindow tbody td ul li span {
+  margin-right: 0px;
+}
+
+.createServletWindow tbody td ul li span:nth-child(2) {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.createServletWindow tbody td ul li i {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.createServletWindow i:hover {
+  color: #FF8556;
+  cursor: pointer;
+}
+
+.createServletWindow tbody td i:first-child {
+  margin-right: 10px;
+}
+/******************************************************************************/
+/* 表格（结束） */
+/******************************************************************************/
+
+/******************************************************************************/
+/* Configuration Attribute 窗口（开始） */
+/******************************************************************************/
+.attrWindow {
+  width: 400px;
+  margin: 20px auto auto auto;
+}
+
+.attrWindow .panel-heading {
+  text-align: left;
+}
+
+.attrWindow .panel-body div {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.attrWindow .panel-body div:last-child {
+  margin-bottom: 0px;
+}
+
+.attrWindow .panel-body div:last-child button:nth-child(1) {
+  margin-right: 20px;
+}
+
+/* 模态窗口叉号关闭按钮 */
+.attrWindow > div > div > button {
+  opacity: 1;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+/******************************************************************************/
+/* Configuration Attribute 窗口（结束） */
+/******************************************************************************/

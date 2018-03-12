@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8" />
+<!-- plugin style -->
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/font-awesome/3.2.1/css/font-awesome.min.css">
+<link rel = "stylesheet" href = "../../lib/gui/JSOptionPane/JSOptionPane.css">
+<!-- custom style -->
+<link rel = "stylesheet" type = "text/css" href = "./dispatch.css"/>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery-nicescroll/3.7.6/jquery.nicescroll.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTip/JSTip.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTable/JSTable.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSButton/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSWindow/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSCheckBox/JSCheckBox.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSComboBox/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTextArea/JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSOptionPane/JSOptionPane.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/gui/JSUploadList/JSUploadList.js" type = "text/javascript" charset = "utf-8"></script>
+<script>
+  "use strict";
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Dispatch 窗体
+  //////////////////////////////////////////////////////////////////////////////
+  // 模块下拉菜单
+  let modCB = new JSComboBox();
+  modCB.setType("dropdown");
+  modCB.addItem({
+    "type": "option",
+    "text": "Select Module",
+    "value": "Select Module",
+    "enable": false
+  });
+  modCB.addItem({
+    "type": "option",
+    "text": "file_storage",
+    "value": "file_storage",
+    "enable": true 
+  });
+  modCB.addItem({
+    "type": "option",
+    "text": "user_login",
+    "value": "user_login",
+    "enable": true
+  });
+  modCB.setSelectedIndex(0);
+  modCB.generateCode();
+
+  // Servlet列表
+  let servletListTable = new JSTable();
+  servletListTable.setClass("table-striped table-bordered");
+  servletListTable.setThead(
+    [
+      {
+        "text": "Servlet Name",
+        "colspan": -1
+      },
+      {
+        "text": "Description",
+        "colspan": -1
+      },
+      {
+        "text": "Permission",
+        "colspan": -1
+      },
+      {
+        "text": "Operation",
+        "colspan": -1
+      }
+    ]
+  );
+  servletListTable.addTbody(
+    [
+      {
+        "text": "uploadTemporaryFile",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "上传临时文件",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "none",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<i class = "icon-edit"></i><i class = "icon-remove"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      }
+    ]
+  );
+  servletListTable.addTbody(
+    [
+      {
+        "text": "getFile",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "获取文件",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "none",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<i class = "icon-edit"></i><i class = "icon-remove"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      }
+    ]
+  );
+  servletListTable.generateCode();
+
+  // Create按钮
+  let createServletBtn = new JSButton();
+  createServletBtn.setText("Create");
+  createServletBtn.setClass("btn-primary");
+  createServletBtn.generateCode();
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Dispatch窗口（主窗口）
+  //////////////////////////////////////////////////////////////////////////////
+  // 窗口
+  let dispatchWindow = new JSWindow();
+  dispatchWindow.setWindowDecorationStyle("FRAME");
+  dispatchWindow.setTitle("Dispatch");
+  dispatchWindow.setClass("dispatchWindow");
+  let dispatchWindowCnt = `
+    <div>${modCB.getCode()}</div>
+    <div>${servletListTable.getCode()}</div>
+    <div>${createServletBtn.getCode()}</div>
+  `;
+  dispatchWindow.setContent(dispatchWindowCnt);
+  dispatchWindow.generateCode();
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Create Servlet 窗口
+  //////////////////////////////////////////////////////////////////////////////
+  // Servlet Name输入框
+  let createServletNameTF = new JSTextField();
+  createServletNameTF.setPlaceHolder("Servlet Name");
+  createServletNameTF.generateCode();
+
+  // Servlet Description输入框
+  let createServletDescTF = new JSTextField();
+  createServletDescTF.setPlaceHolder("Servlet Description");
+  createServletDescTF.generateCode();
+
+  // Have Permission下拉菜单
+  let havePermissionCB = new JSComboBox();
+  havePermissionCB.setType("dropdown");
+  havePermissionCB.addItem({
+    "type": "option",
+    "text": "Have Permission",
+    "value": "Select Module",
+    "enable": false
+  });
+  havePermissionCB.addItem({
+    "type": "option",
+    "text": "Yes",
+    "value": "1",
+    "enable": true 
+  });
+  havePermissionCB.addItem({
+    "type": "option",
+    "text": "No",
+    "value": "0",
+    "enable": true
+  });
+  havePermissionCB.setSelectedIndex(0);
+  havePermissionCB.generateCode();
+
+  // Add Parameter按钮
+  let addParameterBtn = new JSButton();
+  addParameterBtn.setText("Add Parameter");
+  addParameterBtn.setClass("btn-primary");
+  addParameterBtn.generateCode();
+
+  // Parameter列表
+  let parameterTable = new JSTable();
+  parameterTable.setClass("table-striped table-bordered");
+  parameterTable.setCaption(addParameterBtn.getCode());
+  parameterTable.setThead(
+    [
+      {
+        "text": "Name",
+        "colspan": -1
+      },
+      {
+        "text": "Description",
+        "colspan": -1
+      },
+      {
+        "text": "Type",
+        "colspan": -1
+      },
+      {
+        "text": "Format",
+        "colspan": -1
+      },
+      {
+        "text": "Constant",
+        "colspan": -1
+      },
+      {
+        "text": "FileMaxSize(MB)",
+        "colspan": -1
+      },
+      {
+        "text": "Allow Null",
+        "colspan": -1
+      },
+      {
+        "text": "Operation",
+        "colspan": -1
+      }
+    ]
+  );
+  parameterTable.addTbody(
+    [
+      {
+        "text": "uuid",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "文件的uuid",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "file_storage",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "^[0-9]$",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "123",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "30000000",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "true",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<i class = "icon-edit"></i><i class = "icon-remove"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      }
+    ]
+  );
+  parameterTable.generateCode();
+
+  // Add Namespace按钮
+  let addNamespaceBtn = new JSButton();
+  addNamespaceBtn.setText("Add Namespace");
+  addNamespaceBtn.setClass("btn-primary");
+  addNamespaceBtn.generateCode();
+
+  // Servlet详情列表
+  let servletDetailTable = new JSTable();
+  servletDetailTable.setClass("table-striped table-bordered");
+  servletDetailTable.setCaption(addNamespaceBtn.getCode());
+  servletDetailTable.setThead(
+    [
+      {
+        "text": "Description",
+        "colspan": -1
+      },
+      {
+        "text": "Type",
+        "colspan": -1
+      },
+      {
+        "text": "Module Name",
+        "colspan": -1
+      },
+      {
+        "text": "Id",
+        "colspan": -1
+      },
+      {
+        "text": `Parameters<i class = "icon-plus"></i>`,
+        "colspan": -1
+      },
+      {
+        "text": "Operation",
+        "colspan": -1
+      }
+    ]
+  );
+  servletDetailTable.addTbody(
+    [
+      {
+        "text": "调用file_storage模块中的uploadTemporaryFile方法",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "custom",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "file_storage",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": "Custom.getFile",
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `
+          <ul>
+            <li><span>uuid</span><span>&gt;</span><span>uuid</span><i class = "icon-remove"></i></li>
+            <li><span>uuid</span><span>&gt;</span><span>uuid</span><i class = "icon-remove"></i></li>
+            <li><span>uuid</span><span>&gt;</span><span>uuid</span><i class = "icon-remove"></i></li>
+          </ul>
+        `,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      },
+      {
+        "text": `<i class = "icon-edit"></i><i class = "icon-remove"></i>`,
+        "value": "",
+        "colspan": -1,
+        "rowspan": -1
+      }
+    ]
+  );
+  servletDetailTable.generateCode();
+
+  // Submit按钮
+  let submitServletBtn = new JSButton();
+  submitServletBtn.setText("Submit");
+  submitServletBtn.setClass("btn-primary");
+  submitServletBtn.generateCode();
+
+  // Cancel按钮
+  let cancelServletBtn = new JSButton();
+  cancelServletBtn.setText("Cancel");
+  cancelServletBtn.setClass("btn-default");
+  cancelServletBtn.generateCode();
+
+  // 窗口
+  let createServletWindow = new JSWindow();
+  createServletWindow.setWindowDecorationStyle("DIALOG");
+  createServletWindow.setTitle("Create Servlet");
+  createServletWindow.setClass("createServletWindow");
+  let createServletWindowCnt = `
+    <div>${createServletNameTF.getCode()}</div>
+    <div>${createServletDescTF.getCode()}</div>
+    <div>${havePermissionCB.getCode()}</div>
+    <div>${parameterTable.getCode()}</div>
+    <div>${servletDetailTable.getCode()}</div>
+    <div>${submitServletBtn.getCode() + cancelServletBtn.getCode()}</div>
+  `;
+  createServletWindow.setContent(createServletWindowCnt);
+  createServletWindow.generateCode();
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Add Parameter 窗口
+  //////////////////////////////////////////////////////////////////////////////
+  // Parameter Name输入框
+  let parameterNameTF = new JSTextField();
+  parameterNameTF.setPlaceHolder("Name");
+  parameterNameTF.generateCode();
+
+  // Parameter Description输入框
+  let parameterDescTF = new JSTextField();
+  parameterDescTF.setPlaceHolder("Description");
+  parameterDescTF.generateCode();
+
+  // Parameter Type下拉菜单
+  let parameterTypeCB = new JSComboBox();
+  parameterTypeCB.setType("dropdown");
+  parameterTypeCB.addItem({
+    "type": "option",
+    "text": "file_storage",
+    "value": "file_storage",
+    "enable": true 
+  });
+  parameterTypeCB.addItem({
+    "type": "option",
+    "text": "user_status",
+    "value": "user_status",
+    "enable": true 
+  });
+  parameterTypeCB.setSelectedIndex(0);
+  parameterTypeCB.generateCode();
+
+  // Parameter Format输入框
+  let parameterFmtTF = new JSTextField();
+  parameterFmtTF.setPlaceHolder("Regular Expression");
+  parameterFmtTF.generateCode();
+
+  // Parameter Constant输入框
+  let parameterConstTF = new JSTextField();
+  parameterConstTF.setPlaceHolder("Constant");
+  parameterConstTF.generateCode();
+
+  // Parameter FileMaxSize输入框
+  let parameterMaxSizeTF = new JSTextField();
+  parameterMaxSizeTF.setPlaceHolder("File Max Size");
+  parameterMaxSizeTF.generateCode();
+
+  // Parameter AllowNull下拉菜单
+  let parameterAllowNullCB = new JSComboBox();
+  parameterAllowNullCB.setType("dropdown");
+  parameterAllowNullCB.addItem({
+    "type": "option",
+    "text": "True",
+    "value": 1,
+    "enable": true 
+  });
+  parameterAllowNullCB.addItem({
+    "type": "option",
+    "text": "False",
+    "value": 0,
+    "enable": true
+  });
+  parameterAllowNullCB.setSelectedIndex(0);
+  parameterAllowNullCB.generateCode();
+
+  // Submit按钮
+  let submitParamBtn = new JSButton();
+  submitParamBtn.setText("Submit");
+  submitParamBtn.setClass("btn-primary");
+  submitParamBtn.generateCode();
+
+  // Cancel按钮
+  let cancelParamBtn = new JSButton();
+  cancelParamBtn.setText("Cancel");
+  cancelParamBtn.setClass("btn-default");
+  cancelParamBtn.generateCode();
+
+  // 窗口
+  let createParamWindow = new JSWindow();
+  createParamWindow.setWindowDecorationStyle("DIALOG");
+  createParamWindow.setTitle("Create Parameter");
+  createParamWindow.setClass("createParamWindow");
+  let createParamWindowCnt = `
+    <div>${parameterNameTF.getCode()}</div>
+    <div>${parameterDescTF.getCode()}</div>
+    <div>${parameterTypeCB.getCode()}</div>
+    <div>${parameterFmtTF.getCode()}</div>
+    <div>${parameterConstTF.getCode()}</div>
+    <div>${parameterMaxSizeTF.getCode()}</div>
+    <div>${parameterAllowNullCB.getCode()}</div>
+    <div>${submitParamBtn.getCode() + cancelParamBtn.getCode()}</div>
+  `;
+  createParamWindow.setContent(createParamWindowCnt);
+  createParamWindow.generateCode();
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Add Namespace 窗口
+  //////////////////////////////////////////////////////////////////////////////
+  // Namespace Description输入框
+  let namespaceDescTF = new JSTextField();
+  namespaceDescTF.setPlaceHolder("Namespace Description");
+  namespaceDescTF.generateCode();
+
+  // Namespace Type下拉菜单
+  let namespaceTypeCB = new JSComboBox();
+  namespaceTypeCB.setType("dropdown");
+  namespaceTypeCB.addItem({
+    "type": "option",
+    "text": "Namespace Type",
+    "value": "Namespace Type",
+    "enable": false
+  });
+  namespaceTypeCB.addItem({
+    "type": "option",
+    "text": "Yes",
+    "value": "insert",
+    "enable": true 
+  });
+  namespaceTypeCB.addItem({
+    "type": "option",
+    "text": "custom",
+    "value": "0",
+    "enable": true
+  });
+  namespaceTypeCB.setSelectedIndex(0);
+  namespaceTypeCB.generateCode();
+
+  // Namespace Module下拉菜单
+  let namespaceModCB = new JSComboBox();
+  namespaceModCB.setType("dropdown");
+  namespaceModCB.addItem({
+    "type": "option",
+    "text": "Namespace Module",
+    "value": "Namespace Module",
+    "enable": false
+  });
+  namespaceModCB.addItem({
+    "type": "option",
+    "text": "file_storage",
+    "value": "file_storage",
+    "enable": true 
+  });
+  namespaceModCB.addItem({
+    "type": "option",
+    "text": "user_status",
+    "value": "user_status",
+    "enable": true
+  });
+  namespaceModCB.setSelectedIndex(0);
+  namespaceModCB.generateCode();
+
+  // Namespace Id下拉菜单
+  let namespaceIdCB = new JSComboBox();
+  namespaceIdCB.setType("dropdown");
+  namespaceIdCB.addItem({
+    "type": "option",
+    "text": "	Custom.getFile",
+    "value": "Custom.getFile",
+    "enable": true 
+  });
+  namespaceIdCB.addItem({
+    "type": "option",
+    "text": "	Custom.getFile",
+    "value": "Custom.getFile",
+    "enable": true 
+  });
+  namespaceIdCB.addItem({
+    "type": "option",
+    "text": "	Custom.getFile",
+    "value": "Custom.getFile",
+    "enable": true 
+  });
+  namespaceIdCB.setSelectedIndex(0);
+  namespaceIdCB.generateCode();
+
+  // Namespace Parameter下拉菜单
+  let namespaceParamCB = new JSComboBox();
+  namespaceParamCB.setType("dropdown");
+  namespaceParamCB.addItem({
+    "type": "option",
+    "text": "uuid",
+    "value": "uuid",
+    "enable": true 
+  });
+  namespaceParamCB.addItem({
+    "type": "option",
+    "text": "name",
+    "value": "name",
+    "enable": true 
+  });
+  namespaceParamCB.addItem({
+    "type": "option",
+    "text": "age",
+    "value": "age",
+    "enable": true 
+  });
+  namespaceParamCB.setSelectedIndex(0);
+  namespaceParamCB.generateCode();
+
+  // Namespace Parameter Alias输入框
+  let namespaceParamAliasTF = new JSTextField();
+  namespaceParamAliasTF.setPlaceHolder("Parameter Alias");
+  namespaceParamAliasTF.generateCode();
+
+  // Submit按钮
+  let submitNamespaceBtn = new JSButton();
+  submitNamespaceBtn.setText("Submit");
+  submitNamespaceBtn.setClass("btn-primary");
+  submitNamespaceBtn.generateCode();
+
+  // Cancel按钮
+  let cancelNamespaceBtn = new JSButton();
+  cancelNamespaceBtn.setText("Cancel");
+  cancelNamespaceBtn.setClass("btn-default");
+  cancelNamespaceBtn.generateCode();
+
+  // 窗口
+  let createNamespaceWindow = new JSWindow();
+  createNamespaceWindow.setWindowDecorationStyle("DIALOG");
+  createNamespaceWindow.setTitle("Create Servlet");
+  createNamespaceWindow.setClass("createNamespaceWindow");
+  let createNamespaceWindowCnt = `
+    <div>${namespaceDescTF.getCode()}</div>
+    <div>${namespaceTypeCB.getCode()}</div>
+    <div>${namespaceModCB.getCode()}</div>
+    <div>${namespaceIdCB.getCode()}</div>
+    <div>${namespaceParamCB.getCode()}</div>
+    <div>${namespaceParamAliasTF.getCode()}</div>
+    <div>${submitNamespaceBtn.getCode() + cancelNamespaceBtn.getCode()}</div>
+  `;
+  createNamespaceWindow.setContent(createNamespaceWindowCnt);
+  createNamespaceWindow.generateCode();
+
+  //////////////////////////////////////////////////////////////////////////////
+  // 输出代码
+  //////////////////////////////////////////////////////////////////////////////
+  $(document).ready(function() {
+    $("#dispatchWindowArea").html(dispatchWindow.getCode());
+    $("#createServletWindowArea").html(createServletWindow.getCode());
+    $("#createNamespaceWindowArea").html(createNamespaceWindow.getCode());
+    $("#createParamWindowArea").html(createParamWindow.getCode());
+
+    // 设置菜单滚动条属性
+    $("#" + dispatchWindow.getId()).niceScroll({
+      cursorcolor: "#65CEA7", //滚动条颜色
+      cursorwidth: "2px", //滚动条宽度
+      cursorborder: "0px", // 滚动条边框
+      cursorborderradius: "2px" //滚动条圆角
+    });
+    $("#" + createServletWindow.getId()).niceScroll({
+      cursorcolor: "#65CEA7", //滚动条颜色
+      cursorwidth: "2px", //滚动条宽度
+      cursorborder: "0px", // 滚动条边框
+      cursorborderradius: "2px" //滚动条圆角
+    });
+
+    // 事件绑定
+    modCB.update();
+    havePermissionCB.update();
+    namespaceTypeCB.update();
+    namespaceModCB.update();
+    namespaceIdCB.update();
+    namespaceParamCB.update();
+    parameterTypeCB.update();
+    parameterAllowNullCB.update();
+
+    // 关联按钮打开模态窗口
+    $("#" + createServletBtn.getId()).attr("data-toggle", "modal");
+    $("#" + createServletBtn.getId()).attr("data-target", "#" + createServletWindow.getId());
+    $("#" + addParameterBtn.getId()).attr("data-toggle", "modal");
+    $("#" + addParameterBtn.getId()).attr("data-target", "#" + createParamWindow.getId());
+    $("#" + addNamespaceBtn.getId()).attr("data-toggle", "modal");
+    $("#" + addNamespaceBtn.getId()).attr("data-target", "#" + createNamespaceWindow.getId());
+
+    // 关联取消按钮关闭模态窗口
+    $("#" + cancelServletBtn.getId()).attr("data-dismiss", "modal");
+    $("#" + cancelNamespaceBtn.getId()).attr("data-dismiss", "modal");
+    $("#" + cancelParamBtn.getId()).attr("data-dismiss", "modal");
+  });
+</script>
+<title>Module Dispatch</title>
+</head>
+<body>
+  <div id = "dispatchWindowArea"></div>
+  <div id = "createServletWindowArea"></div>
+  <div id = "createNamespaceWindowArea"></div>
+  <div id = "createParamWindowArea"></div>
+</body>
+</html>
