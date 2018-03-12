@@ -10,7 +10,13 @@
 <!-- *********************************************************************** -->
 <!-- custom css -->
 <!-- *********************************************************************** -->
-<!-- <link rel = "stylesheet" type = "text/css" href = "./sql.css"/> -->
+<link rel = "stylesheet" type = "text/css" href = "../../css/global.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSButton.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSWindow.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSComboBox.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSTextArea.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSTextField.css"/>
+<link rel = "stylesheet" type = "text/css" href = "./sql.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
 <!-- *********************************************************************** -->
@@ -95,7 +101,7 @@ class SqlListWindow {
     this.mainWindow = new JSWindow();
     this.mainWindow.setWindowDecorationStyle("FRAME");
     this.mainWindow.setTitle("SQL List");
-    this.mainWindow.setClass("listWindow");
+    this.mainWindow.setClass("SqlListWindow");
     let mainWindowCode = `
       <div>${this.modCB.getCode()}</div>
       <div>${this.cntTA.getCode()}</div>
@@ -131,8 +137,9 @@ let slw = new SqlListWindow();
 // 输出代码
 //////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
-  $("#listWindowArea").html(slw.getCode());
+  $("#sqlListWindowArea").html(slw.getCode());
   slw.getModCB().update();
+  // 文件内容输入框自适应窗口最大尺寸
   $(slw.getMainWindow().getObject()).find(".panel-body").find("div").find("textarea").css("height",
     $(document).height()
     - parseInt($("body").css("padding-top")) * 2
@@ -150,6 +157,6 @@ $(document).ready(function() {
 <title>Database SQL</title>
 </head>
 <body>
-  <div id = "listWindowArea"></div>
+  <div id = "sqlListWindowArea"></div>
 </body>
 </html>
