@@ -5,21 +5,21 @@
 <!-- *********************************************************************** -->
 <!-- plugin css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- *********************************************************************** -->
 <!-- custom css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" type = "text/css" href = "../../css/default_theme/JSTextField.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../css/default_theme/JSButton.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
 <!-- *********************************************************************** -->
-<script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
-<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../js/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
   //////////////////////////////////////////////////////////////////////////////
   // ECMAScript规范
@@ -28,23 +28,26 @@
   //////////////////////////////////////////////////////////////////////////////
   // 创建对象
   //////////////////////////////////////////////////////////////////////////////
-  let jsTextField = new JSTextField();
+  let jsButton = new JSButton();
   //////////////////////////////////////////////////////////////////////////////
   // 设置属性
   //////////////////////////////////////////////////////////////////////////////
-  jsTextField.setPlaceHolder("请输入名称");
-  // jsTextField.setValue("hello world");
-  jsTextField.setReadOnly(false);
+  jsButton.setText("确认");
+  jsButton.setClass("btn-primary theme-black_primary-button");
   //////////////////////////////////////////////////////////////////////////////
   // 生成代码
   //////////////////////////////////////////////////////////////////////////////
-  jsTextField.generateCode();
+  jsButton.generateCode();
   //////////////////////////////////////////////////////////////////////////////
   // Start
   //////////////////////////////////////////////////////////////////////////////
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(jsTextField.getCode());
+    $("#outputArea").html(jsButton.getCode());
+    // 绑定事件
+    $(jsButton.getObject()).click(function() {
+      alert("aaaaaaa");
+    });
   });
 </script>
 <title>Demo</title>

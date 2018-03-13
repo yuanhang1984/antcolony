@@ -5,21 +5,21 @@
 <!-- *********************************************************************** -->
 <!-- plugin css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- *********************************************************************** -->
 <!-- custom css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" type = "text/css" href = "../../css/default_theme/JSRadioButton.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../css/default_theme/JSTip.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
 <!-- *********************************************************************** -->
-<script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
-<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./JSRadioButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../js/JSTip.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
   //////////////////////////////////////////////////////////////////////////////
   // ECMAScript规范
@@ -28,28 +28,22 @@
   //////////////////////////////////////////////////////////////////////////////
   // 创建对象
   //////////////////////////////////////////////////////////////////////////////
-  let jsRadioButton_1 = new JSRadioButton();
-  let jsRadioButton_2 = new JSRadioButton();
+  let jsTip = new JSTip();
   //////////////////////////////////////////////////////////////////////////////
   // 设置属性
   //////////////////////////////////////////////////////////////////////////////
-  jsRadioButton_1.setName("sex");
-  jsRadioButton_1.setLabel("男");
-  jsRadioButton_1.setValue("man");
-  jsRadioButton_2.setName("sex");
-  jsRadioButton_2.setLabel("女");
-  jsRadioButton_2.setValue("woman");
+  jsTip.setText("用户名不能为空");
+  jsTip.setClass("alert-danger");
   //////////////////////////////////////////////////////////////////////////////
   // 生成代码
   //////////////////////////////////////////////////////////////////////////////
-  jsRadioButton_1.generateCode();
-  jsRadioButton_2.generateCode();
+  jsTip.generateCode();
   //////////////////////////////////////////////////////////////////////////////
   // Start
   //////////////////////////////////////////////////////////////////////////////
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(jsRadioButton_1.getCode() + jsRadioButton_2.getCode());
+    $("#outputArea").html(jsTip.getCode());
   });
 </script>
 <title>Demo</title>

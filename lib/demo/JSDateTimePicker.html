@@ -5,21 +5,23 @@
 <!-- *********************************************************************** -->
 <!-- plugin css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/bootstrap-datetime-picker/2.4.4/css/bootstrap-datetimepicker.min.css">
 <!-- *********************************************************************** -->
 <!-- custom css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" type = "text/css" href = "../../css/default_theme/JSTextArea.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../css/default_theme/JSDateTimePicker.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
 <!-- *********************************************************************** -->
-<script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap-datetime-picker/2.4.4/js/bootstrap-datetimepicker.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
-<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../js/JSDateTimePicker.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
   //////////////////////////////////////////////////////////////////////////////
   // ECMAScript规范
@@ -28,24 +30,23 @@
   //////////////////////////////////////////////////////////////////////////////
   // 创建对象
   //////////////////////////////////////////////////////////////////////////////
-  let jsTextArea = new JSTextArea();
+  let jsDateTimePicker = new JSDateTimePicker();
   //////////////////////////////////////////////////////////////////////////////
   // 设置属性
   //////////////////////////////////////////////////////////////////////////////
-  jsTextArea.setPlaceHolder("请输入名称");
-  // jsTextArea.setText("hello world");
-  // jsTextArea.setClass("form-control");
-  jsTextArea.setReadOnly(false);
+  jsDateTimePicker.setPlaceHolder("请选择时间");
+  jsDateTimePicker.setFormat("yyyy-mm-dd");
   //////////////////////////////////////////////////////////////////////////////
   // 生成代码
   //////////////////////////////////////////////////////////////////////////////
-  jsTextArea.generateCode();
+  jsDateTimePicker.generateCode();
   //////////////////////////////////////////////////////////////////////////////
   // Start
   //////////////////////////////////////////////////////////////////////////////
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(jsTextArea.getCode());
+    $("#outputArea").html(jsDateTimePicker.getCode());
+    jsDateTimePicker.update();
   });
 </script>
 <title>Demo</title>

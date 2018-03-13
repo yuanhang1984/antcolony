@@ -15,7 +15,6 @@
 <link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSButton.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSWindow.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSTextField.css"/>
-<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSOptionPane.css"/>
 <link rel = "stylesheet" type = "text/css" href = "./management.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
@@ -27,11 +26,10 @@
 <!-- *********************************************************************** -->
 <script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSTable/JSTable.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSButton/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSWindow/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSOptionPane/JSOptionPane.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSTable.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
 ////////////////////////////////////////////////////////////////////////////////
 // ECMAScript规范
@@ -168,10 +166,6 @@ class ConnectionListWindow {
   getMainWindow() {
     return this.mainWindow;
   }
-
-  getCode() {
-    return this.mainWindow.getCode();
-  }
 }
 ////////////////////////////////////////////////////////////////////////////////
 // ConnectionCreateWindow
@@ -259,10 +253,6 @@ class ConnectionCreateWindow {
   getMainWindow() {
     return this.mainWindow;
   }
-
-  getCode() {
-    return this.mainWindow.getCode();
-  }
 }
 </script>
 <script>
@@ -282,8 +272,8 @@ let ccw = new ConnectionCreateWindow();
 // 输出代码
 ////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
-  $("#connectionListWindowArea").html(clw.getCode());
-  $("#connectionCreateWindowArea").html(ccw.getCode());
+  $("#connectionListWindowArea").html(clw.getMainWindow().getCode());
+  $("#connectionCreateWindowArea").html(ccw.getMainWindow().getCode());
   // 关联创建按钮打开窗口
   $("#" + clw.getCreateButton().getId()).attr("data-toggle", "modal");
   $("#" + clw.getCreateButton().getId()).attr("data-target", "#" + ccw.getMainWindow().getId());

@@ -1,140 +1,63 @@
-body {
-  padding: 20px;
-  background-color: #EFF0F4;
-}
-
 /******************************************************************************/
-/* Module List 窗口 */
+/* ModuleListWindow */
 /******************************************************************************/
-.listWindow {
-  width: 100%;
-  margin: auto auto auto auto;
-}
-
-.listWindow .panel-heading {
-  text-align: left;
-}
-
-.listWindow .panel-body div {
-  text-align: center;
-}
-
-.listWindow .panel-body {
-  padding: 20px;
-}
-
-.listWindow .panel-body div:nth-child(2) {
-  margin: 20px 0px 0px 0px;
-}
-
-.listWindow table {
-  margin: 0px;
-}
-
-.listWindow th {
-  color: #7A7676;
-  text-align: center;
-  background-color: #D9EDF6;
-}
-
-.listWindow th:last-child {
-  min-width: 120px;
-}
-
-.listWindow tbody tr td:nth-child(2) span {
+.ModuleListWindow tbody tr td:nth-child(2) span {
   margin-right: 10px;
 }
 
-.listWindow tbody td {
-  color: #666666;
-  vertical-align: middle!important;
-}
-
-.listWindow i:hover {
+.ModuleListWindow i:hover {
   color: #FF8556;
   cursor: pointer;
 }
 
 /******************************************************************************/
-/* Create Module 窗口 */
+/* CreateModuleWindow */
 /******************************************************************************/
-.createWindow {
+.CreateModuleWindow {
   width: 400px;
-  margin: 20px auto auto auto;
+  margin-top: 20px;
 }
 
-.createWindow .panel-body {
-  padding: 20px;
+.CreateModuleWindow .panel .panel-body div:last-child {
+  font-size: 0px;
 }
 
-.createWindow .panel-body div {
+.CreateModuleWindow .panel .panel-body div:last-child button:first-child {
+  margin-right: 10px;
+}
+
+/******************************************************************************/
+/* RemoveConfirmWindow */
+/******************************************************************************/
+.RemoveConfirmWindow {
+  width: 400px;
+  margin-top: 20px;
+}
+
+.RemoveConfirmWindow .panel .panel-body div:first-child {
   text-align: center;
-  margin-bottom: 20px;
 }
 
-.createWindow .panel-body div:last-child {
-  margin-bottom: 0px;
+.RemoveConfirmWindow .panel .panel-body div:last-child {
+  font-size: 0px;
 }
 
-.createWindow .panel-body div:last-child button:nth-child(2) {
-  margin-left: 20px;
-}
-
-/* 模态窗口叉号关闭按钮 */
-.createWindow > div > div > button {
-  opacity: 1;
-  color: #FFFFFF;
-  text-shadow: none;
-}
-
-.createWindow .panel-body .dropdown button, ul {
-  width: 100%;
-}
-
-.createWindow .panel-body .dropdown button {
-  text-align: right;
-}
-
-.createWindow .panel-body .dropdown button > span:nth-child(1) {
-  float: left;
+.RemoveConfirmWindow .panel .panel-body div:last-child button:first-child {
+  margin-right: 10px;
 }
 
 /******************************************************************************/
-/* 删除模块确认对话框 */
+/* ModifyModuleDescriptionWindow */
 /******************************************************************************/
-.removeOP {
+.ModifyModuleDescriptionWindow {
   width: 400px;
-  margin: 20px auto auto auto;
+  margin-top: 20px;
 }
 
-/******************************************************************************/
-/* Modify Module Description 窗口 */
-/******************************************************************************/
-.modifyWindow {
-  width: 400px;
-  margin: 20px auto auto auto;
+.ModifyModuleDescriptionWindow .panel .panel-body div:last-child {
+  font-size: 0px;
 }
 
-.modifyWindow .panel-body {
-  padding: 20px;
-}
-
-.modifyWindow .panel-body div {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.modifyWindow .panel-body div:last-child {
-  margin-bottom: 0px;
-}
-
-.modifyWindow .panel-body div:last-child button:nth-child(2) {
-  margin-left: 20px;
-}
-
-/* 模态窗口叉号关闭按钮 */
-.modifyWindow > div > div > button {
-  opacity: 1;
-  color: #FFFFFF;
-  text-shadow: none;
+.ModifyModuleDescriptionWindow .panel .panel-body div:last-child button:first-child {
+  margin-right: 10px;
 }

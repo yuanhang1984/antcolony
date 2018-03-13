@@ -5,21 +5,21 @@
 <!-- *********************************************************************** -->
 <!-- plugin css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- *********************************************************************** -->
 <!-- custom css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" type = "text/css" href = "../../css/default_theme/JSPagination.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../css/default_theme/JSLabel.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
 <!-- *********************************************************************** -->
-<script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
-<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./JSPagination.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../js/JSLabel.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
   //////////////////////////////////////////////////////////////////////////////
   // ECMAScript规范
@@ -28,24 +28,21 @@
   //////////////////////////////////////////////////////////////////////////////
   // 创建对象
   //////////////////////////////////////////////////////////////////////////////
-  let jsPagination = new JSPagination();
+  let jsLabel = new JSLabel();
   //////////////////////////////////////////////////////////////////////////////
   // 设置属性
   //////////////////////////////////////////////////////////////////////////////
-  jsPagination.setOffset(50);
-  jsPagination.setLimit(20);
-  jsPagination.setCount(140);
-  jsPagination.setSize(3);
+  jsLabel.setText("Name");
   //////////////////////////////////////////////////////////////////////////////
   // 生成代码
   //////////////////////////////////////////////////////////////////////////////
-  jsPagination.generateCode();
+  jsLabel.generateCode();
   //////////////////////////////////////////////////////////////////////////////
   // Start
   //////////////////////////////////////////////////////////////////////////////
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(jsPagination.getCode());
+    $("#outputArea").html(jsLabel.getCode());
   });
 </script>
 <title>Demo</title>

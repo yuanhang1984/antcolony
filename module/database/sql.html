@@ -27,11 +27,11 @@
 <!-- *********************************************************************** -->
 <script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSButton/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSWindow/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSComboBox/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSTextArea/JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
 ////////////////////////////////////////////////////////////////////////////////
 // ECMAScript规范
@@ -118,10 +118,6 @@ class SqlListWindow {
   getMainWindow() {
     return this.mainWindow;
   }
-
-  getCode() {
-    return this.mainWindow.getCode();
-  }
 }
 </script>
 <script>
@@ -137,7 +133,7 @@ let slw = new SqlListWindow();
 // 输出代码
 //////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
-  $("#sqlListWindowArea").html(slw.getCode());
+  $("#sqlListWindowArea").html(slw.getMainWindow().getCode());
   slw.getModCB().update();
   // 文件内容输入框自适应窗口最大尺寸
   $(slw.getMainWindow().getObject()).find(".panel-body").find("div").find("textarea").css("height",

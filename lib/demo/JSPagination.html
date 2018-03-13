@@ -5,21 +5,21 @@
 <!-- *********************************************************************** -->
 <!-- plugin css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- *********************************************************************** -->
 <!-- custom css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" type = "text/css" href = "../../css/default_theme/JSButton.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../css/default_theme/JSPagination.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
 <!-- *********************************************************************** -->
-<script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
-<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./JSButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../js/JSPagination.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
   //////////////////////////////////////////////////////////////////////////////
   // ECMAScript规范
@@ -28,26 +28,24 @@
   //////////////////////////////////////////////////////////////////////////////
   // 创建对象
   //////////////////////////////////////////////////////////////////////////////
-  let jsButton = new JSButton();
+  let jsPagination = new JSPagination();
   //////////////////////////////////////////////////////////////////////////////
   // 设置属性
   //////////////////////////////////////////////////////////////////////////////
-  jsButton.setText("确认");
-  jsButton.setClass("btn-primary theme-black_primary-button");
+  jsPagination.setOffset(50);
+  jsPagination.setLimit(20);
+  jsPagination.setCount(140);
+  jsPagination.setSize(3);
   //////////////////////////////////////////////////////////////////////////////
   // 生成代码
   //////////////////////////////////////////////////////////////////////////////
-  jsButton.generateCode();
+  jsPagination.generateCode();
   //////////////////////////////////////////////////////////////////////////////
   // Start
   //////////////////////////////////////////////////////////////////////////////
   $(document).ready(function() {
     // 输出代码
-    $("#outputArea").html(jsButton.getCode());
-    // 绑定事件
-    $(jsButton.getObject()).click(function() {
-      alert("aaaaaaa");
-    });
+    $("#outputArea").html(jsPagination.getCode());
   });
 </script>
 <title>Demo</title>

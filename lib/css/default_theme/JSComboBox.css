@@ -6,6 +6,6 @@
   width: 100%;
 }
 
-.JSComboBox button > span:first-child {
+.JSComboBox button span:first-child {
   float: left;
 }

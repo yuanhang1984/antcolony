@@ -2,341 +2,495 @@
 <html>
 <head>
 <meta charset = "utf-8" />
-<!-- plugin style -->
+<!-- *********************************************************************** -->
+<!-- plugin css -->
+<!-- *********************************************************************** -->
 <link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel = "stylesheet" href = "../../plugin/font-awesome/3.2.1/css/font-awesome.min.css">
-<link rel = "stylesheet" href = "../../lib/gui/JSOptionPane/JSOptionPane.css">
-<!-- custom style -->
+<!-- *********************************************************************** -->
+<!-- custom css -->
+<!-- *********************************************************************** -->
+<link rel = "stylesheet" type = "text/css" href = "../../css/global.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSLabel.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSTable.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSButton.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSWindow.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSCheckBox.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSComboBox.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSTextField.css"/>
 <link rel = "stylesheet" type = "text/css" href = "./management.css"/>
+<!-- *********************************************************************** -->
+<!-- plugin js -->
+<!-- *********************************************************************** -->
 <script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<!-- *********************************************************************** -->
+<!-- custom js -->
+<!-- *********************************************************************** -->
 <script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/gui/JSTip/JSTip.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/gui/JSTable/JSTable.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/gui/JSButton/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/gui/JSWindow/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/gui/JSCheckBox/JSCheckBox.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/gui/JSComboBox/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/gui/JSTextField/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/gui/JSOptionPane/JSOptionPane.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSLabel.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSTable.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSCheckBox.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../lib/js/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
-  "use strict";
+////////////////////////////////////////////////////////////////////////////////
+// ECMAScript规范
+////////////////////////////////////////////////////////////////////////////////
+"use strict";
+////////////////////////////////////////////////////////////////////////////////
+// ModuleListWindow
+////////////////////////////////////////////////////////////////////////////////
+class ModuleListWindow {
+  constructor() {
+    ////////////////////////////////////////////////////////////////////////////
+    // checkbox对象
+    ////////////////////////////////////////////////////////////////////////////
+    this.checkBox_1 = new JSCheckBox();
+    this.checkBox_2 = new JSCheckBox();
+    this.checkBox_2.setSelected(true);
+    this.checkBox_3 = new JSCheckBox();
+    this.checkBox_4 = new JSCheckBox();
+    this.checkBox_5 = new JSCheckBox();
+    this.checkBox_6 = new JSCheckBox();
+    this.checkBox_6.setSelected(true);
+    this.checkBox_1.generateCode();
+    this.checkBox_2.generateCode();
+    this.checkBox_3.generateCode();
+    this.checkBox_4.generateCode();
+    this.checkBox_5.generateCode();
+    this.checkBox_6.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // Module列表
+    ////////////////////////////////////////////////////////////////////////////
+    this.listTable = new JSTable();
+    this.listTable.setClass("table-striped table-bordered");
+    this.listTable.setClass("table-striped table-bordered");
+    this.listTable.setThead(
+      [
+        {
+          "text": "Name",
+          "colspan": -1
+        },
+        {
+          "text": "Description",
+          "colspan": -1
+        },
+        {
+          "text": "Source Code Rebuild",
+          "colspan": -1
+        },
+        {
+          "text": "Module Enable",
+          "colspan": -1
+        },
+        {
+          "text": "Docs Enable",
+          "colspan": -1
+        },
+        {
+          "text": "Remove",
+          "colspan": -1
+        }
+      ]
+    );
+    this.listTable.addTbody(
+      [
+        {
+          "text": "file_storage",
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": `<span>File Manager For Upload File</span><i class = "icon-edit"></i>`,
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": this.checkBox_1.getCode(),
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": this.checkBox_2.getCode(),
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": this.checkBox_3.getCode(),
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": `<i class = "icon-remove"></i>`,
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        }
+      ]
+    );
+    this.listTable.addTbody(
+      [
+        {
+          "text": "filter",
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": `<span>Set Filter For Web Service</span><i class = "icon-edit"></i>`,
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": this.checkBox_4.getCode(),
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": this.checkBox_5.getCode(),
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": this.checkBox_6.getCode(),
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        },
+        {
+          "text": `<i class = "icon-remove"></i>`,
+          "value": "",
+          "colspan": -1,
+          "rowspan": -1
+        }
+      ]
+    );
+    this.listTable.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // Create按钮
+    ////////////////////////////////////////////////////////////////////////////
+    this.createBtn = new JSButton();
+    this.createBtn.setText("Create");
+    this.createBtn.setClass("btn-primary");
+    this.createBtn.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // 主窗体对象
+    ////////////////////////////////////////////////////////////////////////////
+    this.mainWindow = new JSWindow();
+    this.mainWindow.setWindowDecorationStyle("FRAME");
+    this.mainWindow.setTitle("Module List");
+    this.mainWindow.setClass("ModuleListWindow");
+    this.mainWindow.setContent(`
+      <div>${this.listTable.getCode()}</div>
+      <div>${this.createBtn.getCode()}</div>
+    `);
+    this.mainWindow.generateCode();
+  }
 
-  //////////////////////////////////////////////////////////////////////////////
-  // Module List 窗口
-  //////////////////////////////////////////////////////////////////////////////
-  // 创建对象
-  let jsCheckBox_1 = new JSCheckBox();
-  let jsCheckBox_2 = new JSCheckBox();
-  jsCheckBox_2.setSelected(true);
-  let jsCheckBox_3 = new JSCheckBox();
-  let jsCheckBox_4 = new JSCheckBox();
-  let jsCheckBox_5 = new JSCheckBox();
-  let jsCheckBox_6 = new JSCheckBox();
-  jsCheckBox_6.setSelected(true);
-  jsCheckBox_1.generateCode();
-  jsCheckBox_2.generateCode();
-  jsCheckBox_3.generateCode();
-  jsCheckBox_4.generateCode();
-  jsCheckBox_5.generateCode();
-  jsCheckBox_6.generateCode();
+  getCreateButton() {
+    return this.createBtn;
+  }
 
-  // 创建模块列表
-  let modTable = new JSTable();
-  modTable.setClass("table-striped table-bordered");
-  modTable.setThead(
-    [
-      {
-        "text": "Name",
-        "colspan": -1
-      },
-      {
-        "text": "Description",
-        "colspan": -1
-      },
-      {
-        "text": "Source Code Rebuild",
-        "colspan": -1
-      },
-      {
-        "text": "Module Enable",
-        "colspan": -1
-      },
-      {
-        "text": "Docs Enable",
-        "colspan": -1
-      },
-      {
-        "text": "Remove",
-        "colspan": -1
-      }
-    ]
-  );
-  modTable.addTbody(
-    [
-      {
-        "text": "file_storage",
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": `<span>File Manager For Upload File</span><i class = "icon-edit"></i>`,
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": jsCheckBox_1.getCode(),
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": jsCheckBox_2.getCode(),
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": jsCheckBox_3.getCode(),
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": `<i class = "icon-remove"></i>`,
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      }
-    ]
-  );
-  modTable.addTbody(
-    [
-      {
-        "text": "filter",
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": `<span>Set Filter For Web Service</span><i class = "icon-edit"></i>`,
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": jsCheckBox_4.getCode(),
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": jsCheckBox_5.getCode(),
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": jsCheckBox_6.getCode(),
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      },
-      {
-        "text": `<i class = "icon-remove"></i>`,
-        "value": "",
-        "colspan": -1,
-        "rowspan": -1
-      }
-    ]
-  );
-  modTable.generateCode();
+  getListTable() {
+    return this.listTable;
+  }
 
-  // Create按钮
-  let createBtn = new JSButton();
-  createBtn.setText("Create");
-  createBtn.setClass("btn-primary");
-  createBtn.generateCode();
+  getMainWindow() {
+    return this.mainWindow;
+  }
+}
+////////////////////////////////////////////////////////////////////////////////
+// RemoveConfirmWindow
+////////////////////////////////////////////////////////////////////////////////
+class RemoveConfirmWindow {
+  constructor() {
+    ////////////////////////////////////////////////////////////////////////////
+    // Content标签
+    ////////////////////////////////////////////////////////////////////////////
+    this.cntLB = new JSLabel();
+    this.cntLB.setText("Do you want to remove this module?");
+    this.cntLB.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // Submit按钮
+    ////////////////////////////////////////////////////////////////////////////
+    this.submitBtn = new JSButton();
+    this.submitBtn.setText("Submit");
+    this.submitBtn.setClass("btn-primary");
+    this.submitBtn.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // 取消按钮
+    ////////////////////////////////////////////////////////////////////////////
+    this.cancelBtn= new JSButton();
+    this.cancelBtn.setText("Cancel");
+    this.cancelBtn.setClass("btn-default");
+    this.cancelBtn.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // 主窗体对象
+    ////////////////////////////////////////////////////////////////////////////
+    this.mainWindow = new JSWindow();
+    this.mainWindow.setTitle("Remove Confirm");
+    this.mainWindow.setWindowDecorationStyle("DIALOG");
+    this.mainWindow.setContent(`
+      <div>${this.cntLB.getCode()}</div>
+      <div>${this.submitBtn.getCode() + this.cancelBtn.getCode()}</div>
+    `);
+    this.mainWindow.setClass("RemoveConfirmWindow");
+    this.mainWindow.generateCode();
+  }
 
-  // Module List 窗口
-  let listWindow = new JSWindow();
-  listWindow.setWindowDecorationStyle("FRAME");
-  listWindow.setTitle("Module List");
-  listWindow.setClass("listWindow");
-  let contentCode = `
-    <div>${modTable.getCode()}</div>
-    <div>${createBtn.getCode()}</div>
-  `;
-  listWindow.setContent(contentCode);
-  listWindow.generateCode();
+  getSubmitButton() {
+    return this.submitBtn;
+  }
 
-  //////////////////////////////////////////////////////////////////////////////
-  // 删除模块确认对话框
-  //////////////////////////////////////////////////////////////////////////////
-  // 创建删除模块确认对话框对象
-  let removeOP = new JSOptionPane();
-  removeOP.setTitle("Remove Module Confirmation");
-  removeOP.setMessage("Do you want to remove this module?");
-  removeOP.setOptionType("YES_NO_OPTION");
-  removeOP.setOptionText(["Yes", "No"]);
-  removeOP.setClass("JSOptionPane_Danger removeOP");
-  removeOP.generateCode();
+  getCancelButton() {
+    return this.cancelBtn;
+  }
 
-  //////////////////////////////////////////////////////////////////////////////
-  // Create Module 窗口
-  //////////////////////////////////////////////////////////////////////////////
-
-  // Name输入框
-  let nameTF = new JSTextField();
-  nameTF.setPlaceHolder("Name");
-  nameTF.generateCode();
-
-  // Description输入框
-  let createDescTF = new JSTextField();
-  createDescTF.setPlaceHolder("Description");
-  createDescTF.generateCode();
-
-  // 创建是否启用下拉菜单
-  let enableCB = new JSComboBox();
-  enableCB.setType("dropdown");
-  enableCB.addItem({
-    "type": "option",
-    "text": "Module Status",
-    "value": 1,
-    "enable": false
-  });
-  enableCB.addItem({
-    "type": "option",
-    "text": "Enable",
-    "value": 1,
-    "enable": true 
-  });
-  enableCB.addItem({
-    "type": "option",
-    "text": "Disable",
-    "value": 0,
-    "enable": true
-  });
-  enableCB.setSelectedIndex(0);
-  enableCB.generateCode();
-
-  // 创建是否显示API下拉菜单
-  let apiCB = new JSComboBox();
-  apiCB.setType("dropdown");
-  apiCB.addItem({
-    "type": "option",
-    "text": "Module Api",
-    "value": 1,
-    "enable": false
-  });
-  apiCB.addItem({
-    "type": "option",
-    "text": "Show",
-    "value": 1,
-    "enable": true 
-  });
-  apiCB.addItem({
-    "type": "option",
-    "text": "Hide",
-    "value": 0,
-    "enable": true
-  });
-  apiCB.setSelectedIndex(0);
-  apiCB.generateCode();
-
-  // 提交按钮
-  let submitBtn = new JSButton();
-  submitBtn.setText("Submit");
-  submitBtn.setClass("btn-primary");
-  submitBtn.generateCode();
-
-  // 取消按钮
-  let createCancelBtn = new JSButton();
-  createCancelBtn.setText("Cancel");
-  createCancelBtn.setClass("btn-default");
-  createCancelBtn.generateCode();
-
-  // 创建模块窗口
-  let createWindow = new JSWindow();
-  createWindow.setTitle("Create Module");
-  createWindow.setWindowDecorationStyle("DIALOG");
-  createWindow.setContent(`
-    <div>${nameTF.getCode()}</div>
-    <div>${createDescTF.getCode()}</div>
-    <div>${enableCB.getCode()}</div>
-    <div>${apiCB.getCode()}</div>
-    <div>${submitBtn.getCode() + createCancelBtn.getCode()}</div>
-  `);
-  createWindow.setClass("createWindow");
-  createWindow.generateCode();
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Modify Module Description 窗口
-  //////////////////////////////////////////////////////////////////////////////
-
-  // Description输入框
-  let modifyDescTF = new JSTextField();
-  modifyDescTF.setPlaceHolder("Description");
-  modifyDescTF.generateCode();
-
-  // 修改按钮
-  let modifyModDescWindowModifyButton = new JSButton();
-  modifyModDescWindowModifyButton.setText("Modify");
-  modifyModDescWindowModifyButton.setClass("btn-primary");
-  modifyModDescWindowModifyButton.generateCode();
-
-  // 取消按钮
-  let modifyCancelBtn = new JSButton();
-  modifyCancelBtn.setText("Cancel");
-  modifyCancelBtn.setClass("btn-default");
-  modifyCancelBtn.generateCode();
-
-  // 修改模块描述窗口
-  let modifyWindow = new JSWindow();
-  modifyWindow.setTitle("Modify Module Description");
-  modifyWindow.setWindowDecorationStyle("DIALOG");
-  modifyWindow.setContent(`
-    <div>${modifyDescTF.getCode()}</div>
-    <div>${modifyModDescWindowModifyButton.getCode() + modifyCancelBtn.getCode()}</div>
-  `);
-  modifyWindow.setClass("modifyWindow");
-  modifyWindow.generateCode();
-
-  // 输出代码
-  $(document).ready(function() {
-    $("#listWindowArea").html(listWindow.getCode());
-    $("#createWindowArea").html(createWindow.getCode());
-    $("#modifyWindowArea").html(modifyWindow.getCode());
-    $("#removeOPArea").html(removeOP.getCode());
-    // 关联创建按钮打开模态窗口
-    $("#" + createBtn.getId()).attr("data-toggle", "modal");
-    $("#" + createBtn.getId()).attr("data-target", "#" + createWindow.getId());
-    // 关联取消按钮关闭模态窗口
-    $("#" + modifyCancelBtn.getId()).attr("data-dismiss", "modal");
-    $("#" + createCancelBtn.getId()).attr("data-dismiss", "modal");
-    $("#" + modTable.getId()).find("tbody").find("tr").find("td:nth-child(2)").find("i").click(function() {
-      $("#showModifyWindowBtn").attr("data-target", "#" + modifyWindow.getId());
-      // $("#showModifyWindowBtn").attr("data-id", "");
-      $("#showModifyWindowBtn").trigger("click");
+  getMainWindow() {
+    return this.mainWindow;
+  }
+}
+////////////////////////////////////////////////////////////////////////////////
+// CreateModuleWindow
+////////////////////////////////////////////////////////////////////////////////
+class CreateModuleWindow {
+  constructor() {
+    ////////////////////////////////////////////////////////////////////////////
+    // Name输入框
+    ////////////////////////////////////////////////////////////////////////////
+    this.nameTF = new JSTextField();
+    this.nameTF.setPlaceHolder("Name");
+    this.nameTF.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // Description输入框
+    ////////////////////////////////////////////////////////////////////////////
+    this.descTF = new JSTextField();
+    this.descTF.setPlaceHolder("Description");
+    this.descTF.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // ModuleStatus下拉菜单
+    ////////////////////////////////////////////////////////////////////////////
+    this.modStatusCB = new JSComboBox();
+    this.modStatusCB.setType("dropdown");
+    this.modStatusCB.addItem({
+      "type": "option",
+      "text": "Module Status",
+      "value": 1,
+      "enable": false
     });
-    $("#" + modTable.getId()).find("tbody").find("tr").find("td:last-child").find("i").click(function() {
-      $("#showRemoveOPBtn").attr("data-target", "#" + removeOP.getId());
-      // $("#showRemoveOPBtn").attr("data-id", "");
-      $("#showRemoveOPBtn").trigger("click");
+    this.modStatusCB.addItem({
+      "type": "option",
+      "text": "Enable",
+      "value": 1,
+      "enable": true 
     });
+    this.modStatusCB.addItem({
+      "type": "option",
+      "text": "Disable",
+      "value": 0,
+      "enable": true
+    });
+    this.modStatusCB.setSelectedIndex(0);
+    this.modStatusCB.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // ModuleApi下拉菜单
+    ////////////////////////////////////////////////////////////////////////////
+    this.modApiCB = new JSComboBox();
+    this.modApiCB.setType("dropdown");
+    this.modApiCB.addItem({
+      "type": "option",
+      "text": "Module Api",
+      "value": 1,
+      "enable": false
+    });
+    this.modApiCB.addItem({
+      "type": "option",
+      "text": "Show",
+      "value": 1,
+      "enable": true 
+    });
+    this.modApiCB.addItem({
+      "type": "option",
+      "text": "Hide",
+      "value": 0,
+      "enable": true
+    });
+    this.modApiCB.setSelectedIndex(0);
+    this.modApiCB.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // Submit按钮
+    ////////////////////////////////////////////////////////////////////////////
+    this.submitBtn = new JSButton();
+    this.submitBtn.setText("Submit");
+    this.submitBtn.setClass("btn-primary");
+    this.submitBtn.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // Cancel按钮
+    ////////////////////////////////////////////////////////////////////////////
+    this.cancelBtn = new JSButton();
+    this.cancelBtn.setText("Cancel");
+    this.cancelBtn.setClass("btn-default");
+    this.cancelBtn.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // 主窗体对象
+    ////////////////////////////////////////////////////////////////////////////
+    this.mainWindow = new JSWindow();
+    this.mainWindow.setTitle("Create Module");
+    this.mainWindow.setWindowDecorationStyle("DIALOG");
+    this.mainWindow.setContent(`
+      <div>${this.nameTF.getCode()}</div>
+      <div>${this.descTF.getCode()}</div>
+      <div>${this.modStatusCB.getCode()}</div>
+      <div>${this.modApiCB.getCode()}</div>
+      <div>${this.submitBtn.getCode() + this.cancelBtn.getCode()}</div>
+    `);
+    this.mainWindow.setClass("CreateModuleWindow");
+    this.mainWindow.generateCode();
+  }
+
+  getModuleStatusComboBox() {
+    return this.modStatusCB;
+  }
+
+  getModuleApiComboBox() {
+    return this.modApiCB;
+  }
+
+  getSubmitButton() {
+    return this.submitBtn;
+  }
+
+  getCancelButton() {
+    return this.cancelBtn;
+  }
+
+  getMainWindow() {
+    return this.mainWindow;
+  }
+}
+////////////////////////////////////////////////////////////////////////////////
+// ModifyModuleDescriptionWindow
+////////////////////////////////////////////////////////////////////////////////
+class ModifyModuleDescriptionWindow {
+  constructor() {
+    ////////////////////////////////////////////////////////////////////////////
+    // Description输入框
+    ////////////////////////////////////////////////////////////////////////////
+    this.descTF = new JSTextField();
+    this.descTF.setPlaceHolder("Description");
+    this.descTF.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // Modify按钮
+    ////////////////////////////////////////////////////////////////////////////
+    this.modifyBtn = new JSButton();
+    this.modifyBtn.setText("Modify");
+    this.modifyBtn.setClass("btn-primary");
+    this.modifyBtn.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // 取消按钮
+    ////////////////////////////////////////////////////////////////////////////
+    this.cancelBtn= new JSButton();
+    this.cancelBtn.setText("Cancel");
+    this.cancelBtn.setClass("btn-default");
+    this.cancelBtn.generateCode();
+    ////////////////////////////////////////////////////////////////////////////
+    // 主窗体对象
+    ////////////////////////////////////////////////////////////////////////////
+    this.mainWindow = new JSWindow();
+    this.mainWindow.setTitle("Modify Module Description");
+    this.mainWindow.setWindowDecorationStyle("DIALOG");
+    this.mainWindow.setContent(`
+      <div>${this.descTF.getCode()}</div>
+      <div>${this.modifyBtn.getCode() + this.cancelBtn.getCode()}</div>
+    `);
+    this.mainWindow.setClass("ModifyModuleDescriptionWindow");
+    this.mainWindow.generateCode();
+  }
+
+  getModifyButton() {
+    return this.modifyBtn;
+  }
+
+  getCancelButton() {
+    return this.cancelBtn;
+  }
+
+  getMainWindow() {
+    return this.mainWindow;
+  }
+}
+</script>
+<script>
+//////////////////////////////////////////////////////////////////////////////
+// ECMAScript规范
+//////////////////////////////////////////////////////////////////////////////
+"use strict";
+//////////////////////////////////////////////////////////////////////////////
+// ModuleListWindow对象
+//////////////////////////////////////////////////////////////////////////////
+let mlw = new ModuleListWindow();
+//////////////////////////////////////////////////////////////////////////////
+// RemoveConfirmWindow对象
+//////////////////////////////////////////////////////////////////////////////
+let rcw = new RemoveConfirmWindow();
+//////////////////////////////////////////////////////////////////////////////
+// CreateModuleWindow对象
+//////////////////////////////////////////////////////////////////////////////
+let cmw = new CreateModuleWindow();
+//////////////////////////////////////////////////////////////////////////////
+// ModifyModuleDescriptionWindow对象
+//////////////////////////////////////////////////////////////////////////////
+let mmdw = new ModifyModuleDescriptionWindow();
+////////////////////////////////////////////////////////////////////////////////
+// 输出代码
+////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function() {
+  $("#moduleListWindowArea").html(mlw.getMainWindow().getCode());
+  $("#createModuleWindowArea").html(cmw.getMainWindow().getCode());
+  $("#modifyModuleDescriptionWindowArea").html(mmdw.getMainWindow().getCode());
+  $("#removeConfirmWindowArea").html(rcw.getMainWindow().getCode());
+  // 绑定下拉菜单事件
+  cmw.getModuleStatusComboBox().update();
+  cmw.getModuleApiComboBox().update();
+  // 关联创建按钮打开模态窗口
+  $("#" + mlw.getCreateButton().getId()).attr("data-toggle", "modal");
+  $("#" + mlw.getCreateButton().getId()).attr("data-target", "#" + cmw.getMainWindow().getId());
+  // 关联取消按钮关闭模态窗口
+  $("#" + rcw.getCancelButton().getId()).attr("data-dismiss", "modal");
+  $("#" + cmw.getCancelButton().getId()).attr("data-dismiss", "modal");
+  $("#" + mmdw.getCancelButton().getId()).attr("data-dismiss", "modal");
+  $("#" + mlw.getListTable().getId()).find("tbody").find("tr").find("td:nth-child(2)").find("i").click(function() {
+    $("#showMMDWBtn").attr("data-target", "#" + mmdw.getMainWindow().getId());
+    // $("#showMMDWBtn").attr("data-id", "");
+    $("#showMMDWBtn").trigger("click");
   });
+  $("#" + mlw.getListTable().getId()).find("tbody").find("tr").find("td:last-child").find("i").click(function() {
+    $("#showROPBtn").attr("data-target", "#" + rcw.getMainWindow().getId());
+    // $("#showROPBtn").attr("data-id", "");
+    $("#showROPBtn").trigger("click");
+  });
+});
 </script>
 <title>Module Management</title>
 </head>
 <body>
-  <div id = "listWindowArea"></div>
-  <div id = "createWindowArea"></div>
-  <div id = "modifyWindowArea"></div>
-  <div id = "removeOPArea"></div>
-  <button style = "display: none;" type = "button" id = "showModifyWindowBtn" data-toggle = "modal"></button>
-  <button style = "display: none;" type = "button" id = "showRemoveOPBtn" data-toggle = "modal"></button>
+  <div id = "moduleListWindowArea"></div>
+  <div id = "createModuleWindowArea"></div>
+  <div id = "modifyModuleDescriptionWindowArea"></div>
+  <div id = "removeConfirmWindowArea"></div>
+  <button style = "display: none;" type = "button" id = "showMMDWBtn" data-toggle = "modal"></button>
+  <button style = "display: none;" type = "button" id = "showROPBtn" data-toggle = "modal"></button>
 </body>
 </html>

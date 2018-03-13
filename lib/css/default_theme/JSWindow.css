@@ -30,7 +30,7 @@
 }
 
 /* 若窗口类型为DIALOG，设置关闭叉号为白色 */
-.JSWindow > div > div > button {
+.JSWindow .panel .panel-heading button {
   opacity: 1;
   color: #FFFFFF;
   text-shadow: none;
