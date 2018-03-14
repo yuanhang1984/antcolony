@@ -198,18 +198,6 @@ class ModuleListWindow {
     `);
     this.mainWindow.generateCode();
   }
-
-  getCreateButton() {
-    return this.createBtn;
-  }
-
-  getListTable() {
-    return this.listTable;
-  }
-
-  getMainWindow() {
-    return this.mainWindow;
-  }
 }
 ////////////////////////////////////////////////////////////////////////////////
 // RemoveConfirmWindow
@@ -248,18 +236,6 @@ class RemoveConfirmWindow {
     `);
     this.mainWindow.setClass("RemoveConfirmWindow");
     this.mainWindow.generateCode();
-  }
-
-  getSubmitButton() {
-    return this.submitBtn;
-  }
-
-  getCancelButton() {
-    return this.cancelBtn;
-  }
-
-  getMainWindow() {
-    return this.mainWindow;
   }
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -359,26 +335,6 @@ class CreateModuleWindow {
     this.mainWindow.setClass("CreateModuleWindow");
     this.mainWindow.generateCode();
   }
-
-  getModuleStatusComboBox() {
-    return this.modStatusCB;
-  }
-
-  getModuleApiComboBox() {
-    return this.modApiCB;
-  }
-
-  getSubmitButton() {
-    return this.submitBtn;
-  }
-
-  getCancelButton() {
-    return this.cancelBtn;
-  }
-
-  getMainWindow() {
-    return this.mainWindow;
-  }
 }
 ////////////////////////////////////////////////////////////////////////////////
 // ModifyModuleDescriptionWindow
@@ -418,18 +374,6 @@ class ModifyModuleDescriptionWindow {
     this.mainWindow.setClass("ModifyModuleDescriptionWindow");
     this.mainWindow.generateCode();
   }
-
-  getModifyButton() {
-    return this.modifyBtn;
-  }
-
-  getCancelButton() {
-    return this.cancelBtn;
-  }
-
-  getMainWindow() {
-    return this.mainWindow;
-  }
 }
 </script>
 <script>
@@ -457,27 +401,27 @@ let mmdw = new ModifyModuleDescriptionWindow();
 // 输出代码
 ////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
-  $("#moduleListWindowArea").html(mlw.getMainWindow().getCode());
-  $("#createModuleWindowArea").html(cmw.getMainWindow().getCode());
-  $("#modifyModuleDescriptionWindowArea").html(mmdw.getMainWindow().getCode());
-  $("#removeConfirmWindowArea").html(rcw.getMainWindow().getCode());
+  $("#moduleListWindowArea").html(mlw.mainWindow.getCode());
+  $("#createModuleWindowArea").html(cmw.mainWindow.getCode());
+  $("#modifyModuleDescriptionWindowArea").html(mmdw.mainWindow.getCode());
+  $("#removeConfirmWindowArea").html(rcw.mainWindow.getCode());
   // 绑定下拉菜单事件
-  cmw.getModuleStatusComboBox().update();
-  cmw.getModuleApiComboBox().update();
+  cmw.modStatusCB.update();
+  cmw.modApiCB.update();
   // 关联创建按钮打开模态窗口
-  $("#" + mlw.getCreateButton().getId()).attr("data-toggle", "modal");
-  $("#" + mlw.getCreateButton().getId()).attr("data-target", "#" + cmw.getMainWindow().getId());
+  $("#" + mlw.createBtn.getId()).attr("data-toggle", "modal");
+  $("#" + mlw.createBtn.getId()).attr("data-target", "#" + cmw.mainWindow.getId());
   // 关联取消按钮关闭模态窗口
-  $("#" + rcw.getCancelButton().getId()).attr("data-dismiss", "modal");
-  $("#" + cmw.getCancelButton().getId()).attr("data-dismiss", "modal");
-  $("#" + mmdw.getCancelButton().getId()).attr("data-dismiss", "modal");
-  $("#" + mlw.getListTable().getId()).find("tbody").find("tr").find("td:nth-child(2)").find("i").click(function() {
-    $("#showMMDWBtn").attr("data-target", "#" + mmdw.getMainWindow().getId());
+  $("#" + rcw.cancelBtn.getId()).attr("data-dismiss", "modal");
+  $("#" + cmw.cancelBtn.getId()).attr("data-dismiss", "modal");
+  $("#" + mmdw.cancelBtn.getId()).attr("data-dismiss", "modal");
+  $("#" + mlw.listTable.getId()).find("tbody").find("tr").find("td:nth-child(2)").find("i").click(function() {
+    $("#showMMDWBtn").attr("data-target", "#" + mmdw.mainWindow.getId());
     // $("#showMMDWBtn").attr("data-id", "");
     $("#showMMDWBtn").trigger("click");
   });
-  $("#" + mlw.getListTable().getId()).find("tbody").find("tr").find("td:last-child").find("i").click(function() {
-    $("#showROPBtn").attr("data-target", "#" + rcw.getMainWindow().getId());
+  $("#" + mlw.listTable.getId()).find("tbody").find("tr").find("td:last-child").find("i").click(function() {
+    $("#showROPBtn").attr("data-target", "#" + rcw.mainWindow.getId());
     // $("#showROPBtn").attr("data-id", "");
     $("#showROPBtn").trigger("click");
   });

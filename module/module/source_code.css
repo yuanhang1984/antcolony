@@ -1,214 +1,72 @@
-body {
-  padding: 20px;
-  background-color: #EFF0F4;
-}
-
-/******************************************************************************/
-/* Source Code 窗口（开始） */
-/******************************************************************************/
-.sourceCodeWindow {
-  width: 100%;
-  margin: auto auto auto auto;
-}
-
-.sourceCodeWindow .panel-heading {
-  text-align: left;
-}
-
-.sourceCodeWindow .panel-body div {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.sourceCodeWindow .panel-body {
-  padding: 20px;
-}
-
-.sourceCodeWindow i:hover {
+.SourceCodeWindow i:hover {
   color: #FF8556;
   cursor: pointer;
 }
-/******************************************************************************/
-/* Source Code 窗口（结束） */
-/******************************************************************************/
 
-/******************************************************************************/
-/* 下拉菜单横铺（开始） */
-/******************************************************************************/
-.sourceCodeWindow .panel-body .dropdown button, ul {
-  width: 100%;
-}
-
-.sourceCodeWindow .panel-body .dropdown button {
-  text-align: right;
-}
-
-.sourceCodeWindow .panel-body .dropdown button > span:nth-child(1) {
-  float: left;
-}
-/******************************************************************************/
-/* 下拉菜单横铺（结束） */
-/******************************************************************************/
-
-/******************************************************************************/
-/* 文件上传列表（开始） */
-/******************************************************************************/
-.sourceCodeWindow .panel-body div:nth-child(2) a {
-  cursor: pointer;
-  text-align: center;
-}
-
-.sourceCodeWindow .panel-body div:nth-child(2) ul {
-  margin-bottom: 0px;
-}
-
-.sourceCodeWindow .panel-body div:nth-child(2) li {
-  text-align: right;
-}
-
-.sourceCodeWindow .panel-body div:nth-child(2) li span {
-  float: left;
-  margin-right: 20px;
-}
-
-.sourceCodeWindow .panel-body div:nth-child(7) {
-  font-size: 0px;
-  margin-bottom: 0px;
-}
-
-.sourceCodeWindow .panel-body div:nth-child(7) button:nth-child(2) {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-/******************************************************************************/
-/* 文件上传列表（结束） */
-/******************************************************************************/
-
-/******************************************************************************/
-/* 编译命令输入框（开始） */
-/******************************************************************************/
-.sourceCodeWindow .panel-body div:nth-child(3) {
-  font-size: 0px;
-  text-align: right;
-}
-
-.sourceCodeWindow .panel-body div:nth-child(3) input {
-  float: left;
-}
-
-.sourceCodeWindow .panel-body div:nth-child(3) button:nth-child(2) {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-/******************************************************************************/
-/* 编译命令输入框（结束） */
-/******************************************************************************/
-
-/******************************************************************************/
-/* 编译结果输入框（开始） */
-/******************************************************************************/
-.sourceCodeWindow .panel-body div:nth-child(4) textarea {
+/* 设置编译结果的高度 */
+.SourceCodeWindow .panel-body div textarea {
   height: 200px;
 }
-/******************************************************************************/
-/* 编译结果输入框（结果） */
-/******************************************************************************/
 
-/******************************************************************************/
-/* 表格（开始） */
-/******************************************************************************/
-.sourceCodeWindow table {
-  margin: 0px;
-}
-
-.sourceCodeWindow th {
-  color: #7A7676;
-  text-align: center;
-  background-color: #D9EDF6;
-}
-
-.sourceCodeWindow th:last-child {
-  min-width: 120px;
-}
-
-.sourceCodeWindow tbody tr td span {
+/* 设置文字和图标的间距 */
+.SourceCodeWindow div table tbody tr td span {
   margin-right: 10px;
 }
 
-.sourceCodeWindow tbody td {
-  color: #666666;
-  vertical-align: middle!important;
+/* 消除按钮的间距且靠右放置 */
+.SourceCodeWindow .panel-body div:nth-child(3) {
+  font-size: 0px;
+  text-align: right;
 }
-/******************************************************************************/
-/* 表格（结束） */
-/******************************************************************************/
 
-/******************************************************************************/
-/* Configuration Constant 窗口（开始） */
-/******************************************************************************/
-.constWindow {
+/* CompileCommand控件靠左 */
+.SourceCodeWindow .panel-body div:nth-child(3) input {
+  float: left;
+}
+
+/* 设置Help按钮和ComplieTest按钮间距 */
+.SourceCodeWindow .panel-body div:nth-child(3) button:nth-child(2) {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* 消除按钮的间距 */
+.SourceCodeWindow .panel-body div:last-child {
+  font-size: 0px;
+}
+
+/* 重置按钮的间距 */
+.SourceCodeWindow .panel-body div:last-child button:nth-child(2) {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.AddConstantWindow {
   width: 400px;
-  margin: 20px auto auto auto;
+  margin-top: 20px;
 }
 
-.constWindow .panel-heading {
-  text-align: left;
+/* 消除按钮的间距 */
+.AddConstantWindow .panel-body div:last-child {
+  font-size: 0px;
 }
 
-.constWindow .panel-body div {
-  text-align: center;
-  margin-bottom: 20px;
+/* 重置按钮的间距 */
+.AddConstantWindow .panel-body div:last-child button:first-child {
+  margin-right: 10px;
 }
 
-.constWindow .panel-body div:last-child {
-  margin-bottom: 0px;
-}
-
-.constWindow .panel-body div:last-child button:nth-child(1) {
-  margin-right: 20px;
-}
-
-/* 模态窗口叉号关闭按钮 */
-.constWindow > div > div > button {
-  opacity: 1;
-  color: #FFFFFF;
-  text-shadow: none;
-}
-/******************************************************************************/
-/* Configuration Constant 窗口（结束） */
-/******************************************************************************/
-
-/******************************************************************************/
-/* Configuration Attribute 窗口（开始） */
-/******************************************************************************/
-.attrWindow {
+.AddAttributeWindow {
   width: 400px;
-  margin: 20px auto auto auto;
+  margin-top: 20px;
 }
 
-.attrWindow .panel-heading {
-  text-align: left;
+/* 消除按钮的间距 */
+.AddAttributeWindow .panel-body div:last-child {
+  font-size: 0px;
 }
 
-.attrWindow .panel-body div {
-  text-align: center;
-  margin-bottom: 20px;
+/* 重置按钮的间距 */
+.AddAttributeWindow .panel-body div:last-child button:first-child {
+  margin-right: 10px;
 }
-
-.attrWindow .panel-body div:last-child {
-  margin-bottom: 0px;
-}
-
-.attrWindow .panel-body div:last-child button:nth-child(1) {
-  margin-right: 20px;
-}
-
-/* 模态窗口叉号关闭按钮 */
-.attrWindow > div > div > button {
-  opacity: 1;
-  color: #FFFFFF;
-  text-shadow: none;
-}
-/******************************************************************************/
-/* Configuration Attribute 窗口（结束） */
-/******************************************************************************/

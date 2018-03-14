@@ -158,14 +158,6 @@ class ConnectionListWindow {
     `);
     this.mainWindow.generateCode();
   }
-
-  getCreateButton() {
-    return this.createBtn;
-  }
-
-  getMainWindow() {
-    return this.mainWindow;
-  }
 }
 ////////////////////////////////////////////////////////////////////////////////
 // ConnectionCreateWindow
@@ -241,18 +233,6 @@ class ConnectionCreateWindow {
     this.mainWindow.setClass("ConnectionCreateWindow");
     this.mainWindow.generateCode();
   }
-  
-  getCreateButton() {
-    return this.createBtn;
-  }
-
-  getCancelButton() {
-    return this.cancelBtn;
-  } 
-
-  getMainWindow() {
-    return this.mainWindow;
-  }
 }
 </script>
 <script>
@@ -272,13 +252,13 @@ let ccw = new ConnectionCreateWindow();
 // 输出代码
 ////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
-  $("#connectionListWindowArea").html(clw.getMainWindow().getCode());
-  $("#connectionCreateWindowArea").html(ccw.getMainWindow().getCode());
+  $("#connectionListWindowArea").html(clw.mainWindow.getCode());
+  $("#connectionCreateWindowArea").html(ccw.mainWindow.getCode());
   // 关联创建按钮打开窗口
-  $("#" + clw.getCreateButton().getId()).attr("data-toggle", "modal");
-  $("#" + clw.getCreateButton().getId()).attr("data-target", "#" + ccw.getMainWindow().getId());
+  $("#" + clw.createBtn.getId()).attr("data-toggle", "modal");
+  $("#" + clw.createBtn.getId()).attr("data-target", "#" + ccw.mainWindow.getId());
   // 关联取消按钮关闭模态窗口
-  $("#" + ccw.getCancelButton().getId()).attr("data-dismiss", "modal");
+  $("#" + ccw.cancelBtn.getId()).attr("data-dismiss", "modal");
 });
 </script>
 <title>Database Management</title>

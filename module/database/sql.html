@@ -110,14 +110,6 @@ class SqlListWindow {
     this.mainWindow.setContent(mainWindowCode);
     this.mainWindow.generateCode();
   }
-  
-  getModCB() {
-    return this.modCB;
-  }
-  
-  getMainWindow() {
-    return this.mainWindow;
-  }
 }
 </script>
 <script>
@@ -133,19 +125,19 @@ let slw = new SqlListWindow();
 // 输出代码
 //////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
-  $("#sqlListWindowArea").html(slw.getMainWindow().getCode());
-  slw.getModCB().update();
+  $("#sqlListWindowArea").html(slw.mainWindow.getCode());
+  slw.modCB.update();
   // 文件内容输入框自适应窗口最大尺寸
-  $(slw.getMainWindow().getObject()).find(".panel-body").find("div").find("textarea").css("height",
+  $(slw.mainWindow.getObject()).find(".panel-body").find("div").find("textarea").css("height",
     $(document).height()
     - parseInt($("body").css("padding-top")) * 2
     - parseInt($("body").css("padding-bottom")) * 2
-    - parseInt(slw.getMainWindow().getObject().css("border-width")) * 2
-    - parseInt(slw.getMainWindow().getObject().find(".panel-heading").css("height"))
-    - parseInt(slw.getMainWindow().getObject().find(".panel-body").css("padding-top"))
-    - parseInt(slw.getMainWindow().getObject().find(".panel-body").css("padding-bottom"))
-    - parseInt(slw.getMainWindow().getObject().find(".panel-body").find("div:nth-child(1)").css("height"))
-    - parseInt(slw.getMainWindow().getObject().find(".panel-body").find("div:nth-child(3)").css("height"))
+    - parseInt(slw.mainWindow.getObject().css("border-width")) * 2
+    - parseInt(slw.mainWindow.getObject().find(".panel-heading").css("height"))
+    - parseInt(slw.mainWindow.getObject().find(".panel-body").css("padding-top"))
+    - parseInt(slw.mainWindow.getObject().find(".panel-body").css("padding-bottom"))
+    - parseInt(slw.mainWindow.getObject().find(".panel-body").find("div:nth-child(1)").css("height"))
+    - parseInt(slw.mainWindow.getObject().find(".panel-body").find("div:nth-child(3)").css("height"))
     + "px"
   );
 });
