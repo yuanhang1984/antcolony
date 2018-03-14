@@ -24,6 +24,7 @@
 <!-- *********************************************************************** -->
 <script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery-nicescroll/3.7.6/jquery.nicescroll.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
@@ -459,6 +460,11 @@ $(document).ready(function() {
   $("#sourceCodeWindowArea").html(scw.mainWindow.getCode());
   $("#addConstantWindowArea").html(acw.mainWindow.getCode());
   $("#addAttributeWindowArea").html(aaw.mainWindow.getCode());
+  // 设置滚动条属性
+  $("body").niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + scw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + acw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + aaw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   // 事件绑定
   scw.modCB.update();
   scw.rebuildSrcCB.update();

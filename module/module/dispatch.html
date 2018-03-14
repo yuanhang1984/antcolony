@@ -22,6 +22,7 @@
 <!-- *********************************************************************** -->
 <script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery-nicescroll/3.7.6/jquery.nicescroll.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
@@ -722,19 +723,14 @@ $(document).ready(function() {
   $("#createServletWindowArea").html(csw.mainWindow.getCode());
   $("#addParameterWindowArea").html(apw.mainWindow.getCode());
   $("#addNamespaceWindowArea").html(anw.mainWindow.getCode());
-  // // 设置菜单滚动条属性
-  // $("#" + dispatchWindow.getId()).niceScroll({
-  //   cursorcolor: "#65CEA7", //滚动条颜色
-  //   cursorwidth: "2px", //滚动条宽度
-  //   cursorborder: "0px", // 滚动条边框
-  //   cursorborderradius: "2px" //滚动条圆角
-  // });
-  // $("#" + createServletWindow.getId()).niceScroll({
-  //   cursorcolor: "#65CEA7", //滚动条颜色
-  //   cursorwidth: "2px", //滚动条宽度
-  //   cursorborder: "0px", // 滚动条边框
-  //   cursorborderradius: "2px" //滚动条圆角
-  // });
+  // 调整CreateServletWindow宽度
+  $("#" + csw.mainWindow.getId()).css("width", ($(window).width() - 20 - 20) + "px");
+  // 设置滚动条属性
+  $("body").niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + dw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + csw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + apw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + anw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   // 事件绑定
   dw.modCB.update();
   csw.havePermissionCB.update();

@@ -22,6 +22,7 @@
 <!-- *********************************************************************** -->
 <script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery-nicescroll/3.7.6/jquery.nicescroll.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
@@ -126,6 +127,8 @@ let slw = new SqlListWindow();
 //////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
   $("#sqlListWindowArea").html(slw.mainWindow.getCode());
+  $("body").niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + slw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   slw.modCB.update();
   // 文件内容输入框自适应窗口最大尺寸
   $(slw.mainWindow.getObject()).find(".panel-body").find("div").find("textarea").css("height",

@@ -21,6 +21,7 @@
 <!-- *********************************************************************** -->
 <script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../plugin/jquery-nicescroll/3.7.6/jquery.nicescroll.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
@@ -254,6 +255,10 @@ let ccw = new ConnectionCreateWindow();
 $(document).ready(function() {
   $("#connectionListWindowArea").html(clw.mainWindow.getCode());
   $("#connectionCreateWindowArea").html(ccw.mainWindow.getCode());
+  // 设置滚动条属性
+  $("body").niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + clw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
+  $("#" + ccw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   // 关联创建按钮打开窗口
   $("#" + clw.createBtn.getId()).attr("data-toggle", "modal");
   $("#" + clw.createBtn.getId()).attr("data-target", "#" + ccw.mainWindow.getId());

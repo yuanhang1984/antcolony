@@ -66,6 +66,7 @@
 .CreateServletWindow .panel-body div table tbody tr td ul {
   margin: 0px;
   padding: 0px;
+  list-style: none;
 }
 
 .AddParameterWindow {
