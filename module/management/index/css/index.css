@@ -32,7 +32,7 @@ body {
   display: inline!important;
 }
 
-.menuTree > li:first-child > span > span:nth-child(1) {
+.menuTree > li:first-child > span > span:nth-child(2) {
   color: #FFFFFF;
 }
 

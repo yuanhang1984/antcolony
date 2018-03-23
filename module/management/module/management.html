@@ -336,6 +336,11 @@ class CreateModuleWindow {
     this.mainWindow.setClass("CreateModuleWindow");
     this.mainWindow.generateCode();
   }
+
+  update() {
+    this.modStatusCB.update();
+    this.modApiCB.update();
+  }
 }
 ////////////////////////////////////////////////////////////////////////////////
 // ModifyModuleDescriptionWindow
@@ -413,8 +418,7 @@ $(document).ready(function() {
   $("#" + cmw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   $("#" + mmdw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   // 绑定下拉菜单事件
-  cmw.modStatusCB.update();
-  cmw.modApiCB.update();
+  cmw.update();
   // 关联创建按钮打开模态窗口
   $("#" + mlw.createBtn.getId()).attr("data-toggle", "modal");
   $("#" + mlw.createBtn.getId()).attr("data-target", "#" + cmw.mainWindow.getId());

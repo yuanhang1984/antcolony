@@ -49,7 +49,7 @@ class Ajax {
       // 是否以contentType的默认值传递数据
       "processData": processData,
       // 是否跨域
-      //  crossDomain: isCrossDomain,
+      // crossDomain: isCrossDomain,
       // 操作成功后的返回结果
       "success": function(r) {
           result = r;

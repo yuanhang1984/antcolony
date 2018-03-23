@@ -316,6 +316,12 @@ class SourceCodeWindow {
     `);
     this.mainWindow.generateCode();
   }
+
+  update() {
+    this.modCB.update();
+    this.rebuildSrcCB.update();
+    this.chooseFileUL.update();
+  }
 }
 ////////////////////////////////////////////////////////////////////////////////
 // AddConstantWindow
@@ -434,6 +440,10 @@ class AddAttributeWindow {
     `);
     this.mainWindow.generateCode();
   }
+
+  update() {
+    this.modCB.update();
+  }
 }
 </script>
 <script>
@@ -466,10 +476,8 @@ $(document).ready(function() {
   $("#" + acw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   $("#" + aaw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   // 事件绑定
-  scw.modCB.update();
-  scw.rebuildSrcCB.update();
-  scw.chooseFileUL.update();
-  aaw.modCB.update();
+  scw.update();
+  aaw.update();
   // 关联按钮打开模态窗口
   $("#" + scw.addConstBtn.getId()).attr("data-toggle", "modal");
   $("#" + scw.addConstBtn.getId()).attr("data-target", "#" + acw.mainWindow.getId());
@@ -484,6 +492,7 @@ $(document).ready(function() {
     - parseInt($("#" + scw.helpBtn.getId()).css("width"))
     - parseInt($("#" + scw.helpBtn.getId()).css("margin-left"))
     - parseInt($("#" + scw.helpBtn.getId()).css("margin-right"))
+    - parseInt($("#" + scw.helpBtn.getId()).css("border-width"))
     - parseInt($("#" + scw.ccTestBtn.getId()).css("width"))
     + "px"
   );

@@ -15,7 +15,6 @@
 <link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSWindow.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSComboBox.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSTextArea.css"/>
-<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSTextField.css"/>
 <link rel = "stylesheet" type = "text/css" href = "./sql.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
@@ -32,7 +31,6 @@
 <script src = "../../lib/js/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../lib/js/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../lib/js/JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
 ////////////////////////////////////////////////////////////////////////////////
 // ECMAScript规范
@@ -111,6 +109,10 @@ class SqlListWindow {
     this.mainWindow.setContent(mainWindowCode);
     this.mainWindow.generateCode();
   }
+
+  update() {
+    this.modCB.update();
+  }
 }
 </script>
 <script>
@@ -129,7 +131,7 @@ $(document).ready(function() {
   $("#sqlListWindowArea").html(slw.mainWindow.getCode());
   $("body").niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   $("#" + slw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
-  slw.modCB.update();
+  slw.update();
   // 文件内容输入框自适应窗口最大尺寸
   $(slw.mainWindow.getObject()).find(".panel-body").find("div").find("textarea").css("height",
     $(document).height()

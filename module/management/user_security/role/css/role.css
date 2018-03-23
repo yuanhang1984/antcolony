@@ -1,0 +1,17 @@
+.ModulePermissionWindow .panel-heading input, label {
+  /* margin: 0px; */
+}
+
+.ModulePermissionWindow .panel-body {
+  padding-bottom: 0px;
+}
+
+.ModulePermissionWindow .panel-body div div {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px!important;
+}
+
+.ModulePermissionWindow .panel-body div div input, label {
+  /* margin: 0px; */
+}

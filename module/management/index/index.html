@@ -5,39 +5,39 @@
 <!-- *********************************************************************** -->
 <!-- plugin css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" href = "../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel = "stylesheet" href = "../../plugin/font-awesome/3.2.1/css/font-awesome.min.css">
+<link rel = "stylesheet" href = "../../../plugin/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../../../plugin/font-awesome/3.2.1/css/font-awesome.min.css">
 <!-- *********************************************************************** -->
 <!-- custom css -->
 <!-- *********************************************************************** -->
-<link rel = "stylesheet" type = "text/css" href = "../../css/global.css"/>
-<link rel = "stylesheet" type = "text/css" href = "../../lib/css/default_theme/JSTree.css"/>
-<link rel = "stylesheet" type = "text/css" href = "./index.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../../css/global.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../../lib/css/default_theme/JSTree.css"/>
+<link rel = "stylesheet" type = "text/css" href = "./css/index.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
 <!-- *********************************************************************** -->
-<script src = "../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../plugin/jquery-nicescroll/3.7.6/jquery.nicescroll.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../plugin/jquery/1.12.4/jquery.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../plugin/bootstrap/3.3.7/js/bootstrap.min.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../plugin/jquery-nicescroll/3.7.6/jquery.nicescroll.min.js" type = "text/javascript" charset = "utf-8"></script>
 <!-- *********************************************************************** -->
 <!-- custom js -->
 <!-- *********************************************************************** -->
-<script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "../../lib/js/JSTree.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../lib/js/JSTree.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
 ////////////////////////////////////////////////////////////////////////////////
 // ECMAScript规范
 ////////////////////////////////////////////////////////////////////////////////
 "use strict";
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // JSTree对象
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 let menuTree = new JSTree();
 menuTree.setNode(
   [
     {
-      "text": "<span>Palest</span><span>Ink</span>"
+      "text": "<span>Ant</span><span>Colony</span>"
     },
     {
       "text": "Database",
@@ -66,6 +66,32 @@ menuTree.setNode(
         {
           "text": "Dispatch",
           "link": "../module/dispatch.html"
+        }
+      ]
+    },
+    {
+      "text": "User Security",
+      "list": [
+        {
+          "text": "Role",
+          "link": "../user_security/role/role.html"
+        },
+        {
+          "text": "User",
+          "link": "../user_security/user.html"
+        }
+      ]
+    },
+    {
+      "text": "Current User",
+      "list": [
+        {
+          "text": "Modify Password",
+          "link": "../current_user/modify_password/modify_password.html"
+        },
+        {
+          "text": "Logout",
+          "link": "../current_user/logout/logout.html"
         }
       ]
     },
@@ -99,6 +125,8 @@ $(document).ready(function() {
   // 调整pageArea宽度
   $("#pageArea").css("width", ($(window).width() - $(`#${menuTree.getId()}`).width()) + "px");
   $("#pageArea").css("height", $(window).height() + "px");
+  // 设置logout菜单在当前页面跳转
+  $("#" + menuTree.getId()).find("a:contains('Logout')").attr("target", "_self");
 });
 </script>
 <title>Ant Colony</title>

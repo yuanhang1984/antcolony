@@ -1,15 +1,10 @@
 .DispatchWindow {
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .DispatchWindow i:hover {
   color: #FF8556;
   cursor: pointer;
-}
-
-/* 消除按钮的间距 */
-.DispatchWindow .panel-body div:last-child {
-  font-size: 0px;
 }
 
 /* 设置图标和图标的间距 */
@@ -23,7 +18,7 @@
 }
 
 .CreateServletWindow {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .CreateServletWindow i:hover {

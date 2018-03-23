@@ -151,13 +151,6 @@ class DispatchWindow {
     );
     this.listTable.generateCode();
     ////////////////////////////////////////////////////////////////////////////
-    // Create按钮
-    ////////////////////////////////////////////////////////////////////////////
-    this.createBtn = new JSButton();
-    this.createBtn.setText("Create");
-    this.createBtn.setClass("btn-primary");
-    this.createBtn.generateCode();
-    ////////////////////////////////////////////////////////////////////////////
     // 主窗体对象
     ////////////////////////////////////////////////////////////////////////////
     this.mainWindow = new JSWindow();
@@ -167,9 +160,12 @@ class DispatchWindow {
     this.mainWindow.setContent(`
       <div>${this.modCB.getCode()}</div>
       <div>${this.listTable.getCode()}</div>
-      <div>${this.createBtn.getCode()}</div>
     `);
     this.mainWindow.generateCode();
+  }
+
+  update() {
+    this.modCB.update();
   }
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -405,24 +401,17 @@ class CreateServletWindow {
     );
     this.detailTable.generateCode();
     ////////////////////////////////////////////////////////////////////////////
-    // Submit按钮
+    // Create按钮
     ////////////////////////////////////////////////////////////////////////////
-    this.submitBtn = new JSButton();
-    this.submitBtn.setText("Submit");
-    this.submitBtn.setClass("btn-primary");
-    this.submitBtn.generateCode();
-    ////////////////////////////////////////////////////////////////////////////
-    // Cancel按钮
-    ////////////////////////////////////////////////////////////////////////////
-    this.cancelBtn = new JSButton();
-    this.cancelBtn.setText("Cancel");
-    this.cancelBtn.setClass("btn-default");
-    this.cancelBtn.generateCode();
+    this.createBtn = new JSButton();
+    this.createBtn.setText("Create");
+    this.createBtn.setClass("btn-primary");
+    this.createBtn.generateCode();
     ////////////////////////////////////////////////////////////////////////////
     // 主窗体对象
     ////////////////////////////////////////////////////////////////////////////
     this.mainWindow = new JSWindow();
-    this.mainWindow.setWindowDecorationStyle("DIALOG");
+    this.mainWindow.setWindowDecorationStyle("FRAME");
     this.mainWindow.setTitle("Create Servlet");
     this.mainWindow.setClass("CreateServletWindow");
     this.mainWindow.setContent(`
@@ -431,9 +420,13 @@ class CreateServletWindow {
       <div>${this.havePermissionCB.getCode()}</div>
       <div>${this.paramTable.getCode()}</div>
       <div>${this.detailTable.getCode()}</div>
-      <div>${this.submitBtn.getCode() + this.cancelBtn.getCode()}</div>
+      <div>${this.createBtn.getCode()}</div>
     `);
     this.mainWindow.generateCode();
+  }
+
+  update() {
+    this.havePermissionCB.update();
   }
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -553,6 +546,11 @@ class AddParameterWindow {
       <div>${this.submitBtn.getCode() + this.cancelBtn.getCode()}</div>
     `);
     this.mainWindow.generateCode();
+  }
+
+  update() {
+    this.typeCB.update();
+    this.allowNullCB.update();
   }
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -692,6 +690,13 @@ class AddNamespaceWindow {
     `);
     this.mainWindow.generateCode();
   }
+
+  update() {
+    this.typeCB.update();
+    this.modCB.update();
+    this.idCB.update();
+    this.paramCB.update();
+  }
 }
 </script>
 <script>
@@ -723,8 +728,6 @@ $(document).ready(function() {
   $("#createServletWindowArea").html(csw.mainWindow.getCode());
   $("#addParameterWindowArea").html(apw.mainWindow.getCode());
   $("#addNamespaceWindowArea").html(anw.mainWindow.getCode());
-  // 调整CreateServletWindow宽度
-  $("#" + csw.mainWindow.getId()).css("width", ($(window).width() - 20 - 20) + "px");
   // 设置滚动条属性
   $("body").niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   $("#" + dw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
@@ -732,23 +735,20 @@ $(document).ready(function() {
   $("#" + apw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   $("#" + anw.mainWindow.getId()).niceScroll({cursorcolor: "#65CEA7", cursorwidth: "2px", cursorborder: "0px", cursorborderradius: "2px"});
   // 事件绑定
-  dw.modCB.update();
-  csw.havePermissionCB.update();
-  apw.typeCB.update();
-  apw.allowNullCB.update();
-  anw.typeCB.update();
-  anw.modCB.update();
-  anw.idCB.update();
-  anw.paramCB.update();
+  dw.update();
+  csw.update();
+  apw.update();
+  apw.update();
+  anw.update();
+  anw.update();
+  anw.update();
+  anw.update();
   // 关联按钮打开模态窗口
-  $("#" + dw.createBtn.getId()).attr("data-toggle", "modal");
-  $("#" + dw.createBtn.getId()).attr("data-target", "#" + csw.mainWindow.getId());
   $("#" + csw.addParamBtn.getId()).attr("data-toggle", "modal");
   $("#" + csw.addParamBtn.getId()).attr("data-target", "#" + apw.mainWindow.getId());
   $("#" + csw.addNamespaceBtn.getId()).attr("data-toggle", "modal");
   $("#" + csw.addNamespaceBtn.getId()).attr("data-target", "#" + anw.mainWindow.getId());
   // 关联取消按钮关闭模态窗口
-  $("#" + csw.cancelBtn.getId()).attr("data-dismiss", "modal");
   $("#" + apw.cancelBtn.getId()).attr("data-dismiss", "modal");
   $("#" + anw.cancelBtn.getId()).attr("data-dismiss", "modal");
 });

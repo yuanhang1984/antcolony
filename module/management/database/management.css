@@ -23,6 +23,10 @@
 .ConnectionListWindow .panel-body div:last-child button:first-child {
   margin-right: 10px;
 }
+
+.ConnectionListWindow .panel-body div table tbody tr td:last-child {
+  min-width: 110px;
+}
 /******************************************************************************/
 /* ConnectionCreateWindow */
 /******************************************************************************/
