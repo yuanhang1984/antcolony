@@ -20,8 +20,8 @@
 // 输出代码
 ////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
-  let result = Ajax.submit(Configure.getProjectPath() + "user_security/logout/", null, false, true, false);
-  window.location.href = "../../../login/login.html";
+  let result = Ajax.submit(Configure.getServerUrl() + "user_security/logout/", null, false, true, false);
+  window.location.href = Configure.getWebUrl() + "login/login.html";
 });
 </script>
 <title>Logout</title>

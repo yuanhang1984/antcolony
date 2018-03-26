@@ -29,7 +29,7 @@
 }
 
 /* 设置子菜单的间距 */
-.JSTree a {
+.JSTree ul li a {
   color: #FFFFFF;
   display: block;
   text-decoration: none;
@@ -43,7 +43,7 @@
 }
 
 /* 设置父菜单的间距 */
-.JSTree span {
+.JSTree li span {
   color: #FF8556;
   display: block;
   margin: 0px 0px 0px 0px;
@@ -51,6 +51,6 @@
 }
 
 /* 活动链接的样式 */
-.JSTree .active {
+.JSTree ul .active {
   background-color: #2A323F;
 }

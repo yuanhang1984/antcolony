@@ -7,16 +7,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 class ModulePermissionWindow {
   constructor(moduleName, permissionList) {
-    this.cbIdList = new Array();
+    this.cbList = new Array();
     this.cbCode = "";
     for (let i = 0; i < permissionList.length; i++) {
       let cb = new JSCheckBox();
       cb.setName(permissionList[i].name);
       cb.setLabel(permissionList[i].label);
       cb.setValue(permissionList[i].value);
+      cb.setChecked(permissionList[i].checked);
       cb.generateCode();
-      this.cbIdList.push(cb.getId());
-      this.cbCode += `<div>${cb.getCode()}</div>`;
+      this.cbList.push(cb);
+      this.cbCode += `<span>${cb.getCode()}</span>`;
     }
     ////////////////////////////////////////////////////////////////////////////
     // 全选
@@ -43,8 +44,8 @@ class ModulePermissionWindow {
     let _this = this;
     // change
     $(this.selectAllCB.getObject()).change(function() { 
-      for (let i = 0; i < _this.cbIdList.length; i++) {
-        $("#" + _this.cbIdList[i]).prop("checked", _this.selectAllCB.getObject().is(":checked"));
+      for (let i = 0; i < _this.cbList.length; i++) {
+        $(_this.cbList[i].getObject()).prop("checked", _this.selectAllCB.getObject().is(":checked"));
       }
     });
   }

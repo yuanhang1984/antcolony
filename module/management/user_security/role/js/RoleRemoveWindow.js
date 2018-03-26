@@ -3,24 +3,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 "use strict";
 ////////////////////////////////////////////////////////////////////////////////
-// RoleCreateWindow
+// RoleRemoveWindow
 ////////////////////////////////////////////////////////////////////////////////
-class RoleCreateWindow {
+class RoleRemoveWindow {
   constructor() {
     ////////////////////////////////////////////////////////////////////////////
-    // Name输入框
+    // Content标签
     ////////////////////////////////////////////////////////////////////////////
-    this.nameTF = new JSTextField();
-    this.nameTF.setPlaceHolder("Name");
-    this.nameTF.generateCode();
+    this.cntLB = new JSLabel();
+    this.cntLB.setText("Do you want to remove this role?");
+    this.cntLB.generateCode();
     ////////////////////////////////////////////////////////////////////////////
-    // Description输入框
-    ////////////////////////////////////////////////////////////////////////////
-    this.descTF = new JSTextField();
-    this.descTF.setPlaceHolder("Description");
-    this.descTF.generateCode();
-    ////////////////////////////////////////////////////////////////////////////
-    // 提交按钮
+    // Submit按钮
     ////////////////////////////////////////////////////////////////////////////
     this.submitBtn = new JSButton();
     this.submitBtn.setText("Submit");
@@ -29,7 +23,7 @@ class RoleCreateWindow {
     ////////////////////////////////////////////////////////////////////////////
     // 取消按钮
     ////////////////////////////////////////////////////////////////////////////
-    this.cancelBtn = new JSButton();
+    this.cancelBtn= new JSButton();
     this.cancelBtn.setText("Cancel");
     this.cancelBtn.setClass("btn-default");
     this.cancelBtn.generateCode();
@@ -37,14 +31,13 @@ class RoleCreateWindow {
     // 主窗体对象
     ////////////////////////////////////////////////////////////////////////////
     this.mainWindow = new JSWindow();
-    this.mainWindow.setTitle("Create Role");
+    this.mainWindow.setTitle("Remove");
     this.mainWindow.setWindowDecorationStyle("DIALOG");
     this.mainWindow.setContent(`
-      <div>${this.nameTF.getCode()}</div>
-      <div>${this.descTF.getCode()}</div>
+      <div>${this.cntLB.getCode()}</div>
       <div>${this.submitBtn.getCode() + this.cancelBtn.getCode()}</div>
     `);
-    this.mainWindow.setClass("RoleCreateWindow");
+    this.mainWindow.setClass("RoleRemoveWindow");
     this.mainWindow.generateCode();
   }
 
@@ -54,37 +47,19 @@ class RoleCreateWindow {
     ////////////////////////////////////////////////////////////////////////////
     let _this = this;
     $(this.submitBtn.getObject()).click(function() {
-      let name = _this.nameTF.getObject().val();
-      let desc = _this.descTF.getObject().val();
-      if (null == name.match(/^[0-9a-zA-Z_-]{4,16}$/)) {
-        $(_this.nameTF.getObject()).val("");
-        $(_this.nameTF.getObject()).attr("placeholder", "Name Incorrect");
-        $(_this.nameTF.getObject()).css("background-color", "#ffb1b1");
-        return;
-      }
-      if (null == desc.match(/^[\u4e00-\u9fffa0-9a-zA-Z_-]{2,64}$/)) {
-        $(_this.descTF.getObject()).val("");
-        $(_this.descTF.getObject()).attr("placeholder", "Description Incorrect");
-        $(_this.descTF.getObject()).css("background-color", "#ffb1b1");
-        return;
-      }
+      let uuid = $(_this.mainWindow.getObject()).attr("data-uuid");
       let data = {
-        "name": name,
-        "description": desc,
-        "permission_list": "none;"
+        "uuid": uuid
       };
-      let result = Ajax.submit(Configure.getServerUrl() + "user_security/addRole/", data, false, true, false);
+      let result = Ajax.submit(Configure.getServerUrl() + "user_security/removeRole/", data, false, true, false);
       if (Common.analyseResult(result)) {
-        // 清空数据
-        $(_this.nameTF.getObject()).replaceWith(_this.nameTF.getCode());
-        $(_this.descTF.getObject()).replaceWith(_this.descTF.getCode());
         // 关闭窗口
         $(_this.cancelBtn.getObject()).trigger("click");
         // 重新加载数据
         loadRoleList(rlw, pmw);
       } else {
         // 添加失败
-        alert("Create Failed");
+        alert("Remove Failed");
       }
     });
     ////////////////////////////////////////////////////////////////////////////

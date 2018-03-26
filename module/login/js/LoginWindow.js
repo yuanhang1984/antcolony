@@ -43,40 +43,38 @@ class LoginWindow {
   }
 
   update() {
-    this.nameTF.update();
-    this.pwdTF.update();
     ////////////////////////////////////////////////////////////////////////////
     // 绑定Login按钮事件
     ////////////////////////////////////////////////////////////////////////////
     let _this = this;
-    $("#" + this.loginBtn.getId()).click(function() {
-      let name = _this.nameTF.getValue();
-      let password = _this.pwdTF.getValue();
+    $(this.loginBtn.getObject()).click(function() {
+      let name = _this.nameTF.getObject().val();
+      let password = _this.pwdTF.getObject().val();
       if (null == name.match(/^[0-9a-zA-Z_-]{4,16}$/)) {
-        $("#" + _this.nameTF.getId()).val("");
-        $("#" + _this.nameTF.getId()).attr("placeholder", "Name Incorrect");
-        $("#" + _this.nameTF.getId()).css("background-color", "#ffb1b1");
+        $(_this.nameTF.getObject()).val("");
+        $(_this.nameTF.getObject()).attr("placeholder", "Name Incorrect");
+        $(_this.nameTF.getObject()).css("background-color", "#ffb1b1");
         return;
       }
       if (null == password.match(/^\S{1,16}$/)) {
-        $("#" + _this.pwdTF.getId()).val("");
-        $("#" + _this.pwdTF.getId()).attr("placeholder", "Password Incorrect");
-        $("#" + _this.pwdTF.getId()).css("background-color", "#ffb1b1");
+        $(_this.pwdTF.getObject()).val("");
+        $(_this.pwdTF.getObject()).attr("placeholder", "Password Incorrect");
+        $(_this.pwdTF.getObject()).css("background-color", "#ffb1b1");
         return;
       }
       let data = {
         "name": name,
         "password": password
       };
-      let result = Ajax.submit(Configure.getProjectPath() + "user_security/getUserForLogin/", data, false, true, false);
-      if ("success" == result.status.toLowerCase()) {
+      let result = Ajax.submit(Configure.getServerUrl() + "user_security/getUserForLogin/", data, false, true, false);
+      if (Common.analyseResult(result)) {
         // 登录成功
         // 获取跳转页面的地址
         let redirectUrl = Assistant.getQueryFromUrl("redirectUrl");
         if (null != redirectUrl) {
           window.location.href = redirectUrl;
         } else {
-          window.location.href = "../index/index.html";
+          window.location.href = Configure.getWebUrl() + "management/index/index.html";
         }
       } else {
         // 登录失败

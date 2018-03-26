@@ -2,13 +2,13 @@
    margin: 0px;
 }
 
-.JSTable th {
+.JSTable > thead > tr > th {
   color: #7A7676;
   text-align: center;
   background-color: #D9EDF6;
 }
 
-.JSTable tbody tr td {
+.JSTable > tbody > tr > td {
   text-align: center;
   vertical-align: middle;
 }

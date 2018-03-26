@@ -45,40 +45,39 @@ class ModifyPasswordWindow {
   }
 
   update() {
-    this.pwdTF.update();
-    this.rePwdTF.update();
     let _this = this;
     ////////////////////////////////////////////////////////////////////////////
     // 绑定Submit按钮事件
     ////////////////////////////////////////////////////////////////////////////
-    $("#" + this.submitBtn.getId()).click(function() {
-      let password = _this.pwdTF.getValue();
-      let rePassword = _this.rePwdTF.getValue();
+    $(this.submitBtn.getObject()).click(function() {
+      let password = _this.pwdTF.getObject().val();
+      let rePassword = _this.rePwdTF.getObject().val();
       if (null == password.match(/^\S{1,16}$/)) {
-        $("#" + _this.pwdTF.getId()).val("");
-        $("#" + _this.pwdTF.getId()).attr("placeholder", "Password Format Incorrect");
-        $("#" + _this.pwdTF.getId()).css("background-color", "#ffb1b1");
+        $(_this.pwdTF.getObject()).val("");
+        $(_this.pwdTF.getObject()).attr("placeholder", "Password Format Incorrect");
+        $(_this.pwdTF.getObject()).css("background-color", "#ffb1b1");
         return;
       }
       if (null == rePassword.match(/^\S{1,16}$/)) {
-        $("#" + _this.rePwdTF.getId()).val("");
-        $("#" + _this.rePwdTF.getId()).attr("placeholder", "Password Format Incorrect");
-        $("#" + _this.rePwdTF.getId()).css("background-color", "#ffb1b1");
+        $(_this.rePwdTF.getObject()).val("");
+        $(_this.rePwdTF.getObject()).attr("placeholder", "Password Format Incorrect");
+        $(_this.rePwdTF.getObject()).css("background-color", "#ffb1b1");
         return;
       }
       if (password != rePassword) {
-        $("#" + _this.rePwdTF.getId()).val("");
-        $("#" + _this.rePwdTF.getId()).attr("placeholder", "The Password Must Be Same");
-        $("#" + _this.rePwdTF.getId()).css("background-color", "#ffb1b1");
+        $(_this.rePwdTF.getObject()).val("");
+        $(_this.rePwdTF.getObject()).attr("placeholder", "The Password Must Be Same");
+        $(_this.rePwdTF.getObject()).css("background-color", "#ffb1b1");
         return;
       }
       let data = {
         "password": password
       };
-      let result = Ajax.submit(Configure.getProjectPath() + "user_security/modifyUserForPassword/", data, false, true, false);
+      let result = Ajax.submit(Configure.getServerUrl() + "user_security/modifyUserForPassword/", data, false, true, false);
       if ("success" == result.status.toLowerCase()) {
         alert("Success");
-        location.reload();
+        $(_this.pwdTF.getObject()).replaceWith(_this.pwdTF.getCode());
+        $(_this.rePwdTF.getObject()).replaceWith(_this.rePwdTF.getCode());
       } else {
         alert("Error");
       }

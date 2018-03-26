@@ -26,6 +26,7 @@
 <script src = "../../js/toolkit/Ajax.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../js/toolkit/Assistant.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../js/system/Common.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../lib/js/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../lib/js/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
@@ -47,7 +48,7 @@ $(document).ready(function() {
   $("#loginWindowArea").html(lw.mainWindow.getCode());
   lw.update();
   // 调整窗口位置页面居中
-  $(".LoginWindow").css("margin-top", (($(document).height() - $(`#${lw.mainWindow.getId()}`).height()) / 2) + "px");
+  $(".LoginWindow").css("margin-top", (($(document).height() - $(lw.mainWindow.getObject()).height()) / 2) + "px");
 });
 </script>
 <title>Login</title>

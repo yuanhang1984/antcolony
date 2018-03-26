@@ -1,11 +1,15 @@
-.JSComboBox button {
+.JSComboBox > button {
   text-align: right;
 }
 
-.JSComboBox button, ul {
+.JSComboBox > button, ul {
   width: 100%;
 }
 
-.JSComboBox button span:first-child {
+.JSComboBox > ul li {
+  cursor: pointer;
+}
+
+.JSComboBox > button > span:first-child {
   float: left;
 }
