@@ -73,11 +73,11 @@ menuTree.setNode(
       "list": [
         {
           "text": "Role",
-          "link": "../user_security/role/role.html"
+          "link": `${Configure.getWebUrl()}management/user_security/role/role.html`
         },
         {
           "text": "User",
-          "link": "../user_security/user.html"
+          "link": `${Configure.getWebUrl()}management/user_security/user/user.html`
         }
       ]
     },
@@ -86,7 +86,7 @@ menuTree.setNode(
       "list": [
         {
           "text": "Modify Password",
-          "link": "../current_user/modify_password/modify_password.html"
+          "link": `${Configure.getWebUrl()}management/current_user/modify_password/modify_password.html`
         },
         {
           "text": "Logout",

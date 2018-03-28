@@ -48,7 +48,8 @@ class PermissionModifyWindow {
     this.mainWindow.setTitle("Permission Modify");
     this.mainWindow.setClass("PermissionModifyWindow");
     this.mainWindow.setContent(`
-      <div class="input-group">${this.roleCB.getCode()}<span class="input-group-btn">${this.submitBtn.getCode()}</span></div>
+      <div>${this.roleCB.getCode()}</div>
+      <div>${this.submitBtn.getCode()}</div>
       <div>${this.modulePermissionCode}</div>
     `);
     this.mainWindow.generateCode();
@@ -72,7 +73,8 @@ class PermissionModifyWindow {
     }
     this.roleCB.generateCode();
     this.mainWindow.setContent(`
-      <div class="input-group">${this.roleCB.getCode()}<span class="input-group-btn">${this.submitBtn.getCode()}</span></div>
+      <div>${this.roleCB.getCode()}</div>
+      <div>${this.submitBtn.getCode()}</div>
       <div>${this.modulePermissionCode}</div>
     `);
     this.mainWindow.generateCode();

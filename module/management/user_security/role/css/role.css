@@ -63,8 +63,8 @@
   text-align: center;
 }
 
-.PermissionModifyWindow > .panel-body > div {
-  text-align: center;
+.PermissionModifyWindow > .panel-body > .input-group > div:first-child {
+  margin-bottom: 0px;
 }
 
 .ModulePermissionWindow > .panel-body {
