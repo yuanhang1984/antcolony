@@ -24,8 +24,12 @@
   margin-right: 10px;
 }
 
-.UserListWindow > .panel-body div > .JSPagination > ul > li a {
-  float: right;
+.UserListWindow > .panel-body div > .JSPagination {
+  text-align: right;
+}
+
+.UserListWindow > .panel-body div > .JSPagination > ul li a {
+  float: none;
 }
 
 .UserCreateWindow {

@@ -12,6 +12,7 @@ class LoginWindow {
     ////////////////////////////////////////////////////////////////////////////
     this.nameTF = new JSTextField();
     this.nameTF.setPlaceHolder("Name");
+    this.nameTF.setValue("superadmin");
     this.nameTF.generateCode();
     ////////////////////////////////////////////////////////////////////////////
     // Password输入框
@@ -19,6 +20,7 @@ class LoginWindow {
     this.pwdTF = new JSTextField();
     this.pwdTF.setPlaceHolder("Password");
     this.pwdTF.setType("password");
+    this.pwdTF.setValue("123");
     this.pwdTF.generateCode();
     ////////////////////////////////////////////////////////////////////////////
     // Login按钮

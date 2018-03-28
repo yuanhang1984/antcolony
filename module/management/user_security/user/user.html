@@ -50,31 +50,6 @@
 // ECMAScript规范
 ////////////////////////////////////////////////////////////////////////////////
 "use strict";
-// function loadUserList() {
-//       let result = Ajax.submit(Configure.getServerUrl() + "user_security/getUserByManager/", data, false, true, false);
-//       if (Common.analyseResult(result)) {
-//         // 清空数据
-//         $(_this.nameTF.getObject()).replaceWith(_this.nameTF.getCode());
-//         _this.listTable.removeTbodyAll();
-//         _this.setUserList(result.detail);
-//         $("#userListWindowArea").html(_this.mainWindow.getCode());
-//         _this.update();
-//       } else {
-//         // 搜索失败
-//         alert("Search Failed");
-//       }
-//   let result = Ajax.submit(Configure.getServerUrl() + "user_security/getUserByManager/", null, false, true, false);
-//   if (!Common.analyseResult(result)) {
-//     return false;
-//   }
-//   rlw.setRoleList(result.detail);
-//   pmw.setRoleList(result.detail);
-//   $("#roleListWindowArea").html(rlw.mainWindow.getCode());
-//   $("#permissionModifyWindowArea").html(pmw.mainWindow.getCode());
-//   rlw.update();
-//   pmw.update();
-//   return true;
-// }
 ////////////////////////////////////////////////////////////////////////////////
 // 输出代码
 ////////////////////////////////////////////////////////////////////////////////
@@ -95,6 +70,11 @@ $(document).ready(function() {
   // UserListWindow对象
   //////////////////////////////////////////////////////////////////////////////
   let ulw = new UserListWindow(ucw, urw, umw);
+  //////////////////////////////////////////////////////////////////////////////
+  // 设置列表对象，便于加载最新数据
+  //////////////////////////////////////////////////////////////////////////////
+  urw.setUserListWindow(ulw);
+  umw.setUserListWindow(ulw);
   $("#userListWindowArea").html(ulw.mainWindow.getCode());
   $("#userCreateWindowArea").html(ucw.mainWindow.getCode());
   $("#userRemoveWindowArea").html(urw.mainWindow.getCode());

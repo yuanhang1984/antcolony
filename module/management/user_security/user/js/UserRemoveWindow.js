@@ -41,6 +41,10 @@ class UserRemoveWindow {
     this.mainWindow.generateCode();
   }
 
+  setUserListWindow(ulw) {
+    this.ulw = ulw;
+  }
+
   update() {
     ////////////////////////////////////////////////////////////////////////////
     // 绑定Submit按钮事件
@@ -55,6 +59,8 @@ class UserRemoveWindow {
       if (Common.analyseResult(result)) {
         // 关闭窗口
         $(_this.cancelBtn.getObject()).trigger("click");
+        // 重新加载最新数据
+        _this.ulw.loadUserList();
       } else {
         // 添加失败
         alert("Remove Failed");

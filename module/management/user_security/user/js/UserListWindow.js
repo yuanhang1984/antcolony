@@ -11,6 +11,10 @@ class UserListWindow {
     this.urw = urw;
     this.umw = umw;
     ////////////////////////////////////////////////////////////////////////////
+    // 搜索列表每页显示的行数
+    ////////////////////////////////////////////////////////////////////////////
+    this.displayRows = 3;
+    ////////////////////////////////////////////////////////////////////////////
     // 搜索参数
     ////////////////////////////////////////////////////////////////////////////
     this.data = {};
@@ -102,65 +106,79 @@ class UserListWindow {
   //////////////////////////////////////////////////////////////////////////////
   // 设置用户列表数据
   //////////////////////////////////////////////////////////////////////////////
-  setUserList(userList) {
+  setUserList(result) {
     this.listTable.removeTbodyAll();
-    for (let i = 0; i < userList.length; i++) {
-      if (null == userList[i].frozen_datetime) {
-        userList[i].frozen_datetime = "None";
+    this.listTable.addTbody(
+      [
+        {
+          "text": "Search Result",
+          "value": "",
+          "colspan": 6,
+          "rowspan": -1
+        }
+      ]
+    );
+    if ("none" == result.error.toLowerCase()) {
+      this.listTable.removeTbodyAll();
+      let userList = result.detail;
+      for (let i = 0; i < userList.length; i++) {
+        if (null == userList[i].frozen_datetime) {
+          userList[i].frozen_datetime = "None";
+        }
+        if (1 == userList[i].status) {
+          userList[i].status = "Normal";
+        }
+        if (2 == userList[i].status) {
+          userList[i].status = "Frozen";
+        }
+        if (3 == userList[i].status) {
+          userList[i].status = "Lock";
+        }
+        this.listTable.addTbody(
+          [
+            {
+              "text": `${userList[i].name}`,
+              "value": `${userList[i].name}`,
+              "colspan": -1,
+              "rowspan": -1
+            },
+            {
+              "text": `${userList[i].role}`,
+              "value": `${userList[i].role}`,
+              "colspan": -1,
+              "rowspan": -1
+            },
+            {
+              "text": `${userList[i].failed_retry_count}`,
+              "value": `${userList[i].failed_retry_count}`,
+              "colspan": -1,
+              "rowspan": -1
+            },
+            {
+              "text": `${userList[i].frozen_datetime}`,
+              "value": `${userList[i].frozen_datetime}`,
+              "colspan": -1,
+              "rowspan": -1
+            },
+            {
+              "text": `${userList[i].status}`,
+              "value": `${userList[i].status}`,
+              "colspan": -1,
+              "rowspan": -1
+            },
+            {
+              "text": `<i class = "icon-edit" data-uuid = "${userList[i].uuid}"></i><i class = "icon-remove" data-uuid = "${userList[i].uuid}"></i>`,
+              "value": "",
+              "colspan": -1,
+              "rowspan": -1
+            }
+          ]
+        );
       }
-      if (1 == userList[i].status) {
-        userList[i].status = "Normal";
-      }
-      if (2 == userList[i].status) {
-        userList[i].status = "Frozen";
-      }
-      if (3 == userList[i].status) {
-        userList[i].status = "Lock";
-      }
-      this.listTable.addTbody(
-        [
-          {
-            "text": `${userList[i].name}`,
-            "value": `${userList[i].name}`,
-            "colspan": -1,
-            "rowspan": -1
-          },
-          {
-            "text": `${userList[i].role}`,
-            "value": `${userList[i].role}`,
-            "colspan": -1,
-            "rowspan": -1
-          },
-          {
-            "text": `${userList[i].failed_retry_count}`,
-            "value": `${userList[i].failed_retry_count}`,
-            "colspan": -1,
-            "rowspan": -1
-          },
-          {
-            "text": `${userList[i].frozen_datetime}`,
-            "value": `${userList[i].frozen_datetime}`,
-            "colspan": -1,
-            "rowspan": -1
-          },
-          {
-            "text": `${userList[i].status}`,
-            "value": `${userList[i].status}`,
-            "colspan": -1,
-            "rowspan": -1
-          },
-          {
-            "text": `<i class = "icon-edit" data-uuid = "${userList[i].uuid}"></i><i class = "icon-remove" data-uuid = "${userList[i].uuid}"></i>`,
-            "value": "",
-            "colspan": -1,
-            "rowspan": -1
-          }
-        ]
-      );
     }
     this.listTable.generateCode();
     this.pagination.setOffset(this.data.offset);
-    this.pagination.setRows(this.data.rows);
+    this.pagination.setRows(this.displayRows);
     this.pagination.setCount(this.count);
     this.pagination.generateCode();
     this.mainWindow.setContent(`
@@ -174,24 +192,27 @@ class UserListWindow {
     this.update();
   }
 
-  loadUserList(offset, rows) {
+  loadUserList() {
     // 获取计数
     this.data.data_type = "count";
-    let result = Ajax.submit(Configure.getServerUrl() + "user_security/getUserByManager/", this.data, false, true, false);
+    let countData = {
+      "name": this.data.name,
+      "data_type": "count"
+    };
+    let result = Ajax.submit(Configure.getServerUrl() + "user_security/getUserByManager/", countData, false, true, false);
     if (!Common.analyseResult(result)) {
       alert("Search Failed");
       return;
     }
     this.count = result.detail[0].count;
     delete this.data.data_type;
-    this.data.offset = offset;
-    this.data.rows = rows;
+    this.data.rows = this.displayRows;
     result = Ajax.submit(Configure.getServerUrl() + "user_security/getUserByManager/", this.data, false, true, false);
     if (!Common.analyseResult(result)) {
       alert("Search Failed");
       return;
     }
-    this.setUserList(result.detail);
+    this.setUserList(result);
   }
 
   update() {
@@ -214,19 +235,18 @@ class UserListWindow {
       } else {
         delete _this.data.name;
       }
-      _this.loadUserList(0, 20);
-      // let result = Ajax.submit(Configure.getServerUrl() + "user_security/getUserByManager/", _this.data, false, true, false);
-      // if (Common.analyseResult(result)) {
-      //   // 清空数据
-      //   $(_this.nameTF.getObject()).replaceWith(_this.nameTF.getCode());
-      //   _this.listTable.removeTbodyAll();
-      //   _this.setUserList(result.detail);
-      //   $("#userListWindowArea").html(_this.mainWindow.getCode());
-      //   _this.update();
-      // } else {
-      //   // 搜索失败
-      //   alert("Search Failed");
-      // }
+      _this.data.offset = 0;
+      _this.loadUserList(0);
+    });
+    ////////////////////////////////////////////////////////////////////////////
+    // 绑定分页按钮事件
+    ////////////////////////////////////////////////////////////////////////////
+    $(this.pagination.getObject()).find("ul").find("li").find("a").click(function() {
+      let dataOffset = $(this).parent().attr("data-offset");
+      if ((undefined != dataOffset) && (null != dataOffset)) {
+        _this.data.offset = dataOffset;
+        _this.loadUserList();
+      }
     });
     ////////////////////////////////////////////////////////////////////////////
     // 关联Create按钮打开模态窗口

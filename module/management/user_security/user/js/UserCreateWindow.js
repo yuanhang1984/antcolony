@@ -98,7 +98,7 @@ class UserCreateWindow {
         $(_this.pwdTF.getObject()).css("background-color", "#ffb1b1");
         return;
       }
-      if (null == role.match(/^[0-9a-zA-Z_-]{4,16}$/)) {
+      if ((null == role.match(/^[0-9a-zA-Z_]{4,16}$/)) {
         $(_this.roleCB.getObject()).find("button").css("background-color", "#ffb1b1");
         return;
       }

@@ -117,30 +117,26 @@ class UserModifyWindow {
     ////////////////////////////////////////////////////////////////////////////
     // 遍历判断当前用户的角色是哪个
     ////////////////////////////////////////////////////////////////////////////
-    let currentRoleName = "";
     for (let i = 0; i < roleResult.detail.length; i++) {
       let role = roleResult.detail[i];
       this.roleCB.addItem({
         "type": "option",
         "text": `${role.name}`,
-        "value": `${role.uuid}`,
+        "value": `${role.name}`,
         "enable": true 
       });
       if (role.name == userResult.detail[0].role) {
         // 这里需要+1，因为有一个SelectRole的头
         this.roleCB.setSelectedIndex(i + 1);
-        currentRoleName = role.name;
       }
     }
     this.roleCB.generateCode();
     ////////////////////////////////////////////////////////////////////////////
     // 遍历判断当前用户的状态是哪个
     ////////////////////////////////////////////////////////////////////////////
-    let currentStatusValue = 0;
     for (let i = 1; i <= 3; i++) {
       if (i == userResult.detail[0].status) {
         this.statusCB.setSelectedIndex(i);
-        currentStatusValue = i;
         break;
       }
     }
@@ -154,9 +150,11 @@ class UserModifyWindow {
     `);
     this.mainWindow.generateCode();
     $("#userModifyWindowArea").html(this.mainWindow.getCode());
-    $(this.roleCB.getObject()).find("button").attr("data-value", currentRoleName);
-    $(this.statusCB.getObject()).find("button").attr("data-value", currentStatusValue);
     this.update();
+  }
+
+  setUserListWindow(ulw) {
+    this.ulw = ulw;
   }
 
   update() {
@@ -176,7 +174,7 @@ class UserModifyWindow {
           return;
         }
       }
-      if (null == role.match(/^[0-9a-zA-Z_-]{4,16}$/)) {
+      if (null == role.match(/^[0-9a-zA-Z_]{4,16}$/)) {
         $(_this.roleCB.getObject()).find("button").css("background-color", "#ffb1b1");
         return;
       }
@@ -207,8 +205,10 @@ class UserModifyWindow {
         $(_this.statusCB.getObject()).replaceWith(_this.statusCB.getCode());
         // 关闭窗口
         $(_this.cancelBtn.getObject()).trigger("click");
+        // 重新加载最新数据
+        _this.ulw.loadUserList();
       } else {
-        // 添加失败
+        // 修改失败
         alert("Modify Failed");
       }
     });

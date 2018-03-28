@@ -70,7 +70,7 @@ function loadRoleList(rlw, pmw) {
 // 获取所有权限
 ////////////////////////////////////////////////////////////////////////////////
 function loadPermissionList(permissionList) {
-  let result = Ajax.submit(Configure.getServerUrl() + "user_security/getAllPermission/", null, false, true, false);
+  let result = Ajax.submit(Configure.getServerUrl() + "antcolony/getPermissionList/", null, false, true, false);
   if (!Common.analyseResult(result)) {
     return false;
   }
