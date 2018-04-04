@@ -6,7 +6,11 @@
   font-size: 0px;
 }
 
-/* 重置按钮的间距 */
-.SqlListWindow .panel-body div:last-child button:first-child {
+.SqlListWindow .panel-body div form {
+  display: inline;
+}
+
+.SqlListWindow .panel-body div form button:last-child{
+  margin-left: 10px;
   margin-right: 10px;
 }
