@@ -12,10 +12,13 @@
 <!-- *********************************************************************** -->
 <link rel = "stylesheet" type = "text/css" href = "../../../../css/global.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSForm.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSTable.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSLabel.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSButton.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSWindow.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSComboBox.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSTextArea.css"/>
+<link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSTextField.css"/>
 <link rel = "stylesheet" type = "text/css" href = "./css/module.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
@@ -31,51 +34,89 @@
 <script src = "../../../../js/system/Common.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../js/system/Configure.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../lib/js/JSForm.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../../lib/js/JSTable.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../../lib/js/JSLabel.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../lib/js/JSButton.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../lib/js/JSWindow.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../lib/js/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../lib/js/JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../../lib/js/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./js/ModuleCreateWindow.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "./js/ModuleListWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./js/ModuleModifyWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./js/ModuleRemoveWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./js/ResourceFileWindow.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
 ////////////////////////////////////////////////////////////////////////////////
 // ECMAScript规范
 ////////////////////////////////////////////////////////////////////////////////
 "use strict";
-//////////////////////////////////////////////////////////////////////////////
-// SqlListWindow对象
-//////////////////////////////////////////////////////////////////////////////
-let slw = new SqlListWindow();
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // 输出代码
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
+  //////////////////////////////////////////////////////////////////////////////
+  // ModuleCreateWindow对象
+  //////////////////////////////////////////////////////////////////////////////
+  let mcw = new ModuleCreateWindow();
+  //////////////////////////////////////////////////////////////////////////////
+  // ModuleRemoveWindow对象
+  //////////////////////////////////////////////////////////////////////////////
+  let mrw = new ModuleRemoveWindow();
+  //////////////////////////////////////////////////////////////////////////////
+  // ModuleModifyWindow对象
+  //////////////////////////////////////////////////////////////////////////////
+  let mmw = new ModuleModifyWindow();
+  //////////////////////////////////////////////////////////////////////////////
+  // ModuleListWindow对象
+  //////////////////////////////////////////////////////////////////////////////
+  let mlw = new ModuleListWindow(mcw, mrw, mmw);
+  //////////////////////////////////////////////////////////////////////////////
+  // ResourceFileWindow对象
+  //////////////////////////////////////////////////////////////////////////////
+  let rfw = new ResourceFileWindow();
+  $("#moduleListWindowArea").html(mlw.mainWindow.getCode());
+  $("#resourceFileWindowArea").html(rfw.mainWindow.getCode());
+  $("#moduleCreateWindowArea").html(mcw.mainWindow.getCode());
+  $("#moduleRemoveWindowArea").html(mrw.mainWindow.getCode());
+  $("#moduleModifyWindowArea").html(mmw.mainWindow.getCode());
+  mcw.update(mlw, rfw);
+  mrw.update(mlw, rfw);
+  mmw.update(mlw, rfw);
+  mlw.update();
+  rfw.update();
+
 
 //////////////////////////////////////////////////////////////////////////////
 // 记得新增之后，如果重新加载模块名称的时候，把三个按钮的禁用状态恢复如初。
 //////////////////////////////////////////////////////////////////////////////
-  $("#sqlListWindowArea").html(slw.mainWindow.getCode());
-  $(slw.browseBtn.getObject()).prop("disabled", true);
-  $(slw.uploadBtn.getObject()).prop("disabled", true);
-  $(slw.downloadBtn.getObject()).prop("disabled", true);
-  slw.update();
-  // 文件内容输入框自适应窗口最大尺寸
-  $(slw.mainWindow.getObject()).find(".panel-body").find("div").find("textarea").css("height",
-    $(document).height()
-    - parseInt($("body").css("padding-top")) * 2
-    - parseInt($("body").css("padding-bottom")) * 2
-    - parseInt(slw.mainWindow.getObject().css("border-width")) * 2
-    - parseInt(slw.mainWindow.getObject().find(".panel-heading").css("height"))
-    - parseInt(slw.mainWindow.getObject().find(".panel-body").css("padding-top"))
-    - parseInt(slw.mainWindow.getObject().find(".panel-body").css("padding-bottom"))
-    - parseInt(slw.mainWindow.getObject().find(".panel-body").find("div:nth-child(1)").css("height"))
-    - parseInt(slw.mainWindow.getObject().find(".panel-body").find("div:nth-child(3)").css("height"))
-    + "px"
-  );
+  // $("#sqlListWindowArea").html(slw.mainWindow.getCode());
+  // $(slw.browseBtn.getObject()).prop("disabled", true);
+  // $(slw.uploadBtn.getObject()).prop("disabled", true);
+  // $(slw.downloadBtn.getObject()).prop("disabled", true);
+  // slw.update();
+  // // 文件内容输入框自适应窗口最大尺寸
+  // $(slw.mainWindow.getObject()).find(".panel-body").find("div").find("textarea").css("height",
+  //   $(document).height()
+  //   - parseInt($("body").css("padding-top")) * 2
+  //   - parseInt($("body").css("padding-bottom")) * 2
+  //   - parseInt(slw.mainWindow.getObject().css("border-width")) * 2
+  //   - parseInt(slw.mainWindow.getObject().find(".panel-heading").css("height"))
+  //   - parseInt(slw.mainWindow.getObject().find(".panel-body").css("padding-top"))
+  //   - parseInt(slw.mainWindow.getObject().find(".panel-body").css("padding-bottom"))
+  //   - parseInt(slw.mainWindow.getObject().find(".panel-body").find("div:nth-child(1)").css("height"))
+  //   - parseInt(slw.mainWindow.getObject().find(".panel-body").find("div:nth-child(3)").css("height"))
+  //   + "px"
+  // );
 });
 </script>
-<title>Database SQL</title>
+<title>Module</title>
 </head>
 <body>
-  <div id = "sqlListWindowArea"></div>
+  <div id = "moduleListWindowArea"></div>
+  <div id = "resourceFileWindowArea"></div>
+  <div id = "moduleCreateWindowArea"></div>
+  <div id = "moduleRemoveWindowArea"></div>
+  <div id = "moduleModifyWindowArea"></div>
 </body>
 </html>

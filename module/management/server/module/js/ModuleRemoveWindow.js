@@ -11,7 +11,7 @@ class ModuleRemoveWindow {
     // Content标签
     ////////////////////////////////////////////////////////////////////////////
     this.cntLB = new JSLabel();
-    this.cntLB.setText("Do you want to remove this role?");
+    this.cntLB.setText("Do you want to remove this module?");
     this.cntLB.generateCode();
     ////////////////////////////////////////////////////////////////////////////
     // Submit按钮
@@ -37,26 +37,27 @@ class ModuleRemoveWindow {
       <div>${this.cntLB.getCode()}</div>
       <div>${this.submitBtn.getCode() + this.cancelBtn.getCode()}</div>
     `);
-    this.mainWindow.setClass("RoleRemoveWindow");
+    this.mainWindow.setClass("ModuleRemoveWindow");
     this.mainWindow.generateCode();
   }
 
-  update(loadRoleList, rlw, pmw) {
+  update(mlw, rfw) {
     ////////////////////////////////////////////////////////////////////////////
     // 绑定Submit按钮事件
     ////////////////////////////////////////////////////////////////////////////
     let _this = this;
     $(this.submitBtn.getObject()).click(function() {
-      let uuid = $(_this.mainWindow.getObject()).attr("data-uuid");
+      let name = $(_this.mainWindow.getObject()).attr("data-name");
       let data = {
-        "uuid": uuid
+        "moduleName": name
       };
-      let result = Ajax.submit(Configure.getServerUrl() + "user_security/removeRole/", data, false, true, false);
+      let result = Ajax.submit(Configure.getServerUrl() + "antcolony/removeModule/", data, false, true, false);
       if (Common.analyseResult(result)) {
         // 关闭窗口
         $(_this.cancelBtn.getObject()).trigger("click");
         // 重新加载数据
-        loadRoleList(rlw, pmw);
+        mlw.reLoadModuleList();
+        rfw.reLoadModuleList();
       } else {
         // 添加失败
         alert("Remove Failed");

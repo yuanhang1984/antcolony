@@ -41,40 +41,31 @@ class ModuleCreateWindow {
     this.mainWindow.generateCode();
   }
 
-  update(reLoadModuleList) {
+  update(mlw, rfw) {
     ////////////////////////////////////////////////////////////////////////////
     // 绑定Submit按钮事件
     ////////////////////////////////////////////////////////////////////////////
     let _this = this;
     $(this.submitBtn.getObject()).click(function() {
       let name = _this.nameTF.getObject().val();
-      let desc = _this.descTF.getObject().val();
       if (null == name.match(/^[0-9a-zA-Z_-]{4,16}$/)) {
         $(_this.nameTF.getObject()).val("");
         $(_this.nameTF.getObject()).attr("placeholder", "Name Incorrect");
         $(_this.nameTF.getObject()).css("background-color", "#ffb1b1");
         return;
       }
-      if (null == desc.match(/^[\u4e00-\u9fffa0-9a-zA-Z_-]{2,64}$/)) {
-        $(_this.descTF.getObject()).val("");
-        $(_this.descTF.getObject()).attr("placeholder", "Description Incorrect");
-        $(_this.descTF.getObject()).css("background-color", "#ffb1b1");
-        return;
-      }
       let data = {
-        "name": name,
-        "description": desc,
-        "permission_list": "none;"
+        "moduleName": name
       };
-      let result = Ajax.submit(Configure.getServerUrl() + "user_security/addRole/", data, false, true, false);
+      let result = Ajax.submit(Configure.getServerUrl() + "antcolony/addModule/", data, false, true, false);
       if (Common.analyseResult(result)) {
         // 清空数据
         $(_this.nameTF.getObject()).replaceWith(_this.nameTF.getCode());
-        $(_this.descTF.getObject()).replaceWith(_this.descTF.getCode());
         // 关闭窗口
         $(_this.cancelBtn.getObject()).trigger("click");
         // 重新加载数据
-        reLoadModuleList();
+        mlw.reLoadModuleList();
+        rfw.reLoadModuleList();
       } else {
         // 添加失败
         alert("Create Failed");

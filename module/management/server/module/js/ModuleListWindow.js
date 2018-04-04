@@ -41,16 +41,6 @@ class ModuleListWindow {
         }
       ]
     );
-    this.listTable.addTbody(
-      [
-        {
-          "text": "Search Result",
-          "value": "",
-          "colspan": 3,
-          "rowspan": -1
-        }
-      ]
-    );
     this.listTable.generateCode();
     ////////////////////////////////////////////////////////////////////////////
     // Create按钮
@@ -71,6 +61,7 @@ class ModuleListWindow {
       <div>${this.createBtn.getCode()}</div>
     `);
     this.mainWindow.generateCode();
+    this.reLoadModuleList();
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -78,7 +69,7 @@ class ModuleListWindow {
   //////////////////////////////////////////////////////////////////////////////
   isModuleLoad(name) {
     for (let i = 0; i < this.modLoadNameList.length; i++) {
-      if (this.modLoadNameList[i] == name) {
+      if (this.modLoadNameList[i].name == name) {
         return true;
       }
     }
@@ -89,24 +80,13 @@ class ModuleListWindow {
   // 重新加载模块列表
   //////////////////////////////////////////////////////////////////////////////
   reLoadModuleList() {
-    this.listTable.removeTbodyAll();
-    this.listTable.addTbody(
-      [
-        {
-          "text": "Search Result",
-          "value": "",
-          "colspan": 3,
-          "rowspan": -1
-        }
-      ]
-    );
     let result = Ajax.submit(Configure.getServerUrl() + "antcolony/getDiskNameList/", null, false, true, false);
     if (Common.analyseResult(result)) {
       if ("none" == result.error.toLowerCase()) {
         this.listTable.removeTbodyAll();
         let modList = result.detail;
-        let isLoad = "False";
         for (let i = 0; i < modList.length; i++) {
+          let isLoad = "False";
           if (this.isModuleLoad(modList[i].name)) {
             isLoad = "True";
           }
@@ -125,7 +105,7 @@ class ModuleListWindow {
                 "rowspan": -1
               },
               {
-                "text": `<i class = "icon-edit" data-uuid = "${modList[i].name}"></i><i class = "icon-remove" data-uuid = "${modList[i].name}"></i>`,
+                "text": `<i class = "icon-edit" data-name = "${modList[i].name}"></i><i class = "icon-remove" data-name = "${modList[i].name}"></i>`,
                 "value": "",
                 "colspan": -1,
                 "rowspan": -1

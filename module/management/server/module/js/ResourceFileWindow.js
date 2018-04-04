@@ -18,7 +18,7 @@ class ResourceFileWindow {
       "value": "0",
       "enable": false
     });
-    let result = Ajax.submit(Configure.getServerUrl() + "antcolony/getNameList/", null, false, true, false);
+    let result = Ajax.submit(Configure.getServerUrl() + "antcolony/getDiskNameList/", null, false, true, false);
     if (!Common.analyseResult(result)) {
       return false;
     }
@@ -36,34 +36,34 @@ class ResourceFileWindow {
     ////////////////////////////////////////////////////////////////////////////
     // 资源文件类型下拉菜单
     ////////////////////////////////////////////////////////////////////////////
-    this.typeCB = new JSComboBox();
-    this.typeCB.setType("dropdown");
-    this.typeCB.addItem({
+    this.fileCB = new JSComboBox();
+    this.fileCB.setType("dropdown");
+    this.fileCB.addItem({
       "type": "option",
       "text": "Select Type",
       "value": "0",
       "enable": false
     });
-    this.typeCB.addItem({
+    this.fileCB.addItem({
       "type": "option",
       "text": "Config",
       "value": "config.xml",
-      "enable": false
+      "enable": true
     });
-    this.typeCB.addItem({
+    this.fileCB.addItem({
       "type": "option",
       "text": "Sql",
       "value": "sql.xml",
-      "enable": false
+      "enable": true
     });
-    this.typeCB.addItem({
+    this.fileCB.addItem({
       "type": "option",
       "text": "Dispatch",
       "value": "dispatch.xml",
-      "enable": false
+      "enable": true
     });
-    this.typeCB.setSelectedIndex(0);
-    this.typeCB.generateCode();
+    this.fileCB.setSelectedIndex(0);
+    this.fileCB.generateCode();
     ////////////////////////////////////////////////////////////////////////////
     // 文件内容输入框
     ////////////////////////////////////////////////////////////////////////////
@@ -113,45 +113,87 @@ class ResourceFileWindow {
     this.mainWindow.setClass("ResourceFileWindow");
     this.mainWindow.setContent(`
       <div>${this.modCB.getCode()}</div>
-      <div>${this.typeCB.getCode()}</div>
+      <div>${this.fileCB.getCode()}</div>
       <div>${this.cntTA.getCode()}</div>
       <div>${this.uploadFM.getCode() + this.downloadBtn.getCode()}</div>       
     `);
     this.mainWindow.generateCode();
   }
 
-  setModuleList(moduleList) {
+  reLoadModuleList() {
     this.modCB.removeItemAll();
-    this.modCB.setType("dropdown");
     this.modCB.addItem({
       "type": "option",
       "text": "Select Module",
       "value": "0",
       "enable": false
     });
-    for (let i = 0; i < moduleList.length; i++) {
+    let result = Ajax.submit(Configure.getServerUrl() + "antcolony/getDiskNameList/", null, false, true, false);
+    if (!Common.analyseResult(result)) {
+      return false;
+    }
+    let list = result.detail;
+    for (let i = 0; i < list.length; i++) {
       this.modCB.addItem({
         "type": "option",
-        "text": `${moduleList[i].name}`,
-        "value": `${moduleList[i].name}`,
-        "enable": true 
+        "text": `${list[i].name}`,
+        "value": `${list[i].name}`,
+        "enable": true
       });
     }
+    this.modCB.setSelectedIndex(0);
     this.modCB.generateCode();
-    this.typeCB.setSelectedIndex(0);
-    this.typeCB.generateCode();
+    this.fileCB.setSelectedIndex(0);
+    this.fileCB.generateCode();
     this.mainWindow.setContent(`
       <div>${this.modCB.getCode()}</div>
-      <div>${this.typeCB.getCode()}</div>
+      <div>${this.fileCB.getCode()}</div>
       <div>${this.cntTA.getCode()}</div>
       <div>${this.uploadFM.getCode() + this.downloadBtn.getCode()}</div>       
     `);
     this.mainWindow.generateCode();
+    $("#resourceFileWindowArea").html(this.mainWindow.getCode());
+    this.update();
+  }
+
+  loadModuleResource(moduleName, fileName) {
+    let _this = this;
+    if ((undefined != moduleName) && (null != moduleName) && (0 < moduleName.length) && (undefined != fileName) && (null != fileName) && (0 < fileName.length)) {
+      // 获取sql资源文件的内容
+      let data = {
+        "moduleName": moduleName,
+        "fileName": fileName
+      };
+      let result = Ajax.submit(Configure.getServerUrl() + "antcolony/readServerResourceFile/", data, false, true, false);
+      if (!Common.analyseResult(result)) {
+        alert("Read Failed");
+        return;
+      }
+      $(this.cntTA.getObject()).html(result.detail);
+      // 绑定Upload按钮事件
+      $(this.uploadBtn.getObject()).click(function() {
+        let uploadResult = Ajax.submit(Configure.getServerUrl() + "antcolony/uploadServerResourceFile/?moduleName=" + moduleName + "&fileName=" + fileName, new FormData(document.forms.namedItem("uploadForm")), false, true, true);
+        if (Common.analyseResult(uploadResult)) {
+          let result = Ajax.submit(Configure.getServerUrl() + "antcolony/readServerResourceFile/", data, false, true, false);
+          if (!Common.analyseResult(result)) {
+            alert("Read Failed");
+            return;
+          }
+          $(_this.cntTA.getObject()).html(result.detail);
+        } else {
+          // 上传失败
+          alert("Upload Failed");
+        }
+      });
+      $(this.browseBtn.getObject()).prop("disabled", false);
+      $(this.downloadBtn.getObject()).prop("disabled", false);
+    }
   }
 
   update() {
     let _this = this;
     this.modCB.update();
+    this.fileCB.update();
     ////////////////////////////////////////////////////////////////////////////
     // 绑定Browse按钮事件
     ////////////////////////////////////////////////////////////////////////////
@@ -164,54 +206,68 @@ class ResourceFileWindow {
     $(this.uploadFM.getObject()).find("input").change(function() {
       $(_this.uploadBtn.getObject()).prop("disabled", false);
     });
+
     ////////////////////////////////////////////////////////////////////////////
     // 绑定change事件
     ////////////////////////////////////////////////////////////////////////////
-    $(this.modCB.getObject()).find("ul").find("li").find("a").click(function() {
-      if (!$(this).parent().hasClass("disabled")) {
-        let name = $(_this.modCB.getObject()).find("button").attr("data-value");
-        // 获取sql资源文件的内容
-        let data = {
-          "moduleName": name,
-          "fileName": "sql.xml"
-        };
-        let result = Ajax.submit(Configure.getServerUrl() + "antcolony/readServerResourceFile/", data, false, true, false);
-        if (!Common.analyseResult(result)) {
-          alert("Get Failed");
-          return false;
-        }
-        for (let i = 0; i < result.detail.length; i++) {
-          $(_this.cntTA.getObject()).html(result.detail);
-        }
-        ////////////////////////////////////////////////////////////////////////
-        // 绑定Upload按钮事件
-        ////////////////////////////////////////////////////////////////////////
-        $(_this.uploadBtn.getObject()).click(function() {
-          let uploadResult = Ajax.submit(Configure.getServerUrl() + "antcolony/uploadServerResourceFile/?moduleName=" + name, new FormData(document.forms.namedItem("uploadForm")), false, true, true);
-          if (Common.analyseResult(uploadResult)) {
-            let result = Ajax.submit(Configure.getServerUrl() + "antcolony/readServerResourceFile/", data, false, true, false);
-            if (!Common.analyseResult(result)) {
-              alert("Get Failed");
-              return false;
-            }
-            for (let i = 0; i < result.detail.length; i++) {
-              $(_this.cntTA.getObject()).html(result.detail);
-            }
-          } else {
-            // 上传失败
-            alert("Upload Failed");
-          }
-        });
-        $(_this.browseBtn.getObject()).prop("disabled", false);
-        $(_this.downloadBtn.getObject()).prop("disabled", false);
-      }
+    $(this.fileCB.getObject()).find("ul").find("li").find("a").click(function() {
+      let moduleName = $(_this.modCB.getObject()).find("button").attr("data-value");
+      let fileName = $(_this.fileCB.getObject()).find("button").attr("data-value");
+      _this.loadModuleResource(moduleName, fileName);
     });
+
+    $(this.modCB.getObject()).find("ul").find("li").find("a").click(function() {
+      let moduleName = $(_this.modCB.getObject()).find("button").attr("data-value");
+      let fileName = $(_this.fileCB.getObject()).find("button").attr("data-value");
+      _this.loadModuleResource(moduleName, fileName);
+    });
+
+    // $(this.modCB.getObject()).find("ul").find("li").find("a").click(function() {
+    //   if (!$(this).parent().hasClass("disabled")) {
+    //     let name = $(_this.modCB.getObject()).find("button").attr("data-value");
+    //     // 获取sql资源文件的内容
+    //     let data = {
+    //       "moduleName": name,
+    //       "fileName": "sql.xml"
+    //     };
+    //     let result = Ajax.submit(Configure.getServerUrl() + "antcolony/readServerResourceFile/", data, false, true, false);
+    //     if (!Common.analyseResult(result)) {
+    //       alert("Get Failed");
+    //       return false;
+    //     }
+    //     for (let i = 0; i < result.detail.length; i++) {
+    //       $(_this.cntTA.getObject()).html(result.detail);
+    //     }
+    //     ////////////////////////////////////////////////////////////////////////
+    //     // 绑定Upload按钮事件
+    //     ////////////////////////////////////////////////////////////////////////
+    //     $(_this.uploadBtn.getObject()).click(function() {
+    //       let uploadResult = Ajax.submit(Configure.getServerUrl() + "antcolony/uploadServerResourceFile/?moduleName=" + name, new FormData(document.forms.namedItem("uploadForm")), false, true, true);
+    //       if (Common.analyseResult(uploadResult)) {
+    //         let result = Ajax.submit(Configure.getServerUrl() + "antcolony/readServerResourceFile/", data, false, true, false);
+    //         if (!Common.analyseResult(result)) {
+    //           alert("Get Failed");
+    //           return false;
+    //         }
+    //         for (let i = 0; i < result.detail.length; i++) {
+    //           $(_this.cntTA.getObject()).html(result.detail);
+    //         }
+    //       } else {
+    //         // 上传失败
+    //         alert("Upload Failed");
+    //       }
+    //     });
+    //     $(_this.browseBtn.getObject()).prop("disabled", false);
+    //     $(_this.downloadBtn.getObject()).prop("disabled", false);
+    //   }
+    // });
     ////////////////////////////////////////////////////////////////////////////
     // 绑定Download按钮事件
     ////////////////////////////////////////////////////////////////////////////
     $(this.downloadBtn.getObject()).click(function() {
-      let name = $(_this.modCB.getObject()).find("button").attr("data-name");
-      window.open(Configure.getServerUrl() + "antcolony/downloadServerResourceFile/?moduleName=" + name);
+      let moduleName = $(_this.modCB.getObject()).find("button").attr("data-value");
+      let fileName = $(_this.fileCB.getObject()).find("button").attr("data-value");
+      window.open(Configure.getServerUrl() + "antcolony/downloadServerResourceFile/?moduleName=" + moduleName + "&fileName=" + fileName);
     });
   }
 }
