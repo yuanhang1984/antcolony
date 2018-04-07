@@ -75,6 +75,7 @@ $(document).ready(function() {
   // ResourceFileWindow对象
   //////////////////////////////////////////////////////////////////////////////
   let rfw = new ResourceFileWindow();
+  //////////////////////////////////////////////////////////////////////////////
   $("#moduleListWindowArea").html(mlw.mainWindow.getCode());
   $("#resourceFileWindowArea").html(rfw.mainWindow.getCode());
   $("#moduleCreateWindowArea").html(mcw.mainWindow.getCode());
@@ -85,6 +86,9 @@ $(document).ready(function() {
   mmw.update(mlw, rfw);
   mlw.update();
   rfw.update();
+  $(rfw.browseBtn.getObject()).prop("disabled", true);
+  $(rfw.uploadBtn.getObject()).prop("disabled", true);
+  $(rfw.downloadBtn.getObject()).prop("disabled", true);
 
 
 //////////////////////////////////////////////////////////////////////////////

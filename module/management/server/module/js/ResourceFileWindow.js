@@ -154,6 +154,9 @@ class ResourceFileWindow {
     this.mainWindow.generateCode();
     $("#resourceFileWindowArea").html(this.mainWindow.getCode());
     this.update();
+    $(this.browseBtn.getObject()).prop("disabled", true);
+    $(this.uploadBtn.getObject()).prop("disabled", true);
+    $(this.downloadBtn.getObject()).prop("disabled", true);
   }
 
   loadModuleResource(moduleName, fileName) {
