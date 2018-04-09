@@ -19,7 +19,7 @@
 <link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSComboBox.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSTextArea.css"/>
 <link rel = "stylesheet" type = "text/css" href = "../../../../lib/css/default_theme/JSTextField.css"/>
-<link rel = "stylesheet" type = "text/css" href = "./css/module.css"/>
+<link rel = "stylesheet" type = "text/css" href = "./css/source.css"/>
 <!-- *********************************************************************** -->
 <!-- plugin js -->
 <!-- *********************************************************************** -->
@@ -41,11 +41,8 @@
 <script src = "../../../../lib/js/JSComboBox.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../lib/js/JSTextArea.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../lib/js/JSTextField.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./js/ModuleCreateWindow.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./js/ModuleListWindow.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./js/ModuleModifyWindow.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./js/ModuleRemoveWindow.js" type = "text/javascript" charset = "utf-8"></script>
-<script src = "./js/ResourceFileWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./js/SourceListWindow.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "./js/SourceRemoveWindow.js" type = "text/javascript" charset = "utf-8"></script>
 <script>
 ////////////////////////////////////////////////////////////////////////////////
 // ECMAScript规范
@@ -56,48 +53,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
   //////////////////////////////////////////////////////////////////////////////
-  // ModuleCreateWindow对象
+  // SourceListWindow对象
   //////////////////////////////////////////////////////////////////////////////
-  let mcw = new ModuleCreateWindow();
+  let slw = new SourceListWindow();
   //////////////////////////////////////////////////////////////////////////////
-  // ModuleRemoveWindow对象
+  // SourceRemoveWindow对象
   //////////////////////////////////////////////////////////////////////////////
-  let mrw = new ModuleRemoveWindow();
+  let srw = new SourceRemoveWindow();
   //////////////////////////////////////////////////////////////////////////////
-  // ModuleModifyWindow对象
-  //////////////////////////////////////////////////////////////////////////////
-  let mmw = new ModuleModifyWindow();
-  //////////////////////////////////////////////////////////////////////////////
-  // ModuleListWindow对象
-  //////////////////////////////////////////////////////////////////////////////
-  let mlw = new ModuleListWindow(mcw, mrw, mmw);
-  //////////////////////////////////////////////////////////////////////////////
-  // ResourceFileWindow对象
-  //////////////////////////////////////////////////////////////////////////////
-  let rfw = new ResourceFileWindow();
-  //////////////////////////////////////////////////////////////////////////////
-  $("#moduleListWindowArea").html(mlw.mainWindow.getCode());
-  $("#resourceFileWindowArea").html(rfw.mainWindow.getCode());
-  $("#moduleCreateWindowArea").html(mcw.mainWindow.getCode());
-  $("#moduleRemoveWindowArea").html(mrw.mainWindow.getCode());
-  $("#moduleModifyWindowArea").html(mmw.mainWindow.getCode());
-  mcw.update(mlw, rfw);
-  mrw.update(mlw, rfw);
-  mmw.update(mlw, rfw);
-  mlw.update();
-  rfw.update();
-  $(rfw.browseBtn.getObject()).prop("disabled", true);
-  $(rfw.uploadBtn.getObject()).prop("disabled", true);
-  $(rfw.downloadBtn.getObject()).prop("disabled", true);
+  $("#sourceListWindowArea").html(slw.mainWindow.getCode());
+  $("#sourceRemoveWindowArea").html(srw.mainWindow.getCode());
+  slw.update();
+  srw.update(slw);
 });
 </script>
-<title>Module</title>
+<title>Source</title>
 </head>
 <body>
-  <div id = "moduleListWindowArea"></div>
-  <div id = "resourceFileWindowArea"></div>
-  <div id = "moduleCreateWindowArea"></div>
-  <div id = "moduleRemoveWindowArea"></div>
-  <div id = "moduleModifyWindowArea"></div>
+  <div id = "sourceListWindowArea"></div>
+  <div id = "sourceRemoveWindowArea"></div>
 </body>
 </html>
