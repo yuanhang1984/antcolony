@@ -3,15 +3,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 "use strict";
 ////////////////////////////////////////////////////////////////////////////////
-// SourceRemoveWindow
+// LibraryRemoveWindow
 ////////////////////////////////////////////////////////////////////////////////
-class SourceRemoveWindow {
+class LibraryRemoveWindow {
   constructor() {
     ////////////////////////////////////////////////////////////////////////////
     // Content标签
     ////////////////////////////////////////////////////////////////////////////
     this.cntLB = new JSLabel();
-    this.cntLB.setText("Do you want to remove this file?");
+    this.cntLB.setText("Do you want to remove this library?");
     this.cntLB.generateCode();
     ////////////////////////////////////////////////////////////////////////////
     // Submit按钮
@@ -37,11 +37,11 @@ class SourceRemoveWindow {
       <div>${this.cntLB.getCode()}</div>
       <div>${this.submitBtn.getCode() + this.cancelBtn.getCode()}</div>
     `);
-    this.mainWindow.setClass("SourceRemoveWindow");
+    this.mainWindow.setClass("LibraryRemoveWindow");
     this.mainWindow.generateCode();
   }
 
-  update(slw) {
+  update(llw) {
     ////////////////////////////////////////////////////////////////////////////
     // 绑定Submit按钮事件
     ////////////////////////////////////////////////////////////////////////////
@@ -49,19 +49,17 @@ class SourceRemoveWindow {
     $(this.submitBtn.getObject()).click(function() {
       let moduleName = $(_this.mainWindow.getObject()).attr("data-module");
       let fileName = $(_this.mainWindow.getObject()).attr("data-file");
-      let type = $(_this.mainWindow.getObject()).attr("data-type");
       let name = $(_this.mainWindow.getObject()).attr("data-name");
       let data = {
         "moduleName": moduleName,
-        "fileName": fileName,
-        "type": type
+        "fileName": fileName
       };
-      let result = Ajax.submit(Configure.getServerUrl() + "antcolony/removeServerSourceCode/", data, false, true, false);
+      let result = Ajax.submit(Configure.getServerUrl() + "antcolony/removeServerSourceLibrary/", data, false, true, false);
       if (Common.analyseResult(result)) {
         // 关闭窗口
         $(_this.cancelBtn.getObject()).trigger("click");
         // 重新加载数据
-        slw.reLoadSourceList();
+        llw.reLoadLibraryList();
       } else {
         // 移除失败
         alert("Remove Failed");
