@@ -47,11 +47,19 @@ class SourceRemoveWindow {
     ////////////////////////////////////////////////////////////////////////////
     let _this = this;
     $(this.submitBtn.getObject()).click(function() {
+      let moduleName = $(_this.mainWindow.getObject()).attr("data-module");
+      let fileName = $(_this.mainWindow.getObject()).attr("data-file");
+      let type = $(_this.mainWindow.getObject()).attr("data-type");
+      console.log(moduleName);
+      console.log(fileName);
+      console.log(type);
       let name = $(_this.mainWindow.getObject()).attr("data-name");
       let data = {
-        "moduleName": name
+        "moduleName": moduleName,
+        "fileName": fileName,
+        "type": type
       };
-      let result = Ajax.submit(Configure.getServerUrl() + "antcolony/removeModule/", data, false, true, false);
+      let result = Ajax.submit(Configure.getServerUrl() + "antcolony/removeServerSourceCode/", data, false, true, false);
       if (Common.analyseResult(result)) {
         // 关闭窗口
         $(_this.cancelBtn.getObject()).trigger("click");

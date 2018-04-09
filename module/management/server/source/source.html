@@ -29,6 +29,7 @@
 <!-- custom js -->
 <!-- *********************************************************************** -->
 <script src = "../../../../js/toolkit/Ajax.js" type = "text/javascript" charset = "utf-8"></script>
+<script src = "../../../../js/toolkit/JTable.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../js/toolkit/JString.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../js/toolkit/Assistant.js" type = "text/javascript" charset = "utf-8"></script>
 <script src = "../../../../js/system/Common.js" type = "text/javascript" charset = "utf-8"></script>
@@ -53,18 +54,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
   //////////////////////////////////////////////////////////////////////////////
-  // SourceListWindow对象
-  //////////////////////////////////////////////////////////////////////////////
-  let slw = new SourceListWindow();
-  //////////////////////////////////////////////////////////////////////////////
   // SourceRemoveWindow对象
   //////////////////////////////////////////////////////////////////////////////
   let srw = new SourceRemoveWindow();
+  //////////////////////////////////////////////////////////////////////////////
+  // SourceListWindow对象
+  //////////////////////////////////////////////////////////////////////////////
+  let slw = new SourceListWindow(srw);
   //////////////////////////////////////////////////////////////////////////////
   $("#sourceListWindowArea").html(slw.mainWindow.getCode());
   $("#sourceRemoveWindowArea").html(srw.mainWindow.getCode());
   slw.update();
   srw.update(slw);
+  $(slw.nuBtn.getObject()).prop("disabled", true);
+  $(slw.ouBtn.getObject()).prop("disabled", true);
 });
 </script>
 <title>Source</title>

@@ -224,46 +224,6 @@ class ResourceFileWindow {
       let fileName = $(_this.fileCB.getObject()).find("button").attr("data-value");
       _this.loadModuleResource(moduleName, fileName);
     });
-
-    // $(this.modCB.getObject()).find("ul").find("li").find("a").click(function() {
-    //   if (!$(this).parent().hasClass("disabled")) {
-    //     let name = $(_this.modCB.getObject()).find("button").attr("data-value");
-    //     // 获取sql资源文件的内容
-    //     let data = {
-    //       "moduleName": name,
-    //       "fileName": "sql.xml"
-    //     };
-    //     let result = Ajax.submit(Configure.getServerUrl() + "antcolony/readServerResourceFile/", data, false, true, false);
-    //     if (!Common.analyseResult(result)) {
-    //       alert("Get Failed");
-    //       return false;
-    //     }
-    //     for (let i = 0; i < result.detail.length; i++) {
-    //       $(_this.cntTA.getObject()).html(result.detail);
-    //     }
-    //     ////////////////////////////////////////////////////////////////////////
-    //     // 绑定Upload按钮事件
-    //     ////////////////////////////////////////////////////////////////////////
-    //     $(_this.uploadBtn.getObject()).click(function() {
-    //       let uploadResult = Ajax.submit(Configure.getServerUrl() + "antcolony/uploadServerResourceFile/?moduleName=" + name, new FormData(document.forms.namedItem("uploadForm")), false, true, true);
-    //       if (Common.analyseResult(uploadResult)) {
-    //         let result = Ajax.submit(Configure.getServerUrl() + "antcolony/readServerResourceFile/", data, false, true, false);
-    //         if (!Common.analyseResult(result)) {
-    //           alert("Get Failed");
-    //           return false;
-    //         }
-    //         for (let i = 0; i < result.detail.length; i++) {
-    //           $(_this.cntTA.getObject()).html(result.detail);
-    //         }
-    //       } else {
-    //         // 上传失败
-    //         alert("Upload Failed");
-    //       }
-    //     });
-    //     $(_this.browseBtn.getObject()).prop("disabled", false);
-    //     $(_this.downloadBtn.getObject()).prop("disabled", false);
-    //   }
-    // });
     ////////////////////////////////////////////////////////////////////////////
     // 绑定Download按钮事件
     ////////////////////////////////////////////////////////////////////////////
